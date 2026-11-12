@@ -193,7 +193,7 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
 ruby{ruby-align:center}
 .credit{margin-top:8px!important;font-size:14px;color:var(--muted)}
 .gpat{word-break:break-word}
-.gbody{padding:0 20px 20px 74px}
+.gbody{padding:0 20px 20px 20px}
 .gsec{margin-top:16px}
 .gsec:first-child{margin-top:0}
 .gsh{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--red);margin-bottom:8px}
@@ -237,8 +237,10 @@ ruby{ruby-align:center}
 .fx-pat{color:var(--muted);font-size:13px}
 .fx-you{font-size:11px;font-weight:800;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:6px}
 .fx-why{font-size:14px;margin-top:6px}
-.fx-m{font-size:13px;color:var(--muted);margin-top:4px}
-.fx-p{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.6}
+.fx-m{font-size:13px;margin-top:8px;padding:7px 10px;border-radius:8px;background:var(--indigo-soft);color:var(--indigo);font-weight:600}
+.fx-p{font-size:13px;margin-top:6px;padding:7px 10px;border-radius:8px;background:var(--gold-soft);color:var(--ink);line-height:1.6}
+.fx-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-right:8px;padding:1px 6px;border-radius:4px;background:rgba(0,0,0,.08);vertical-align:1px}
+[data-theme="dark"] .fx-tag{background:rgba(255,255,255,.12)}
 .fx-link{border:0;background:none;padding:0;margin-top:8px;color:var(--indigo);font-weight:700;font-size:13px;cursor:pointer}
 .fx-link:hover{text-decoration:underline}
 .feedback{text-align:left}
@@ -2009,7 +2011,7 @@ function renderGram(keep){
   $("#gCount").textContent=`${list.length} pola`+(gLv==="Semua"?"":gLv==="Lainnya"?" · tanpa level":` · JLPT ${gLv}`);
   $("#gList").className=$("#gFuri").checked?"":"hide-rt";
   $("#gMore").style.display=list.length>gShow?"inline-flex":"none";$("#gMore").textContent=`Tampilkan lebih banyak (${list.length-gShow} lagi)`;
-  $("#gList").innerHTML=list.length?list.slice(0,gShow).map(g=>`<details class="gitem" data-no="${g.no}"><summary><div class="gnum">${String(g.no).padStart(3,"0")}</div><div style="min-width:0"><div class="gpat">${esc(g.t)}${g.lv?`<span class="lvb ${g.lv}">${g.lv}</span>`:""}</div><div class="gmean">${esc(g.m)}</div></div><span class="garrow">⌄</span></summary><div class="gbody"></div></details>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
+  $("#gList").innerHTML=list.length?list.slice(0,gShow).map(g=>`<details class="gitem" data-no="${g.no}"><summary><div style="min-width:0"><div class="gpat">${esc(g.t)}${g.lv?`<span class="lvb ${g.lv}">${g.lv}</span>`:""}</div><div class="gmean">${esc(g.m)}</div></div><span class="garrow">⌄</span></summary><div class="gbody"></div></details>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
 }
 $("#gList").addEventListener("toggle",e=>{const d=e.target;if(!d.open)return;const b=d.querySelector(".gbody");if(b.dataset.ok)return;const g=BUNPOU[+d.dataset.no-1];b.innerHTML=gBody(g);b.dataset.ok=1},true);
 $("#gSearch").oninput=()=>renderGram();$("#gFuri").onchange=()=>renderGram(true);$("#gMore").onclick=()=>{gShow+=60;renderGram(true)};
@@ -2066,7 +2068,7 @@ function mkGram(lv){
   const pool=C.filter(x=>x.g!==it.g&&x.bt!==it.bt&&!x.bt.includes(it.bt)&&!it.bt.includes(x.bt));
   const items=shuffle([{txt:it.bt,g:it.g},...pickWrongObj(pool,x=>x.bt,it.bt,3).map(x=>({txt:x.bt,g:x.g}))]);
   const qh=it.e.jp.replace(/<b>.*?<\/b>/,'<span class="blank">＿＿＿</span>');
-  return{kind:"gc",g:it.g,e:it.e,t:`Pilih bunpou yang tepat · ${lv}`,q:stripH(qh),qh,cls:"sent",h:stripH(it.e.tr),a:it.bt,o:items.map(i=>i.txt),oi:items,ex:`${it.g.t} — ${it.g.m}. ${stripH(it.e.jp)}`}
+  return{kind:"gc",g:it.g,e:it.e,t:`Pilih bunpou yang tepat · ${lv}`,q:stripH(qh),qh,cls:"sent",h:"",a:it.bt,o:items.map(i=>i.txt),oi:items,ex:`${it.g.t} — ${it.g.m}. ${stripH(it.e.jp)}`}
 }
 function gramExplain(q,val){
   const first=g=>(g.p&&g.p[0])||"";
@@ -2090,7 +2092,7 @@ function gramExplain(q,val){
       why=q.kind==="gc"?`Tepat: artinya “${esc(g.m)}”, sesuai dengan maksud kalimat.`:`Tepat: inilah arti dari <span class="jp">${esc(g.t)}</span>.`;
     }
     return `<div class="fx-opt ${ok?"ok":"no"}${me?" me":""}"><div class="fx-h"><span class="fx-ic">${ok?"✓":"✗"}</span>${label}${g.lv?`<span class="lvb ${g.lv}">${g.lv}</span>`:""}${me?`<span class="fx-you">pilihanmu</span>`:""}</div>
-      <div class="fx-why">${why}</div>${q.kind==="gc"||!ok?`<div class="fx-m">Arti pola: ${esc(g.m)}</div>`:""}${first(g)?`<div class="fx-p">${first(g)}</div>`:""}<button class="fx-link" onclick="openBunpou(${g.no})">Lihat pola #${String(g.no).padStart(3,"0")} lengkap →</button></div>`;
+      <div class="fx-why">${why}</div>${q.kind==="gc"||!ok?`<div class="fx-m"><span class="fx-tag">Arti</span>${esc(g.m)}</div>`:""}${first(g)?`<div class="fx-p"><span class="fx-tag">Penjelasan</span>${first(g)}</div>`:""}<button class="fx-link" onclick="openBunpou(${g.no})">Lihat pola lengkap →</button></div>`;
   }).join("");
   return h;
 }
