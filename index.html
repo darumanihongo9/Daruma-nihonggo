@@ -218,6 +218,30 @@ ruby{ruby-align:center}
 .qq .blank{color:var(--red);font-weight:800;padding:0 4px}
 .qq rt{font-size:10px;color:var(--muted)}
 .qmode:disabled{cursor:not-allowed}
+.qtop{display:flex;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.qquit{padding:8px 14px;font-size:13px}
+.fx-verdict{font-weight:800;margin-bottom:10px}
+.fx-sec{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--muted);margin:14px 0 8px;text-transform:uppercase}
+.fx-sent{font-size:18px;font-weight:700;line-height:2.1}
+.fx-sent b{color:var(--red)}
+.fx-sent rt{font-size:10px;color:var(--muted)}
+.fx-tr{font-weight:500;font-size:14px;color:var(--muted)}
+.fx-key{font-weight:500;margin:12px 0 0}
+.fx-opt{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;font-weight:500;color:var(--ink)}
+.fx-opt.ok{border-left-color:var(--matcha)}
+.fx-opt.no.me{border-left-color:var(--red)}
+.fx-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px}
+.fx-h .lvb{margin-left:0}
+.fx-ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;background:var(--muted);flex-shrink:0}
+.fx-opt.ok .fx-ic{background:var(--matcha)} .fx-opt.no.me .fx-ic{background:var(--red)}
+.fx-pat{color:var(--muted);font-size:13px}
+.fx-you{font-size:11px;font-weight:800;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:6px}
+.fx-why{font-size:14px;margin-top:6px}
+.fx-m{font-size:13px;color:var(--muted);margin-top:4px}
+.fx-p{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.6}
+.fx-link{border:0;background:none;padding:0;margin-top:8px;color:var(--indigo);font-weight:700;font-size:13px;cursor:pointer}
+.fx-link:hover{text-decoration:underline}
+.feedback{text-align:left}
 @media (max-width:760px){.gbody{padding:0 16px 18px}.rrow{grid-template-columns:1fr;gap:2px}}
 .exl{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1px;margin:2px 0 8px}
 .exn{width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;flex-shrink:0;margin-top:3px}
@@ -388,6 +412,7 @@ footer .author{color:var(--ink);font-weight:700}
         <p style="margin:12px 0 0;font-size:14px;color:var(--muted)">Skor kuis terbaik: <b id="bestScore" style="color:var(--ink)">–</b></p>
       </div>
     </div>
+
   </section>
 
   <!-- KANJI -->
@@ -458,6 +483,7 @@ footer .author{color:var(--ink);font-weight:700}
       </div>
     </div>
     <div id="qPlay" style="display:none" class="qbox">
+      <div class="qtop"><button class="btn btn-soft qquit" id="qQuit">← Ganti kuis</button><button class="btn btn-soft qquit" id="qRestart">↻ Ulangi dari awal</button></div>
       <div class="fc-info"><span id="qPos"></span><span id="qScore"></span></div>
       <div class="bar"><i id="qBar"></i></div>
       <div class="card" style="margin-top:20px">
@@ -2030,14 +2056,50 @@ function qAvail(){document.querySelectorAll(".qmode").forEach(b=>{const m=b.data
 lvTabs($("#qLv"),qLv,null,l=>{qLv=l;store.set("qLv",l);qAvail()},QLV);
 const CLOZE={};
 QLV.forEach(lv=>{CLOZE[lv]=[];BUNPOU.filter(g=>g.L===lv).forEach(g=>[...(g.c||[]),...(g.s||[])].forEach(e=>{const m=e.jp.match(/<b>/g);if(m&&m.length===1){const bt=stripH(e.jp.match(/<b>(.*?)<\/b>/)[1]).trim();if(bt.length>=1&&bt.length<=12)CLOZE[lv].push({g,e,bt})}}))});
+function pickWrongObj(pool,key,correct,n){const out=[],seen=new Set([correct]);for(const x of shuffle(pool)){const k=key(x);if(!seen.has(k)){seen.add(k);out.push(x)}if(out.length===n)break}return out}
 function mkGram(lv){
   const G=BUNPOU.filter(g=>g.L===lv);
   if(Math.random()<0.4||!CLOZE[lv].length){const g=G[Math.random()*G.length|0];
-    return{t:`Apa arti bunpou ini? · ${lv}`,q:g.t,h:"",a:g.m,o:shuffle([g.m,...pickWrong(G.map(x=>x.m),g.m,3)]),ex:`${g.t} = ${g.m}`}}
+    const items=shuffle([{txt:g.m,g},...pickWrongObj(G.filter(x=>x!==g),x=>x.m,g.m,3).map(x=>({txt:x.m,g:x}))]);
+    return{kind:"gm",g,t:`Apa arti bunpou ini? · ${lv}`,q:g.t,h:"",a:g.m,o:items.map(i=>i.txt),oi:items,ex:`${g.t} = ${g.m}`}}
   const C=CLOZE[lv],it=C[Math.random()*C.length|0];
-  const pool=C.filter(x=>x.g!==it.g&&x.bt!==it.bt&&!x.bt.includes(it.bt)&&!it.bt.includes(x.bt)).map(x=>x.bt);
+  const pool=C.filter(x=>x.g!==it.g&&x.bt!==it.bt&&!x.bt.includes(it.bt)&&!it.bt.includes(x.bt));
+  const items=shuffle([{txt:it.bt,g:it.g},...pickWrongObj(pool,x=>x.bt,it.bt,3).map(x=>({txt:x.bt,g:x.g}))]);
   const qh=it.e.jp.replace(/<b>.*?<\/b>/,'<span class="blank">＿＿＿</span>');
-  return{t:`Pilih bunpou yang tepat · ${lv}`,q:stripH(qh),qh,cls:"sent",h:stripH(it.e.tr),a:it.bt,o:shuffle([it.bt,...pickWrong(pool,it.bt,3)]),ex:`${it.g.t} — ${it.g.m}. ${stripH(it.e.jp)}`}
+  return{kind:"gc",g:it.g,e:it.e,t:`Pilih bunpou yang tepat · ${lv}`,q:stripH(qh),qh,cls:"sent",h:stripH(it.e.tr),a:it.bt,o:items.map(i=>i.txt),oi:items,ex:`${it.g.t} — ${it.g.m}. ${stripH(it.e.jp)}`}
+}
+function gramExplain(q,val){
+  const first=g=>(g.p&&g.p[0])||"";
+  let h="";
+  if(q.kind==="gc"){
+    h+=`<div class="fx-sec">Kalimat lengkap</div><div class="fx-sent jp">${q.e.jp}</div><div class="fx-tr">${q.e.tr}</div>`;
+    h+=`<p class="fx-key">Kalimat ini butuh pola yang artinya <b>“${esc(q.g.m)}”</b>.</p>`;
+  }else{
+    h+=`<p class="fx-key"><b class="jp">${esc(q.g.t)}</b> artinya <b>“${esc(q.g.m)}”</b>.</p>`;
+  }
+  h+=`<div class="fx-sec">Penjelasan tiap pilihan</div>`;
+  h+=q.oi.map(it=>{
+    const ok=it.txt===q.a,me=it.txt===val,g=it.g;
+    const label=q.kind==="gc"?`<b class="jp">${esc(it.txt)}</b><span class="fx-pat">→ pola <span class="jp">${esc(g.t)}</span></span>`:`<b>“${esc(it.txt)}”</b><span class="fx-pat">→ arti dari <span class="jp">${esc(g.t)}</span></span>`;
+    let why="";
+    if(!ok){
+      why=q.kind==="gc"
+        ?`Kurang tepat: pola ini artinya “${esc(g.m)}”, sedangkan maksud kalimat ini adalah “${esc(q.g.m)}”.`
+        :`Kurang tepat: ini arti dari pola <span class="jp">${esc(g.t)}</span>, bukan <span class="jp">${esc(q.g.t)}</span>.`;
+    }else{
+      why=q.kind==="gc"?`Tepat: artinya “${esc(g.m)}”, sesuai dengan maksud kalimat.`:`Tepat: inilah arti dari <span class="jp">${esc(g.t)}</span>.`;
+    }
+    return `<div class="fx-opt ${ok?"ok":"no"}${me?" me":""}"><div class="fx-h"><span class="fx-ic">${ok?"✓":"✗"}</span>${label}${g.lv?`<span class="lvb ${g.lv}">${g.lv}</span>`:""}${me?`<span class="fx-you">pilihanmu</span>`:""}</div>
+      <div class="fx-why">${why}</div>${q.kind==="gc"||!ok?`<div class="fx-m">Arti pola: ${esc(g.m)}</div>`:""}${first(g)?`<div class="fx-p">${first(g)}</div>`:""}<button class="fx-link" onclick="openBunpou(${g.no})">Lihat pola #${String(g.no).padStart(3,"0")} lengkap →</button></div>`;
+  }).join("");
+  return h;
+}
+function openBunpou(no){
+  const g=BUNPOU[no-1];gLv="Semua";
+  document.querySelectorAll("#gLv button").forEach(b=>b.classList.toggle("on",b.dataset.l==="Semua"));
+  $("#gSearch").value=stripH(g.t);
+  location.hash="tatabahasa";renderGram();
+  setTimeout(()=>{const d=document.querySelector(`#gList details[data-no="${no}"]`);if(d){d.open=true;d.scrollIntoView({behavior:"smooth",block:"start"})}},180);
 }
 function mkQ(type,lv){
   const V=VOCAB[lv];
@@ -2068,10 +2130,13 @@ function answer(btn,val){
   $("#qOpts").querySelectorAll(".opt").forEach((b,i)=>{b.disabled=true;if(q.o[i]===q.a)b.classList.add("ok")});
   if(!ok)btn.classList.add("no");else{score++;petals(6)}
   const fb=$("#qFb");fb.className="feedback show";fb.style.background=ok?"var(--matcha-soft)":"var(--red-soft)";
-  fb.innerHTML=(ok?"✓ 正解！Benar. ":"✗ 残念… Jawaban: <b>"+esc(q.a)+"</b>. ")+"<br><span style='font-weight:500'>"+esc(q.ex)+"</span>";
+  const verdict=(ok?"✓ 正解！Benar. ":"✗ 残念… Jawaban: <b>"+esc(q.a)+"</b>"+(/[.。…!?]$/.test(q.a)?" ":". "));
+  fb.innerHTML=q.oi?`<div class="fx-verdict">${verdict}</div>${gramExplain(q,val)}`:verdict+"<br><span style='font-weight:500'>"+esc(q.ex)+"</span>";
   $("#qScore").textContent=`Skor: ${score}`;$("#qNext").style.display="inline-flex";$("#qNext").textContent=qi===9?"Lihat hasil →":"Lanjut →";
 }
-$("#qNext").onclick=()=>{qi++;if(qi<10)showQ();else endQuiz()};
+$("#qNext").onclick=()=>{qi++;if(qi<10)showQ();else{endQuiz()}window.scrollTo({top:0,behavior:"smooth"})};
+$("#qQuit").onclick=()=>{$("#qPlay").style.display="none";$("#qEnd").style.display="none";$("#qStart").style.display="block";window.scrollTo({top:0})};
+$("#qRestart").onclick=()=>startQuiz(qMode);
 function endQuiz(){
   $("#qPlay").style.display="none";$("#qEnd").style.display="block";$("#qFinal").textContent=score+"/10";
   const best=store.get("best",0);if(score>best)store.set("best",score);
