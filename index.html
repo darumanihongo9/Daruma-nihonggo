@@ -50,7 +50,7 @@ header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:co
 .icon-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;font-size:16px}
 @keyframes wobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(3deg)}}
 
-main{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
+main{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
 .view{display:none;animation:fade .45s ease}
 .view.show{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -175,9 +175,12 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
 .gbody{padding:0 20px 20px 74px}
 .form{display:inline-block;background:var(--gold-soft);border-radius:10px;padding:6px 12px;font-family:var(--jp);font-weight:700;font-size:15px;margin-bottom:12px}
 .ex{border-left:4px solid var(--red);background:var(--bg2);padding:12px 16px;border-radius:0 12px 12px 0;display:flex;gap:12px;align-items:flex-start}
-.ex .jp{font-size:18px;font-weight:700}
+.ex .jp{font-size:17px;font-weight:700}
 .ex .rd{color:var(--muted);font-size:13px}
 .ex .tr{font-size:14px;margin-top:4px}
+.ex+.ex{margin-top:8px}
+.exl{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1px;margin:2px 0 8px}
+.exn{width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;flex-shrink:0;margin-top:3px}
 
 /* Flashcard */
 .fc-wrap{max-width:560px;margin:0 auto}
@@ -228,8 +231,8 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
 .mrow span{color:var(--muted);font-weight:600;font-size:13px}
 
 /* Floating daruma */
-.mascot{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:flex-end;gap:10px}
-.mascot button{border:0;background:none;padding:0;width:64px;height:64px;filter:drop-shadow(0 8px 14px rgba(214,56,47,.35));animation:bob 3.2s ease-in-out infinite}
+.mascot{position:fixed;right:14px;bottom:10px;z-index:60;display:flex;align-items:flex-end;gap:10px}
+.mascot button{border:0;background:none;padding:0;width:50px;height:50px;filter:drop-shadow(0 8px 14px rgba(214,56,47,.35));animation:bob 3.2s ease-in-out infinite}
 .mascot button:hover{animation:wobble .8s ease}
 .mascot svg{width:100%;height:100%}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-6px) rotate(3deg)}}
@@ -240,7 +243,7 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
 .petal{position:fixed;top:-20px;width:12px;height:10px;background:var(--sakura);border-radius:12px 0 12px 0;opacity:.55;pointer-events:none;z-index:1;animation:fall linear forwards}
 @keyframes fall{to{transform:translate(var(--dx),110vh) rotate(540deg);opacity:0}}
 
-footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 100px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:12px 80px;border-top:1px solid var(--line)}
 footer .jp{color:var(--red);font-weight:700}
 .empty{text-align:center;color:var(--muted);padding:40px}
 
@@ -283,7 +286,7 @@ footer .jp{color:var(--red);font-weight:700}
   <nav class="nav">
     <a class="brand" href="#beranda" aria-label="Beranda">
       <svg><use href="#daruma"/></svg>
-      <div><b>だるま日本語</b><small>DARUMA NIHONGO · N3</small></div>
+      <div><b>だるま日本語</b><small>DARUMA NIHONGO</small></div>
     </a>
     <div class="links" id="links">
       <a href="#beranda" data-v="beranda">Beranda</a>
@@ -366,6 +369,7 @@ footer .jp{color:var(--red);font-weight:700}
     <div class="chips" id="vChips" style="margin-bottom:18px"></div>
     <div class="count" id="vCount"></div>
     <div class="vlist" id="vList"></div>
+    <div style="text-align:center;margin-top:20px"><button class="btn btn-soft" id="vMore" style="display:none"></button></div>
   </section>
 
   <!-- TATA BAHASA -->
@@ -438,10 +442,7 @@ footer .jp{color:var(--red);font-weight:700}
   </section>
 </main>
 
-<footer>
-  <span class="jp">七転び八起き</span> — jatuh tujuh kali, bangkit delapan kali.<br>
-  Daruma Nihongo · Materi latihan JLPT N3 · N2
-</footer>
+<footer><span class="jp">七転び八起き</span> · Daruma Nihongo · JLPT N3 · N2</footer>
 
 <div class="modal" id="modal"><div class="card">
   <button class="icon-btn close" id="mClose" aria-label="Tutup">✕</button>
@@ -619,7 +620,605 @@ N3:`相変わらず|あいかわらず|seperti biasa|adv
 細かい|こまかい|detail, kecil-kecil|adj
 悔しい|くやしい|kesal, menyesal|adj
 眩しい|まぶしい|silau|adj
-もったいない|もったいない|sayang, mubazir|adj`,
+もったいない|もったいない|sayang, mubazir|adj
+愛情|あいじょう|kasih sayang|n
+相手|あいて|lawan, pasangan bicara|n
+明かり|あかり|cahaya, lampu|n
+空き|あき|kekosongan, lowong|n
+握手|あくしゅ|jabat tangan|n
+欠点|けってん|kekurangan|n
+汗|あせ|keringat|n
+価値|かち|nilai|n
+頭痛|ずつう|sakit kepala|n
+宛先|あてさき|alamat tujuan|n
+跡|あと|bekas, jejak|n
+穴|あな|lubang|n
+油|あぶら|minyak|n
+誤り|あやまり|kesalahan|n
+嵐|あらし|badai|n
+安心|あんしん|lega, tenang|n
+安全|あんぜん|keamanan|n
+委員|いいん|anggota komite|n
+意志|いし|kemauan|n
+医師|いし|dokter|n
+維持|いじ|pemeliharaan|n
+遺跡|いせき|situs sejarah|n
+一部|いちぶ|sebagian|n
+一般|いっぱん|umum|n
+移動|いどう|perpindahan|n
+命|いのち|nyawa|n
+居間|いま|ruang keluarga|n
+印刷|いんさつ|pencetakan|n
+引退|いんたい|pensiun (dari karier)|n
+植木|うえき|tanaman pot|n
+受付|うけつけ|resepsionis|n
+内側|うちがわ|bagian dalam|n
+宇宙|うちゅう|alam semesta|n
+腕|うで|lengan, keterampilan|n
+裏|うら|bagian belakang|n
+売り場|うりば|bagian penjualan|n
+運|うん|nasib, keberuntungan|n
+営業|えいぎょう|operasional, penjualan|n
+笑顔|えがお|wajah tersenyum|n
+演説|えんぜつ|pidato|n
+応援|おうえん|dukungan|n
+横断|おうだん|menyeberang|n
+往復|おうふく|pulang-pergi|n
+大型|おおがた|ukuran besar|n
+屋上|おくじょう|atap gedung|n
+お互い|おたがい|satu sama lain|n
+お知らせ|おしらせ|pemberitahuan|n
+汚染|おせん|polusi|n
+お釣り|おつり|uang kembalian|n
+表|おもて|bagian depan|n
+温度|おんど|suhu|n
+会員|かいいん|anggota|n
+海外|かいがい|luar negeri|n
+会計|かいけい|pembayaran, akuntansi|n
+開始|かいし|permulaan|n
+解釈|かいしゃく|interpretasi|n
+外食|がいしょく|makan di luar|n
+回数|かいすう|jumlah kali|n
+快適|かいてき|nyaman|adj
+回復|かいふく|pemulihan|n
+価格|かかく|harga|n
+係|かかり|petugas|n
+家具|かぐ|perabot|n
+覚悟|かくご|tekad, kesiapan|n
+確認|かくにん|konfirmasi|n
+学費|がくひ|biaya kuliah|n
+火災|かさい|kebakaran|n
+家事|かじ|pekerjaan rumah tangga|n
+課題|かだい|tugas, masalah|n
+学期|がっき|semester|n
+格好|かっこう|penampilan|n
+活躍|かつやく|berperan aktif|n
+家庭|かてい|rumah tangga|n
+過程|かてい|proses|n
+悲しみ|かなしみ|kesedihan|n
+株|かぶ|saham|n
+画面|がめん|layar|n
+科目|かもく|mata pelajaran|n
+感覚|かんかく|indra, perasaan|n
+観客|かんきゃく|penonton|n
+歓迎|かんげい|sambutan|n
+看護師|かんごし|perawat|n
+観察|かんさつ|pengamatan|n
+感情|かんじょう|emosi|n
+感心|かんしん|kagum|n
+完成|かんせい|penyelesaian|n
+感動|かんどう|terharu|n
+管理|かんり|pengelolaan|n
+記憶|きおく|ingatan|n
+機械|きかい|mesin|n
+期間|きかん|periode|n
+企業|きぎょう|perusahaan|n
+帰国|きこく|pulang ke negara asal|n
+記事|きじ|artikel|n
+技術|ぎじゅつ|teknologi, teknik|n
+基礎|きそ|dasar|n
+期待|きたい|harapan|n
+帰宅|きたく|pulang ke rumah|n
+基本|きほん|dasar|n
+義務|ぎむ|kewajiban|n
+疑問|ぎもん|pertanyaan, keraguan|n
+休暇|きゅうか|liburan, cuti|n
+給料|きゅうりょう|gaji|n
+教育|きょういく|pendidikan|n
+強調|きょうちょう|penekanan|n
+興味|きょうみ|minat|n
+許可|きょか|izin|n
+距離|きょり|jarak|n
+記録|きろく|catatan, rekor|n
+禁煙|きんえん|dilarang merokok|n
+緊張|きんちょう|tegang, gugup|n
+具合|ぐあい|kondisi|n
+区別|くべつ|pembedaan|n
+組|くみ|kelompok, kelas|n
+訓練|くんれん|pelatihan|n
+計画|けいかく|rencana|n
+景気|けいき|kondisi ekonomi|n
+経済|けいざい|ekonomi|n
+芸術|げいじゅつ|seni|n
+携帯|けいたい|ponsel, membawa|n
+結論|けつろん|kesimpulan|n
+煙|けむり|asap|n
+原料|げんりょう|bahan baku|n
+検査|けんさ|pemeriksaan|n
+現金|げんきん|uang tunai|n
+健康|けんこう|kesehatan|n
+建築|けんちく|arsitektur|n
+見物|けんぶつ|tamasya, menonton|n
+権利|けんり|hak|n
+公共|こうきょう|umum, publik|n
+講義|こうぎ|kuliah|n
+広告|こうこく|iklan|n
+交際|こうさい|pergaulan, pacaran|n
+工事|こうじ|konstruksi|n
+交通|こうつう|lalu lintas|n
+行動|こうどう|tindakan|n
+後輩|こうはい|junior|n
+先輩|せんぱい|senior|n
+候補|こうほ|kandidat|n
+呼吸|こきゅう|pernapasan|n
+国籍|こくせき|kewarganegaraan|n
+個人|こじん|individu|n
+小包|こづつみ|paket|n
+言葉遣い|ことばづかい|cara berbicara|n
+好み|このみ|selera|n
+混乱|こんらん|kekacauan|n
+婚約|こんやく|tunangan|n
+差|さ|selisih|n
+再開|さいかい|dibuka kembali|n
+才能|さいのう|bakat|n
+材料|ざいりょう|bahan|n
+作業|さぎょう|pekerjaan, operasi|n
+作品|さくひん|karya|n
+撮影|さつえい|pemotretan|n
+差別|さべつ|diskriminasi|n
+参加|さんか|partisipasi|n
+残業|ざんぎょう|lembur|n
+賛成|さんせい|setuju|n
+残念|ざんねん|sayang sekali|adj
+幸せ|しあわせ|bahagia|adj
+司会|しかい|pembawa acara|n
+資格|しかく|kualifikasi, sertifikat|n
+時期|じき|masa, periode|n
+資源|しげん|sumber daya|n
+事件|じけん|kasus, insiden|n
+支持|しじ|dukungan|n
+指示|しじ|instruksi|n
+自然|しぜん|alam|n
+自宅|じたく|rumah sendiri|n
+失業|しつぎょう|pengangguran|n
+実験|じっけん|eksperimen|n
+実力|じつりょく|kemampuan sebenarnya|n
+失礼|しつれい|tidak sopan|adj
+指定|してい|penunjukan|n
+指導|しどう|bimbingan|n
+支店|してん|kantor cabang|n
+自慢|じまん|membanggakan diri|n
+事務|じむ|urusan kantor|n
+社会|しゃかい|masyarakat|n
+車庫|しゃこ|garasi|n
+収入|しゅうにゅう|pendapatan|n
+修理|しゅうり|perbaikan|n
+宿泊|しゅくはく|menginap|n
+手術|しゅじゅつ|operasi (medis)|n
+手段|しゅだん|cara, sarana|n
+出身|しゅっしん|asal|n
+出張|しゅっちょう|dinas luar|n
+寿命|じゅみょう|usia hidup|n
+種類|しゅるい|jenis|n
+順番|じゅんばん|urutan|n
+使用|しよう|penggunaan|n
+上司|じょうし|atasan|n
+正午|しょうご|tengah hari|n
+商品|しょうひん|produk|n
+職業|しょくぎょう|profesi|n
+食欲|しょくよく|nafsu makan|n
+書類|しょるい|dokumen|n
+知り合い|しりあい|kenalan|n
+資料|しりょう|data, bahan|n
+進学|しんがく|melanjutkan sekolah|n
+審判|しんぱん|wasit|n
+新鮮|しんせん|segar|adj
+身長|しんちょう|tinggi badan|n
+深夜|しんや|larut malam|n
+睡眠|すいみん|tidur|n
+数字|すうじ|angka|n
+隙間|すきま|celah|n
+生活|せいかつ|kehidupan|n
+請求|せいきゅう|tagihan|n
+制限|せいげん|batasan|n
+成功|せいこう|kesuksesan|n
+生産|せいさん|produksi|n
+成績|せいせき|nilai (rapor)|n
+成長|せいちょう|pertumbuhan|n
+制服|せいふく|seragam|n
+整理|せいり|penataan|n
+世間|せけん|masyarakat, dunia|n
+世代|せだい|generasi|n
+設備|せつび|fasilitas|n
+専門|せんもん|keahlian khusus|n
+専攻|せんこう|jurusan|n
+騒音|そうおん|kebisingan|n
+送料|そうりょう|ongkos kirim|n
+速度|そくど|kecepatan|n
+組織|そしき|organisasi|n
+損|そん|rugi|n
+尊敬|そんけい|hormat|n
+体温|たいおん|suhu tubuh|n
+大会|たいかい|turnamen|n
+体重|たいじゅう|berat badan|n
+態度|たいど|sikap|n
+代表|だいひょう|perwakilan|n
+大部分|だいぶぶん|sebagian besar|n
+太陽|たいよう|matahari|n
+体力|たいりょく|stamina|n
+宝|たから|harta|n
+多数|たすう|mayoritas|n
+立場|たちば|posisi, sudut pandang|n
+単位|たんい|satuan, SKS|n
+短所|たんしょ|kelemahan|n
+長所|ちょうしょ|kelebihan|n
+誕生|たんじょう|kelahiran|n
+担当|たんとう|penanggung jawab|n
+地域|ちいき|wilayah|n
+知識|ちしき|pengetahuan|n
+地球|ちきゅう|bumi|n
+遅刻|ちこく|terlambat|n
+注目|ちゅうもく|perhatian|n
+注文|ちゅうもん|pesanan|n
+長期|ちょうき|jangka panjang|n
+調子|ちょうし|kondisi|n
+直接|ちょくせつ|langsung|n
+通訳|つうやく|penerjemah lisan|n
+都合|つごう|keadaan, kesempatan|n
+津波|つなみ|tsunami|n
+定期|ていき|berkala|n
+停電|ていでん|mati listrik|n
+提出|ていしゅつ|penyerahan|n
+程度|ていど|tingkat|n
+適当|てきとう|sesuai, asal-asalan|adj
+手続き|てつづき|prosedur|n
+手間|てま|waktu dan tenaga|n
+伝統|でんとう|tradisi|n
+添付|てんぷ|lampiran|n
+道具|どうぐ|alat|n
+登場|とうじょう|kemunculan|n
+到着|とうちゃく|kedatangan|n
+投票|とうひょう|pemungutan suara|n
+特徴|とくちょう|ciri khas|n
+独身|どくしん|lajang|n
+登山|とざん|mendaki gunung|n
+途中|とちゅう|di tengah jalan|n
+内容|ないよう|isi|n
+仲間|なかま|teman, rekan|n
+中身|なかみ|isi|n
+悩み|なやみ|masalah, kekhawatiran|n
+人気|にんき|popularitas|n
+人間|にんげん|manusia|n
+値段|ねだん|harga|n
+年齢|ねんれい|usia|n
+能力|のうりょく|kemampuan|n
+配達|はいたつ|pengantaran|n
+倍|ばい|kali lipat|n
+拍手|はくしゅ|tepuk tangan|n
+発見|はっけん|penemuan|n
+発生|はっせい|terjadi, timbul|n
+発達|はったつ|perkembangan|n
+発展|はってん|kemajuan|n
+発売|はつばい|peluncuran (penjualan)|n
+発明|はつめい|penemuan (invensi)|n
+話し合い|はなしあい|diskusi|n
+場面|ばめん|adegan, situasi|n
+範囲|はんい|jangkauan|n
+番組|ばんぐみ|acara TV|n
+判断|はんだん|penilaian, keputusan|n
+犯人|はんにん|pelaku kejahatan|n
+被害|ひがい|kerugian (sebagai korban)|n
+比較|ひかく|perbandingan|n
+皮膚|ひふ|kulit|n
+秘密|ひみつ|rahasia|n
+費用|ひよう|biaya|n
+評判|ひょうばん|reputasi|n
+貧乏|びんぼう|miskin|adj
+不足|ふそく|kekurangan|n
+物価|ぶっか|harga barang|n
+部品|ぶひん|suku cadang|n
+不満|ふまん|ketidakpuasan|n
+雰囲気|ふんいき|suasana|n
+文句|もんく|keluhan|n
+平均|へいきん|rata-rata|n
+変化|へんか|perubahan|n
+保険|ほけん|asuransi|n
+保存|ほぞん|penyimpanan|n
+方向|ほうこう|arah|n
+報告|ほうこく|laporan|n
+方針|ほうしん|kebijakan|n
+訪問|ほうもん|kunjungan|n
+本物|ほんもの|barang asli|n
+翻訳|ほんやく|penerjemahan|n
+迷子|まいご|anak hilang|n
+満員|まんいん|penuh sesak|n
+満足|まんぞく|puas|n
+見本|みほん|contoh|n
+魅力|みりょく|daya tarik|n
+未来|みらい|masa depan|n
+無料|むりょう|gratis|n
+名刺|めいし|kartu nama|n
+命令|めいれい|perintah|n
+迷惑|めいわく|gangguan, merepotkan|n
+目標|もくひょう|target|n
+目的|もくてき|tujuan|n
+文字|もじ|huruf|n
+役|やく|peran|n
+役割|やくわり|peranan|n
+家賃|やちん|sewa rumah|n
+輸入|ゆにゅう|impor|n
+輸出|ゆしゅつ|ekspor|n
+油断|ゆだん|lengah|n
+容器|ようき|wadah|n
+予算|よさん|anggaran|n
+予想|よそう|perkiraan|n
+予報|よほう|ramalan|n
+余計|よけい|berlebihan, tak perlu|adj
+理解|りかい|pemahaman|n
+理想|りそう|ideal|n
+礼儀|れいぎ|sopan santun|n
+列|れつ|barisan|n
+連休|れんきゅう|libur panjang|n
+連続|れんぞく|berturut-turut|n
+労働|ろうどう|tenaga kerja|n
+話題|わだい|topik|n
+割引|わりびき|diskon|n
+空く|あく|kosong|v
+明ける|あける|(fajar/tahun) berganti|v
+与える|あたえる|memberikan|v
+当たる|あたる|terkena, menang (undian)|v
+謝る|あやまる|meminta maaf|v
+現れる|あらわれる|muncul|v
+表す|あらわす|mengungkapkan|v
+生きる|いきる|hidup|v
+祈る|いのる|berdoa|v
+受ける|うける|menerima, mengikuti (ujian)|v
+失う|うしなう|kehilangan|v
+写す|うつす|menyalin, memotret|v
+移る|うつる|pindah|v
+埋める|うめる|mengubur, mengisi|v
+得る|える|memperoleh|v
+追う|おう|mengejar|v
+起こる|おこる|terjadi|v
+抑える|おさえる|menahan|v
+教わる|おそわる|diajari|v
+落ち着く|おちつく|tenang|v
+訪れる|おとずれる|mengunjungi|v
+驚く|おどろく|terkejut|v
+降ろす|おろす|menurunkan|v
+抱える|かかえる|memikul (masalah)|v
+輝く|かがやく|bersinar|v
+隠す|かくす|menyembunyikan|v
+重なる|かさなる|bertumpuk|v
+数える|かぞえる|menghitung|v
+傾く|かたむく|miring|v
+叶う|かなう|terwujud|v
+構う|かまう|peduli|v
+枯れる|かれる|layu|v
+乾かす|かわかす|mengeringkan|v
+代わる|かわる|menggantikan|v
+消える|きえる|menghilang, padam|v
+効く|きく|berkhasiat|v
+傷つく|きずつく|terluka|v
+鍛える|きたえる|melatih (fisik)|v
+嫌う|きらう|membenci|v
+崩れる|くずれる|runtuh|v
+配る|くばる|membagikan|v
+比べる|くらべる|membandingkan|v
+繰り返す|くりかえす|mengulangi|v
+加える|くわえる|menambahkan|v
+削る|けずる|meraut, memangkas|v
+越える|こえる|melewati|v
+焦げる|こげる|gosong|v
+凍る|こおる|membeku|v
+込む|こむ|ramai|v
+転がる|ころがる|menggelinding|v
+下がる|さがる|turun|v
+避ける|さける|menghindari|v
+支える|ささえる|menopang|v
+誘う|さそう|mengajak|v
+冷める|さめる|menjadi dingin (makanan)|v
+触る|さわる|menyentuh|v
+沈む|しずむ|tenggelam|v
+従う|したがう|mengikuti, mematuhi|v
+縛る|しばる|mengikat|v
+絞る|しぼる|memeras|v
+示す|しめす|menunjukkan|v
+占める|しめる|menempati|v
+信じる|しんじる|percaya|v
+過ごす|すごす|menghabiskan waktu|v
+進む|すすむ|maju|v
+済む|すむ|selesai|v
+注ぐ|そそぐ|menuangkan|v
+育てる|そだてる|membesarkan|v
+揃える|そろえる|menyamakan, melengkapi|v
+倒れる|たおれる|roboh|v
+助かる|たすかる|tertolong|v
+訪ねる|たずねる|mengunjungi|v
+尋ねる|たずねる|menanyakan|v
+戦う|たたかう|bertarung|v
+畳む|たたむ|melipat|v
+建つ|たつ|berdiri (bangunan)|v
+例える|たとえる|mengumpamakan|v
+貯める|ためる|menabung|v
+近づく|ちかづく|mendekat|v
+縮む|ちぢむ|menyusut|v
+散る|ちる|berguguran|v
+捕まえる|つかまえる|menangkap|v
+付き合う|つきあう|bergaul, berpacaran|v
+伝える|つたえる|menyampaikan|v
+潰す|つぶす|menghancurkan|v
+積む|つむ|menumpuk|v
+通じる|つうじる|tersambung, dipahami|v
+出会う|であう|bertemu|v
+溶ける|とける|meleleh|v
+解く|とく|memecahkan (soal)|v
+閉じる|とじる|menutup|v
+整える|ととのえる|merapikan|v
+飛ばす|とばす|menerbangkan, melewati|v
+取り消す|とりけす|membatalkan|v
+直す|なおす|memperbaiki|v
+治る|なおる|sembuh|v
+流れる|ながれる|mengalir|v
+亡くなる|なくなる|meninggal|v
+並ぶ|ならぶ|berbaris|v
+逃げる|にげる|kabur|v
+抜く|ぬく|mencabut|v
+濡れる|ぬれる|basah|v
+願う|ねがう|berharap|v
+望む|のぞむ|mengharapkan|v
+伸びる|のびる|memanjang|v
+述べる|のべる|menyatakan|v
+乗り換える|のりかえる|berganti kendaraan|v
+測る|はかる|mengukur|v
+吐く|はく|memuntahkan, membuang (napas)|v
+外す|はずす|melepas|v
+外れる|はずれる|lepas, meleset|v
+話しかける|はなしかける|menyapa|v
+貼る|はる|menempel|v
+冷やす|ひやす|mendinginkan|v
+広がる|ひろがる|menyebar|v
+拭く|ふく|mengelap|v
+含む|ふくむ|termasuk|v
+防ぐ|ふせぐ|mencegah|v
+増やす|ふやす|menambah|v
+振る|ふる|melambaikan, mencampakkan|v
+褒める|ほめる|memuji|v
+任せる|まかせる|mempercayakan|v
+混ぜる|まぜる|mencampur|v
+間に合う|まにあう|keburu|v
+招く|まねく|mengundang|v
+回す|まわす|memutar|v
+認める|みとめる|mengakui|v
+向かう|むかう|menuju|v
+迎える|むかえる|menyambut|v
+結ぶ|むすぶ|mengikat|v
+目立つ|めだつ|mencolok|v
+燃える|もえる|terbakar|v
+求める|もとめる|meminta, mencari|v
+戻る|もどる|kembali|v
+焼ける|やける|terbakar, terpanggang|v
+雇う|やとう|mempekerjakan|v
+破る|やぶる|merobek, melanggar|v
+辞める|やめる|berhenti (kerja)|v
+許す|ゆるす|memaafkan|v
+揺れる|ゆれる|bergoyang|v
+汚す|よごす|mengotori|v
+寄る|よる|mampir|v
+喜ぶ|よろこぶ|senang|v
+沸かす|わかす|mendidihkan|v
+分ける|わける|membagi|v
+渡す|わたす|menyerahkan|v
+割る|わる|memecahkan|v
+大人しい|おとなしい|pendiam, kalem|adj
+可哀想|かわいそう|kasihan|adj
+きつい|きつい|ketat, berat|adj
+清潔|せいけつ|bersih|adj
+くだらない|くだらない|tidak berguna, konyol|adj
+苦しい|くるしい|menderita, sesak|adj
+仕方ない|しかたない|apa boleh buat|adj
+親しい|したしい|akrab|adj
+地味|じみ|sederhana, tidak mencolok|adj
+派手|はで|mencolok|adj
+素直|すなお|penurut, jujur|adj
+ずるい|ずるい|curang|adj
+正確|せいかく|akurat|adj
+貴重|きちょう|berharga|adj
+深刻|しんこく|serius|adj
+素敵|すてき|indah, keren|adj
+確か|たしか|pasti|adj
+平ら|たいら|datar|adj
+だるい|だるい|lesu|adj
+単純|たんじゅん|sederhana|adj
+丁寧|ていねい|sopan, teliti|adj
+とんでもない|とんでもない|keterlaluan, sama sekali tidak|adj
+憎い|にくい|benci|adj
+激しい|はげしい|hebat, dahsyat|adj
+等しい|ひとしい|sama|adj
+平凡|へいぼん|biasa saja|adj
+豊か|ゆたか|kaya, berlimpah|adj
+真っ暗|まっくら|gelap gulita|adj
+見事|みごと|mengagumkan|adj
+蒸し暑い|むしあつい|panas lembap|adj
+無理|むり|mustahil|adj
+やかましい|やかましい|berisik|adj
+柔らかい|やわらかい|lembut|adj
+緩い|ゆるい|longgar|adj
+楽|らく|mudah, nyaman|adj
+立派|りっぱ|hebat, megah|adj
+わがまま|わがまま|egois, manja|adj
+明らか|あきらか|jelas|adj
+贅沢|ぜいたく|mewah|adj
+完璧|かんぺき|sempurna|adj
+大胆|だいたん|berani|adj
+不思議|ふしぎ|ajaib, aneh|adj
+意地悪|いじわる|jahat (usil)|adj
+上品|じょうひん|anggun|adj
+下品|げひん|kasar, vulgar|adj
+あっという間に|あっというまに|dalam sekejap|adv
+いちいち|いちいち|satu per satu|adv
+一度に|いちどに|sekaligus|adv
+いつの間にか|いつのまにか|tanpa disadari|adv
+いよいよ|いよいよ|akhirnya, semakin|adv
+いわゆる|いわゆる|yang disebut|adv
+大いに|おおいに|sangat|adv
+思わず|おもわず|tanpa sadar|adv
+およそ|およそ|kira-kira|adv
+必ずしも|かならずしも|tidak selalu|adv
+かなり|かなり|cukup, lumayan|adv
+きちんと|きちんと|dengan rapi|adv
+ぎっしり|ぎっしり|penuh sesak|adv
+結局|けっきょく|akhirnya|adv
+こっそり|こっそり|diam-diam|adv
+さっさと|さっさと|cepat-cepat|adv
+さっぱり|さっぱり|sama sekali (tidak); segar|adv
+しっかり|しっかり|dengan kokoh/baik|adv
+じっと|じっと|diam tak bergerak|adv
+実は|じつは|sebenarnya|adv
+しばらく|しばらく|sebentar, lama|adv
+少しも|すこしも|sedikit pun|adv
+すっかり|すっかり|sepenuhnya|adv
+せっかく|せっかく|susah-susah|adv
+そろそろ|そろそろ|sudah waktunya|adv
+大して|たいして|tidak begitu|adv
+たまたま|たまたま|kebetulan|adv
+たっぷり|たっぷり|banyak, berlimpah|adv
+ちっとも|ちっとも|sama sekali tidak|adv
+ついに|ついに|akhirnya|adv
+常に|つねに|selalu|adv
+どうしても|どうしても|bagaimanapun juga|adv
+とうとう|とうとう|akhirnya|adv
+とにかく|とにかく|pokoknya|adv
+とりあえず|とりあえず|untuk sementara|adv
+にこにこ|にこにこ|tersenyum-senyum|adv
+はっきり|はっきり|dengan jelas|adv
+ばったり|ばったり|tiba-tiba (bertemu)|adv
+ぴったり|ぴったり|pas sekali|adv
+ふと|ふと|tiba-tiba (terlintas)|adv
+ほっと|ほっと|lega|adv
+ほぼ|ほぼ|hampir|adv
+まさか|まさか|masa sih, tidak mungkin|adv
+まるで|まるで|seolah-olah|adv
+むしろ|むしろ|malah, justru|adv
+もしかすると|もしかすると|mungkin saja|adv
+やっと|やっと|akhirnya|adv
+ようやく|ようやく|akhirnya (setelah lama)|adv
+わざと|わざと|sengaja|adv
+わざわざ|わざわざ|sengaja repot-repot|adv
+割と|わりと|relatif, lumayan|adv
+いったい|いったい|sebenarnya (apa sih)|adv
+なるべく|なるべく|sebisa mungkin|adv
+相当|そうとう|cukup, sangat|adv`,
 N2:`曖昧|あいまい|ambigu, tidak jelas|adj
 愛想|あいそ|keramahan|n
 赤字|あかじ|defisit, rugi|n
@@ -735,86 +1334,1196 @@ N2:`曖昧|あいまい|ambigu, tidak jelas|adj
 とっくに|とっくに|sudah lama|adv
 ひとまず|ひとまず|untuk sementara|adv
 敢えて|あえて|sengaja, berani|adv
-いきなり|いきなり|tiba-tiba|adv`};
+いきなり|いきなり|tiba-tiba|adv
+愛着|あいちゃく|keterikatan|n
+悪化|あっか|memburuk|n
+圧力|あつりょく|tekanan|n
+後回し|あとまわし|menunda|n
+跡継ぎ|あとつぎ|penerus|n
+意向|いこう|niat|n
+意識|いしき|kesadaran|n
+異常|いじょう|abnormal|n
+一致|いっち|kesesuaian|n
+違和感|いわかん|rasa janggal|n
+内訳|うちわけ|rincian|n
+運営|うんえい|pengelolaan|n
+英雄|えいゆう|pahlawan|n
+援助|えんじょ|bantuan|n
+延長|えんちょう|perpanjangan|n
+応用|おうよう|penerapan|n
+大幅|おおはば|besar-besaran|n
+臆病|おくびょう|penakut|adj
+恩恵|おんけい|manfaat, anugerah|n
+解消|かいしょう|penghapusan, pembubaran|n
+改善|かいぜん|perbaikan|n
+改正|かいせい|revisi|n
+開発|かいはつ|pengembangan|n
+外見|がいけん|penampilan luar|n
+格差|かくさ|kesenjangan|n
+拡大|かくだい|perluasan|n
+獲得|かくとく|perolehan|n
+確保|かくほ|pengamanan, menyediakan|n
+過剰|かじょう|berlebih|n
+仮定|かてい|asumsi|n
+活気|かっき|semangat, keramaian|n
+過労|かろう|kelelahan kerja|n
+観点|かんてん|sudut pandang|n
+勧誘|かんゆう|ajakan, bujukan|n
+関与|かんよ|keterlibatan|n
+完了|かんりょう|selesai|n
+緩和|かんわ|pelonggaran|n
+企画|きかく|perencanaan|n
+基準|きじゅん|standar|n
+帰省|きせい|mudik|n
+規則|きそく|peraturan|n
+機能|きのう|fungsi|n
+寄付|きふ|donasi|n
+希望|きぼう|harapan|n
+気分転換|きぶんてんかん|penyegaran suasana|n
+逆|ぎゃく|kebalikan|n
+休憩|きゅうけい|istirahat|n
+急増|きゅうぞう|lonjakan|n
+供給|きょうきゅう|pasokan|n
+需要|じゅよう|permintaan (pasar)|n
+競争|きょうそう|persaingan|n
+共同|きょうどう|bersama|n
+恐怖|きょうふ|ketakutan|n
+業務|ぎょうむ|tugas kerja|n
+拠点|きょてん|basis|n
+均等|きんとう|merata|n
+緊急|きんきゅう|darurat|n
+苦痛|くつう|rasa sakit|n
+経緯|けいい|kronologi|n
+傾向|けいこう|kecenderungan|n
+掲示|けいじ|pengumuman (papan)|n
+形式|けいしき|format|n
+軽率|けいそつ|ceroboh|adj
+経費|けいひ|biaya operasional|n
+契機|けいき|momentum, pemicu|n
+欠陥|けっかん|cacat|n
+欠席|けっせき|absen|n
+見解|けんかい|pandangan|n
+減少|げんしょう|penurunan|n
+現象|げんしょう|fenomena|n
+検討|けんとう|pertimbangan|n
+原則|げんそく|prinsip|n
+限度|げんど|batas|n
+合意|ごうい|kesepakatan|n
+好意|こうい|niat baik|n
+公開|こうかい|publikasi|n
+後悔|こうかい|penyesalan|n
+交渉|こうしょう|negosiasi|n
+向上|こうじょう|peningkatan|n
+構成|こうせい|susunan|n
+功績|こうせき|jasa|n
+構造|こうぞう|struktur|n
+高齢化|こうれいか|penuaan penduduk|n
+顧客|こきゃく|pelanggan|n
+誤解|ごかい|salah paham|n
+根拠|こんきょ|dasar, bukti|n
+根本|こんぽん|akar, dasar|n
+差額|さがく|selisih uang|n
+削減|さくげん|pengurangan|n
+錯覚|さっかく|ilusi|n
+作用|さよう|efek, aksi|n
+暫定|ざんてい|sementara|n
+仕組み|しくみ|mekanisme|n
+施設|しせつ|fasilitas|n
+持続|じぞく|keberlanjutan|n
+自尊心|じそんしん|harga diri|n
+実態|じったい|kondisi sebenarnya|n
+視点|してん|sudut pandang|n
+地元|じもと|kampung halaman, lokal|n
+視野|しや|wawasan|n
+弱点|じゃくてん|kelemahan|n
+収穫|しゅうかく|panen|n
+集中|しゅうちゅう|konsentrasi|n
+修正|しゅうせい|koreksi|n
+充実|じゅうじつ|penuh, memuaskan|n
+主催|しゅさい|penyelenggara|n
+出版|しゅっぱん|penerbitan|n
+循環|じゅんかん|sirkulasi|n
+障害|しょうがい|hambatan|n
+状況|じょうきょう|situasi|n
+条件|じょうけん|syarat|n
+詳細|しょうさい|detail|n
+症状|しょうじょう|gejala|n
+昇進|しょうしん|kenaikan jabatan|n
+消費|しょうひ|konsumsi|n
+情熱|じょうねつ|gairah|n
+職場|しょくば|tempat kerja|n
+所得|しょとく|pendapatan|n
+処理|しょり|pemrosesan|n
+人材|じんざい|SDM|n
+審査|しんさ|pemeriksaan, seleksi|n
+申請|しんせい|pengajuan|n
+進歩|しんぽ|kemajuan|n
+信頼|しんらい|kepercayaan|n
+衰退|すいたい|kemunduran|n
+推進|すいしん|promosi, dorongan|n
+姿|すがた|sosok|n
+成果|せいか|hasil, capaian|n
+誠意|せいい|ketulusan|n
+制度|せいど|sistem|n
+性能|せいのう|performa|n
+整備|せいび|perawatan, pembenahan|n
+接触|せっしょく|kontak|n
+設定|せってい|pengaturan|n
+説得|せっとく|bujukan|n
+前提|ぜんてい|premis|n
+戦略|せんりゃく|strategi|n
+相違|そうい|perbedaan|n
+増加|ぞうか|peningkatan|n
+総額|そうがく|jumlah total|n
+操作|そうさ|pengoperasian|n
+創造|そうぞう|kreasi|n
+措置|そち|tindakan|n
+損害|そんがい|kerugian|n
+待遇|たいぐう|perlakuan, tunjangan|n
+対象|たいしょう|sasaran|n
+対応|たいおう|penanganan|n
+滞在|たいざい|tinggal (sementara)|n
+対立|たいりつ|konflik|n
+妥当|だとう|wajar, valid|adj
+多様|たよう|beragam|adj
+段階|だんかい|tahap|n
+短縮|たんしゅく|pemendekan|n
+蓄積|ちくせき|akumulasi|n
+秩序|ちつじょ|ketertiban|n
+仲介|ちゅうかい|perantara|n
+中断|ちゅうだん|penghentian sementara|n
+調整|ちょうせい|penyesuaian|n
+貯蓄|ちょちく|tabungan|n
+追加|ついか|tambahan|n
+通知|つうち|notifikasi|n
+提案|ていあん|usulan|n
+定着|ていちゃく|mengakar|n
+停止|ていし|penghentian|n
+撤退|てったい|penarikan mundur|n
+展開|てんかい|perkembangan|n
+転勤|てんきん|mutasi kerja|n
+統計|とうけい|statistik|n
+動機|どうき|motif|n
+導入|どうにゅう|pengenalan, penerapan|n
+得点|とくてん|skor|n
+独立|どくりつ|kemandirian|n
+内緒|ないしょ|rahasia|n
+納得|なっとく|paham dan terima|n
+人情|にんじょう|rasa kemanusiaan|n
+認識|にんしき|kesadaran, pengenalan|n
+年金|ねんきん|uang pensiun|n
+背景|はいけい|latar belakang|n
+配慮|はいりょ|pertimbangan, kepedulian|n
+破産|はさん|bangkrut|n
+罰|ばつ|hukuman|n
+反映|はんえい|refleksi|n
+反省|はんせい|introspeksi|n
+判明|はんめい|terungkap|n
+皮肉|ひにく|sindiran|n
+批判|ひはん|kritik|n
+評価|ひょうか|evaluasi|n
+負担|ふたん|beban|n
+普段|ふだん|biasanya|n
+分析|ぶんせき|analisis|n
+分野|ぶんや|bidang|n
+弊害|へいがい|dampak buruk|n
+変更|へんこう|perubahan|n
+補償|ほしょう|kompensasi|n
+保証|ほしょう|jaminan|n
+本音|ほんね|isi hati sebenarnya|n
+建前|たてまえ|sikap formal (di depan umum)|n
+摩擦|まさつ|gesekan|n
+見込み|みこみ|prospek|n
+見通し|みとおし|perkiraan ke depan|n
+矛盾|むじゅん|kontradiksi|n
+名誉|めいよ|kehormatan|n
+目安|めやす|patokan|n
+役目|やくめ|tugas, peran|n
+有効|ゆうこう|berlaku, efektif|adj
+融通|ゆうずう|fleksibilitas|n
+要因|よういん|faktor|n
+要素|ようそ|unsur|n
+用途|ようと|kegunaan|n
+予測|よそく|prediksi|n
+欲望|よくぼう|hasrat|n
+利点|りてん|keuntungan|n
+略|りゃく|singkatan|n
+流行|りゅうこう|tren|n
+了解|りょうかい|dimengerti|n
+両立|りょうりつ|menyeimbangkan|n
+履歴|りれき|riwayat|n
+理論|りろん|teori|n
+連携|れんけい|kerja sama|n
+論理|ろんり|logika|n
+呆れる|あきれる|tercengang (heran)|v
+預かる|あずかる|menerima titipan|v
+焦る|あせる|terburu-buru, gelisah|v
+当てる|あてる|mengenai, menebak|v
+暴れる|あばれる|mengamuk|v
+誤る|あやまる|keliru|v
+歩む|あゆむ|melangkah|v
+改める|あらためる|memperbaiki, mengubah|v
+言い張る|いいはる|bersikeras|v
+生かす|いかす|memanfaatkan|v
+至る|いたる|mencapai|v
+傷む|いたむ|rusak, busuk|v
+抱く|いだく|memeluk, menyimpan (perasaan)|v
+営む|いとなむ|menjalankan (usaha)|v
+挑む|いどむ|menantang|v
+受け止める|うけとめる|menerima (dengan lapang)|v
+打ち明ける|うちあける|mengaku, mencurahkan|v
+奪う|うばう|merampas|v
+裏切る|うらぎる|mengkhianati|v
+恨む|うらむ|dendam|v
+潤う|うるおう|lembap, makmur|v
+追い越す|おいこす|menyalip|v
+補う|おぎなう|melengkapi|v
+怠る|おこたる|melalaikan|v
+惜しむ|おしむ|menyayangkan|v
+脅かす|おびやかす|mengancam|v
+思い込む|おもいこむ|yakin (keliru)|v
+及ぶ|およぶ|mencapai, meluas|v
+欠ける|かける|kurang, cuil|v
+重ねる|かさねる|menumpuk|v
+語る|かたる|menceritakan|v
+叶える|かなえる|mewujudkan|v
+絡む|からむ|terlibat, terjerat|v
+刻む|きざむ|mengukir, mencincang|v
+築く|きずく|membangun|v
+競う|きそう|bersaing|v
+腐る|くさる|membusuk|v
+覆す|くつがえす|membalikkan|v
+悔やむ|くやむ|menyesali|v
+心掛ける|こころがける|berusaha selalu|v
+試みる|こころみる|mencoba|v
+異なる|ことなる|berbeda|v
+好む|このむ|menyukai|v
+こぼす|こぼす|menumpahkan, mengeluh|v
+堪える|こらえる|menahan|v
+探る|さぐる|menyelidiki|v
+捧げる|ささげる|mempersembahkan|v
+定める|さだめる|menetapkan|v
+悟る|さとる|menyadari|v
+遮る|さえぎる|menghalangi, memotong|v
+仕上げる|しあげる|menyelesaikan|v
+強いる|しいる|memaksa|v
+しがみつく|しがみつく|berpegang erat|v
+慕う|したう|merindukan, menyayangi|v
+凌ぐ|しのぐ|bertahan, melampaui|v
+生じる|しょうじる|timbul|v
+退く|しりぞく|mundur|v
+救う|すくう|menyelamatkan|v
+勧める|すすめる|menyarankan|v
+廃れる|すたれる|usang|v
+済ます|すます|menyelesaikan|v
+添える|そえる|melampirkan, menyertakan|v
+損なう|そこなう|merusak|v
+背く|そむく|melanggar, membangkang|v
+逸らす|そらす|mengalihkan|v
+耐える|たえる|menahan, tahan|v
+携わる|たずさわる|terlibat dalam|v
+称える|たたえる|memuji|v
+立ち直る|たちなおる|bangkit kembali|v
+辿る|たどる|menelusuri|v
+保つ|たもつ|mempertahankan|v
+ためらう|ためらう|ragu-ragu|v
+縮める|ちぢめる|memperpendek|v
+費やす|ついやす|menghabiskan|v
+継ぐ|つぐ|mewarisi|v
+償う|つぐなう|menebus|v
+務める|つとめる|bertugas sebagai|v
+貫く|つらぬく|menembus, berpegang teguh|v
+照らす|てらす|menyinari|v
+問う|とう|menanyakan|v
+遂げる|とげる|mencapai|v
+整う|ととのう|siap, tertata|v
+唱える|となえる|melafalkan, mengajukan|v
+取り組む|とりくむ|menangani, menggeluti|v
+取り戻す|とりもどす|mendapatkan kembali|v
+嘆く|なげく|meratap|v
+和む|なごむ|menjadi tenang|v
+慰める|なぐさめる|menghibur|v
+懐く|なつく|menjadi akrab (jinak)|v
+悩ます|なやます|menyusahkan|v
+担う|になう|memikul (tanggung jawab)|v
+鈍る|にぶる|tumpul|v
+練る|ねる|menyusun (rencana), menguleni|v
+臨む|のぞむ|menghadapi|v
+乗り越える|のりこえる|mengatasi|v
+図る|はかる|mengupayakan|v
+励ます|はげます|menyemangati|v
+励む|はげむ|tekun|v
+弾む|はずむ|memantul, bersemangat|v
+果たす|はたす|menunaikan|v
+阻む|はばむ|menghalangi|v
+引き受ける|ひきうける|menerima (tugas)|v
+引き起こす|ひきおこす|menyebabkan|v
+率いる|ひきいる|memimpin|v
+響く|ひびく|bergema|v
+秘める|ひめる|menyimpan (rahasia)|v
+踏まえる|ふまえる|berdasarkan|v
+振り返る|ふりかえる|menengok ke belakang|v
+隔てる|へだてる|memisahkan|v
+誇る|ほこる|membanggakan|v
+施す|ほどこす|memberikan, menerapkan|v
+滅びる|ほろびる|musnah|v
+紛れる|まぎれる|tercampur|v
+免れる|まぬがれる|terhindar|v
+見逃す|みのがす|melewatkan|v
+見舞う|みまう|menjenguk|v
+儲かる|もうかる|untung|v
+潜る|もぐる|menyelam|v
+もたらす|もたらす|membawa (akibat)|v
+養う|やしなう|menghidupi, memupuk|v
+和らぐ|やわらぐ|mereda|v
+歪む|ゆがむ|bengkok|v
+揺らぐ|ゆらぐ|goyah|v
+緩める|ゆるめる|melonggarkan|v
+要する|ようする|memerlukan|v
+蘇る|よみがえる|hidup kembali|v
+詫びる|わびる|meminta maaf|v
+割り込む|わりこむ|menyela|v
+見なす|みなす|menganggap|v
+見極める|みきわめる|memastikan|v
+厚かましい|あつかましい|tidak tahu malu|adj
+危うい|あやうい|berbahaya|adj
+潔い|いさぎよい|berjiwa besar|adj
+著しい|いちじるしい|mencolok, signifikan|adj
+いい加減|いいかげん|asal-asalan|adj
+陰気|いんき|murung|adj
+疑わしい|うたがわしい|meragukan|adj
+うっとうしい|うっとうしい|menjengkelkan|adj
+円満|えんまん|harmonis|adj
+大まか|おおまか|garis besar|adj
+おおらか|おおらか|santai, lapang dada|adj
+愚か|おろか|bodoh|adj
+穏やか|おだやか|tenang|adj
+快い|こころよい|menyenangkan|adj
+過酷|かこく|keras, kejam|adj
+堅い|かたい|kaku, solid|adj
+画期的|かっきてき|revolusioner|adj
+簡潔|かんけつ|ringkas|adj
+頑丈|がんじょう|kokoh|adj
+肝心|かんじん|penting|adj
+寛大|かんだい|murah hati|adj
+気軽|きがる|santai, ringan|adj
+几帳面|きちょうめん|teliti, rapi|adj
+気の毒|きのどく|kasihan|adj
+窮屈|きゅうくつ|sempit, kaku|adj
+強烈|きょうれつ|kuat, intens|adj
+勤勉|きんべん|rajin|adj
+くどい|くどい|bertele-tele|adj
+軽快|けいかい|ringan, lincah|adj
+健全|けんぜん|sehat|adj
+顕著|けんちょ|mencolok|adj
+厳重|げんじゅう|ketat|adj
+強引|ごういん|memaksa|adj
+巧妙|こうみょう|lihai|adj
+心細い|こころぼそい|cemas, kesepian|adj
+騒々しい|そうぞうしい|bising|adj
+しぶとい|しぶとい|ulet|adj
+渋い|しぶい|sepat, kalem|adj
+地道|じみち|tekun, mantap|adj
+すがすがしい|すがすがしい|menyegarkan|adj
+健やか|すこやか|sehat|adj
+速やか|すみやか|segera, cepat|adj
+切実|せつじつ|mendesak|adj
+繊細|せんさい|halus, sensitif|adj
+壮大|そうだい|megah|adj
+粗末|そまつ|kasar, sembarangan|adj
+巧み|たくみ|terampil|adj
+たくましい|たくましい|kekar, tangguh|adj
+怠惰|たいだ|malas|adj
+丁重|ていちょう|sopan, hormat|adj
+手軽|てがる|mudah, praktis|adj
+適度|てきど|secukupnya|adj
+手頃|てごろ|terjangkau|adj
+何気ない|なにげない|biasa saja, tak sengaja|adj
+生意気|なまいき|sok, kurang ajar|adj
+滑らか|なめらか|mulus|adj
+望ましい|のぞましい|diharapkan|adj
+のんき|のんき|santai, cuek|adj
+儚い|はかない|fana|adj
+甚だしい|はなはだしい|luar biasa (berlebihan)|adj
+華やか|はなやか|meriah|adj
+控えめ|ひかえめ|bersahaja|adj
+卑怯|ひきょう|pengecut, curang|adj
+密か|ひそか|diam-diam|adj
+ふさわしい|ふさわしい|pantas|adj
+物騒|ぶっそう|tidak aman|adj
+朗らか|ほがらか|ceria|adj
+まめ|まめ|rajin, telaten|adj
+みすぼらしい|みすぼらしい|lusuh|adj
+むなしい|むなしい|hampa|adj
+明確|めいかく|jelas|adj
+めでたい|めでたい|patut dirayakan|adj
+厄介|やっかい|merepotkan|adj
+有利|ゆうり|menguntungkan|adj
+不利|ふり|merugikan|adj
+愉快|ゆかい|menyenangkan|adj
+緩やか|ゆるやか|landai, lambat|adj
+陽気|ようき|ceria|adj
+利口|りこう|pintar|adj
+冷淡|れいたん|dingin, acuh|adj
+露骨|ろこつ|terang-terangan|adj
+煩わしい|わずらわしい|merepotkan|adj
+あいにく|あいにく|sayangnya|adv
+あくまで|あくまで|sampai akhir, tetap|adv
+あらかじめ|あらかじめ|sebelumnya|adv
+いかにも|いかにも|benar-benar|adv
+いずれ|いずれ|kelak, cepat atau lambat|adv
+一斉に|いっせいに|serentak|adv
+未だに|いまだに|sampai sekarang masih|adv
+いわば|いわば|boleh dikatakan|adv
+うんざり|うんざり|muak|adv
+おおむね|おおむね|pada umumnya|adv
+おのずから|おのずから|dengan sendirinya|adv
+かえって|かえって|malah sebaliknya|adv
+かつて|かつて|dahulu|adv
+極めて|きわめて|sangat|adv
+くれぐれも|くれぐれも|sungguh-sungguh (mohon)|adv
+今更|いまさら|sudah terlambat|adv
+ことごとく|ことごとく|semuanya|adv
+ことに|ことに|terutama|adv
+さぞ|さぞ|pasti (dugaan)|adv
+さほど|さほど|tidak terlalu|adv
+しいて|しいて|dipaksakan|adv
+じかに|じかに|langsung|adv
+しきりに|しきりに|terus-menerus|adv
+すでに|すでに|sudah|adv
+ずばり|ずばり|tepat sasaran|adv
+せっせと|せっせと|tekun|adv
+ぜひとも|ぜひとも|bagaimanapun juga|adv
+そもそも|そもそも|pada dasarnya|adv
+直ちに|ただちに|segera|adv
+単に|たんに|hanya|adv
+着々と|ちゃくちゃくと|mantap, bertahap|adv
+つくづく|つくづく|sungguh (merasakan)|adv
+てっきり|てっきり|kukira pasti|adv
+到底|とうてい|sama sekali (tidak)|adv
+とりわけ|とりわけ|terutama|adv
+なお|なお|lebih lagi, sebagai tambahan|adv
+なおさら|なおさら|apalagi|adv
+何しろ|なにしろ|bagaimanapun|adv
+何とか|なんとか|entah bagaimana|adv
+ひたすら|ひたすら|semata-mata, tekun|adv
+ひとりでに|ひとりでに|dengan sendirinya|adv
+まして|まして|apalagi|adv
+めったに|めったに|jarang (sekali)|adv
+もっぱら|もっぱら|terutama, semata|adv
+やたらに|やたらに|sembarangan, berlebihan|adv
+やむを得ず|やむをえず|terpaksa|adv
+ろくに|ろくに|(tidak) dengan layak|adv
+わずか|わずか|sedikit sekali|adv
+依然として|いぜんとして|masih tetap|adv
+主に|おもに|terutama|adv
+仮に|かりに|seandainya|adv
+少なくとも|すくなくとも|setidaknya|adv
+絶えず|たえず|terus-menerus|adv
+たびたび|たびたび|sering|adv
+何より|なにより|terutama, terbaik|adv`};
 const VOCAB={};for(const l in RAW_V)VOCAB[l]=RAW_V[l].trim().split("\n").map(r=>r.split("|"));
 const CAT={all:"Semua",v:"Kata kerja",n:"Kata benda",adj:"Kata sifat",adv:"Keterangan"};
 
 /* ===== TATA BAHASA [pola, arti, bentuk, contoh, bacaan, terjemahan, soal, jawaban, pengecoh x3] ===== */
-const GRAM={N3:[
-["〜たばかり","baru saja","Vた ＋ ばかり","日本に来たばかりです。","にほんにきたばかりです。","Saya baru saja datang ke Jepang.","日本に来た＿＿＿なので、まだ日本語が下手です。","ばかり","はず","うちに","せい"],
-["〜ようにする","berusaha agar / membiasakan","Vる / Vない ＋ ようにする","毎日野菜を食べるようにしています。","まいにちやさいをたべるようにしています。","Saya berusaha makan sayur setiap hari.","健康のために、毎日歩く＿＿＿います。","ようにして","ばかりで","せいで","くせに"],
-["〜ようになる","menjadi (bisa / terbiasa)","Vる / V可能 ＋ ようになる","日本語が話せるようになりました。","にほんごがはなせるようになりました。","Saya jadi bisa berbicara bahasa Jepang.","毎日練習して、泳げる＿＿＿。","ようになりました","ばかりでした","くせになりました","ついでになりました"],
-["〜ことにする","memutuskan (oleh diri sendiri)","Vる / Vない ＋ ことにする","来年日本へ行くことにしました。","らいねんにほんへいくことにしました。","Saya memutuskan pergi ke Jepang tahun depan.","来年、日本の大学に行く＿＿＿。","ことにしました","ばかりです","せいです","おかげです"],
-["〜ことになる","diputuskan (oleh pihak lain/keadaan)","Vる / Vない ＋ ことになる","来月大阪に転勤することになりました。","らいげつおおさかにてんきんすることになりました。","Sudah diputuskan saya pindah tugas ke Osaka bulan depan.","会社の命令で、来月大阪に転勤する＿＿＿。","ことになりました","ようにしています","ばかりです","ついでです"],
-["〜ことがある","kadang-kadang (terjadi)","Vる / Vない ＋ ことがある","時々、朝ご飯を食べないことがある。","ときどき、あさごはんをたべないことがある。","Kadang-kadang saya tidak sarapan.","忙しいときは、昼ご飯を食べない＿＿＿。","ことがある","せいだ","ついでだ","くせだ"],
-["〜わけではない","bukan berarti","普通形 (なA-な / N-な) ＋ わけではない","肉が嫌いなわけではありません。","にくがきらいなわけではありません。","Bukan berarti saya tidak suka daging.","肉が嫌いな＿＿＿が、今日は食べたくない。","わけではない","はずだ","せいだ","ばかりだ"],
-["〜わけだ","pantas saja / wajar","普通形 (なA-な / N-な) ＋ わけだ","10年も住んでいたから、日本語が上手なわけだ。","じゅうねんもすんでいたから、にほんごがじょうずなわけだ。","Dia tinggal 10 tahun, pantas bahasa Jepangnya bagus.","10年も日本に住んでいたのか。日本語が上手な＿＿＿だ。","わけ","くせ","ついで","たび"],
-["〜わけがない","tidak mungkin","普通形 (なA-な / N-な) ＋ わけがない","あの人が嘘をつくわけがない。","あのひとがうそをつくわけがない。","Tidak mungkin orang itu berbohong.","あんなに真面目な人が嘘をつく＿＿＿。","わけがない","ことにする","ようにする","ついでだ"],
-["〜はずだ","seharusnya (yakin berdasar alasan)","普通形 (なA-な / N-の) ＋ はずだ","彼はもう着いたはずだ。","かれはもうついたはずだ。","Dia seharusnya sudah sampai.","彼は10時の電車に乗ったから、もう着いている＿＿＿だ。","はず","くせ","ついで","せい"],
-["〜らしい","kabarnya / sepertinya","普通形 (N / なA tanpa だ) ＋ らしい","明日は雨らしい。","あしたはあめらしい。","Kabarnya besok hujan.","天気予報によると、明日は雪＿＿＿。","らしい","ついでだ","くせだ","ばかりか"],
-["〜そうだ (伝聞)","katanya (info dari orang lain)","普通形 ＋ そうだ","ニュースによると、昨日地震があったそうだ。","ニュースによると、きのうじしんがあったそうだ。","Menurut berita, katanya kemarin ada gempa.","ニュースによると、昨日大きな地震があった＿＿＿。","そうだ","ようにする","ことにする","ついでだ"],
-["〜みたいだ","sepertinya (kasual)","普通形 (N / なA tanpa だ) ＋ みたいだ","誰もいないみたいだ。","だれもいないみたいだ。","Sepertinya tidak ada orang.","電気が消えている。誰もいない＿＿＿。","みたいだ","ことにする","ついでだ","くせだ"],
-["〜うちに","selagi / sebelum berubah","Vる / Vない / Aい / N-の ＋ うちに","温かいうちに食べてください。","あたたかいうちにたべてください。","Silakan makan selagi masih hangat.","料理が温かい＿＿＿食べてください。","うちに","たびに","せいで","くせに"],
-["〜によって","tergantung / oleh","N ＋ によって","人によって考え方が違います。","ひとによってかんがえかたがちがいます。","Cara berpikir berbeda tergantung orangnya.","国＿＿＿文化が違います。","によって","のおかげで","のついでに","のくせに"],
-["〜について","tentang, mengenai","N ＋ について","日本の文化について調べる。","にほんのぶんかについてしらべる。","Meneliti tentang budaya Jepang.","日本の歴史＿＿＿レポートを書きます。","について","のくせに","のせいで","のたびに"],
-["〜に対して","terhadap","N ＋ に対して","目上の人に対して敬語を使う。","めうえのひとにたいしてけいごをつかう。","Memakai bahasa hormat terhadap orang yang lebih tinggi.","お客様＿＿＿、失礼なことを言ってはいけない。","に対して","のくせに","のついでに","のせいで"],
-["〜にとって","bagi","N ＋ にとって","私にとって家族が一番大切だ。","わたしにとってかぞくがいちばんたいせつだ。","Bagi saya, keluarga yang paling penting.","私＿＿＿、家族は一番大切なものです。","にとって","のくせに","のせいで","のたびに"],
-["〜として","sebagai","N ＋ として","通訳として働いている。","つうやくとしてはたらいている。","Bekerja sebagai penerjemah.","彼は通訳＿＿＿会社で働いている。","として","のくせに","のついでに","のせいで"],
-["〜ために","untuk (tujuan)","Vる / N-の ＋ ために","日本で働くために日本語を勉強している。","にほんではたらくためににほんごをべんきょうしている。","Saya belajar bahasa Jepang untuk bekerja di Jepang.","日本で働く＿＿＿、日本語を勉強しています。","ために","くせに","せいで","たびに"],
-["〜ように","agar / supaya","Vる / Vない / V可能 ＋ ように","忘れないようにメモします。","わすれないようにメモします。","Saya mencatat supaya tidak lupa.","忘れない＿＿＿、メモしておきます。","ように","ばかり","くせに","ついでに"],
-["〜ように言う","menyuruh / meminta agar","Vる / Vない ＋ ように言う","医者にたばこをやめるように言われた。","いしゃにたばこをやめるようにいわれた。","Saya disuruh dokter berhenti merokok.","医者にお酒を控える＿＿＿言われました。","ように","ことに","ばかり","ついでに"],
-["〜てほしい","ingin (orang lain) melakukan","Vて ＋ ほしい","早く元気になってほしい。","はやくげんきになってほしい。","Saya ingin kamu cepat sehat.","子どもには優しい人になって＿＿＿。","ほしい","ばかりだ","くせだ","ついでだ"],
-["〜ついでに","sekalian","Vる / Vた / N-の ＋ ついでに","買い物のついでに銀行に寄りました。","かいもののついでにぎんこうによりました。","Sekalian belanja, saya mampir ke bank.","郵便局へ行く＿＿＿、切手を買ってきた。","ついでに","くせに","せいで","たびに"],
-["〜くせに","padahal (nada kesal/kritik)","普通形 (なA-な / N-の) ＋ くせに","知っているくせに教えてくれない。","しっているくせにおしえてくれない。","Padahal tahu, tapi tidak mau memberi tahu.","彼は知っている＿＿＿、教えてくれない。","くせに","おかげで","ついでに","ように"],
-["〜さえ〜ば","asalkan … saja","N ＋ さえ ＋ Vば / Aければ","時間さえあれば、行けます。","じかんさえあれば、いけます。","Asalkan ada waktu, saya bisa pergi.","時間＿＿＿あれば、旅行に行けるのに。","さえ","ばかり","はず","うち"],
-["〜ば〜ほど","semakin … semakin","Vば ＋ Vる ＋ ほど","練習すればするほど上手になる。","れんしゅうすればするほどじょうずになる。","Semakin berlatih, semakin mahir.","日本語は勉強すれば＿＿＿ほど面白くなる。","する","した","して","しよう"],
-["〜ほど","sampai-sampai (tingkat)","Vる / Vたい / Aい / N ＋ ほど","泣きたいほど悔しかった。","なきたいほどくやしかった。","Saking kesalnya sampai ingin menangis.","泣きたい＿＿＿、悔しかった。","ほど","くせに","ついでに","ために"],
-["〜っぱなし","dibiarkan begitu saja","Vます(stem) ＋ っぱなし","電気をつけっぱなしで寝てしまった。","でんきをつけっぱなしでねてしまった。","Saya ketiduran dengan lampu dibiarkan menyala.","電気をつけ＿＿＿で寝てしまった。","っぱなし","ついで","たび","うち"],
-["〜せいで","gara-gara (hasil buruk)","普通形 (なA-な / N-の) ＋ せいで","雨のせいで試合が中止になった。","あめのせいでしあいがちゅうしになった。","Gara-gara hujan, pertandingan dibatalkan.","雨の＿＿＿、試合が中止になった。","せいで","ように","ばかり","はず"],
-["〜おかげで","berkat (hasil baik)","普通形 (なA-な / N-の) ＋ おかげで","先生のおかげで合格できました。","せんせいのおかげでごうかくできました。","Berkat guru, saya bisa lulus.","先生の＿＿＿、試験に合格できました。","おかげで","せいで","くせに","ついでに"],
-["〜たびに","setiap kali","Vる / N-の ＋ たびに","この歌を聞くたびに、故郷を思い出す。","このうたをきくたびに、ふるさとをおもいだす。","Setiap mendengar lagu ini, saya teringat kampung halaman.","この歌を聞く＿＿＿、故郷を思い出す。","たびに","くせに","せいで","はずに"],
-["〜とおりに","sesuai dengan (persis)","Vる / Vた / N-の ＋ とおりに","説明書のとおりに組み立てる。","せつめいしょのとおりにくみたてる。","Merakit sesuai buku petunjuk.","先生が言った＿＿＿、やってください。","とおりに","せいで","くせに","たびに"],
-["〜ところだ","baru akan / sedang / baru saja","Vる / Vている / Vた ＋ ところだ","今から出かけるところです。","いまからでかけるところです。","Saya baru mau berangkat sekarang.","ちょうど今、家を出る＿＿＿です。","ところ","せい","くせ","ついで"],
-["〜最中に","di tengah-tengah (sedang)","Vている / N-の ＋ 最中に","食事の最中に電話が鳴った。","しょくじのさいちゅうにでんわがなった。","Telepon berdering di tengah makan.","会議の＿＿＿に、電話が鳴った。","最中","ついで","せい","くせ"],
-["〜ずに","tanpa (melakukan)","Vない(stem) ＋ ずに (する→せずに)","朝ご飯を食べずに学校へ行った。","あさごはんをたべずにがっこうへいった。","Saya pergi ke sekolah tanpa sarapan.","朝ご飯を食べ＿＿＿、家を出た。","ずに","たびに","うちに","ついでに"],
-["〜としたら","seandainya / kalau misalnya","普通形 ＋ としたら","宝くじが当たったとしたら、何をしますか。","たからくじがあたったとしたら、なにをしますか。","Seandainya menang lotre, apa yang akan kamu lakukan?","もし1億円あった＿＿＿、何をしますか。","としたら","くせに","ついでに","せいで"]
-],N2:[
-["〜にもかかわらず","meskipun, walaupun","普通形 / N ＋ にもかかわらず","雨にもかかわらず、大勢の人が来た。","あめにもかかわらず、おおぜいのひとがきた。","Meskipun hujan, banyak orang datang.","悪天候＿＿＿、試合は行われた。","にもかかわらず","のおかげで","について","にとって"],
-["〜に違いない","pasti (yakin)","普通形 (なA / N tanpa だ) ＋ に違いない","彼が犯人に違いない。","かれがはんにんにちがいない。","Dia pasti pelakunya.","電気がついているから、彼は家にいる＿＿＿。","に違いない","にすぎない","に限る","に応じて"],
-["〜にすぎない","hanya sekadar","普通形 / N ＋ にすぎない","それは噂にすぎない。","それはうわさにすぎない。","Itu hanya sekadar gosip.","私はただのアルバイト＿＿＿ので、決められません。","にすぎない","にわたる","に沿う","に基づく"],
-["〜に基づいて","berdasarkan","N ＋ に基づいて","データに基づいて判断する。","データにもとづいてはんだんする。","Memutuskan berdasarkan data.","調査結果＿＿＿、計画を立てる。","に基づいて","にわたって","にすぎず","ばかりに"],
-["〜にわたって","selama / meliputi (rentang)","N (waktu/tempat) ＋ にわたって","3日間にわたって会議が行われた。","みっかかんにわたってかいぎがおこなわれた。","Rapat diadakan selama 3 hari.","工事は3か月＿＿＿続いた。","にわたって","に基づいて","に違いなく","にすぎず"],
-["〜をめぐって","seputar (perdebatan/sengketa)","N ＋ をめぐって","遺産をめぐって家族が争った。","いさんをめぐってかぞくがあらそった。","Keluarga bertengkar seputar warisan.","新しい法律＿＿＿、議論が続いている。","をめぐって","にすぎず","に違いなく","ばかりに"],
-["〜に応じて","sesuai / menyesuaikan dengan","N ＋ に応じて","能力に応じて給料が決まる。","のうりょくにおうじてきゅうりょうがきまる。","Gaji ditentukan sesuai kemampuan.","経験＿＿＿給料が変わります。","に応じて","にすぎず","にもかかわらず","ばかりに"],
-["〜に沿って","mengikuti, sejalan dengan","N ＋ に沿って","川に沿って歩く。","かわにそってあるく。","Berjalan menyusuri sungai.","マニュアル＿＿＿作業を進めてください。","に沿って","にすぎず","に違いなく","をめぐって"],
-["〜に反して","bertentangan dengan","N ＋ に反して","予想に反して、新人が優勝した。","よそうにはんして、しんじんがゆうしょうした。","Bertentangan dengan dugaan, pendatang baru juara.","予想＿＿＿、試験はとても簡単だった。","に反して","にすぎず","を問わず","にわたって"],
-["〜に限らず","tidak hanya / tidak terbatas","N ＋ に限らず","子どもに限らず、大人も楽しめる。","こどもにかぎらず、おとなもたのしめる。","Tidak hanya anak-anak, orang dewasa juga bisa menikmati.","この遊園地は子ども＿＿＿、大人にも人気がある。","に限らず","に違いなく","にわたって","に沿って"],
-["〜を問わず","tanpa memandang","N ＋ を問わず","年齢を問わず参加できる。","ねんれいをとわずさんかできる。","Bisa ikut tanpa memandang usia.","このイベントには、年齢＿＿＿誰でも参加できます。","を問わず","をめぐって","に沿って","にすぎず"],
-["〜はもちろん","tentu saja … (apalagi)","N ＋ はもちろん","英語はもちろん、中国語も話せる。","えいごはもちろん、ちゅうごくごもはなせる。","Bahasa Inggris tentu saja, bahasa Mandarin pun bisa.","彼は英語＿＿＿、フランス語も話せる。","はもちろん","にすぎず","に沿って","をめぐって"],
-["〜をきっかけに","berawal dari, dipicu oleh","N ＋ をきっかけに","留学をきっかけに料理を始めた。","りゅうがくをきっかけにりょうりをはじめた。","Berawal dari kuliah di luar negeri, saya mulai memasak.","日本旅行＿＿＿、日本語の勉強を始めた。","をきっかけに","にすぎず","を問わず","に違いなく"],
-["〜ばかりに","hanya karena (berakibat buruk)","普通形 (なA-な / N-である) ＋ ばかりに","嘘をついたばかりに信用を失った。","うそをついたばかりにしんようをうしなった。","Hanya karena berbohong, saya kehilangan kepercayaan.","一度嘘をついた＿＿＿、信用を失ってしまった。","ばかりに","に沿って","に応じて","をめぐって"],
-["〜以上(は)","karena sudah … (maka harus)","普通形 ＋ 以上(は)","約束した以上、守らなければならない。","やくそくしたいじょう、まもらなければならない。","Karena sudah berjanji, harus ditepati.","引き受けた＿＿＿、最後までやるべきだ。","以上","とたん","ばかりか","がち"],
-["〜からこそ","justru karena","普通形 ＋ からこそ","愛しているからこそ厳しくするのだ。","あいしているからこそきびしくするのだ。","Justru karena sayang, saya bersikap keras.","あなたのことを思っている＿＿＿、厳しいことを言うのです。","からこそ","にもかかわらず","とたんに","末に"],
-["〜たとたん(に)","begitu … langsung","Vた ＋ とたん(に)","立ち上がったとたん、めまいがした。","たちあがったとたん、めまいがした。","Begitu berdiri, langsung pusing.","家を出た＿＿＿、雨が降り出した。","とたん","以上","末","上は"],
-["〜末(に)","setelah lama (akhirnya)","Vた / N-の ＋ 末(に)","悩んだ末に、留学を決めた。","なやんだすえに、りゅうがくをきめた。","Setelah lama bimbang, akhirnya memutuskan kuliah ke luar negeri.","長い間悩んだ＿＿＿、会社を辞めることにした。","末に","以上に","ばかりか","に沿って"],
-["〜あげく","akhirnya (hasil buruk)","Vた / N-の ＋ あげく","さんざん迷ったあげく、何も買わなかった。","さんざんまよったあげく、なにもかわなかった。","Setelah bingung lama, akhirnya tidak membeli apa pun.","2時間も迷った＿＿＿、結局何も買わなかった。","あげく","とたん","以上","次第"],
-["〜上で","setelah (melakukan, baru)","Vた / N-の ＋ 上で","よく考えた上で決めてください。","よくかんがえたうえできめてください。","Putuskan setelah berpikir matang.","内容を確認した＿＿＿、サインしてください。","上で","とたん","ばかりか","末"],
-["〜次第","segera setelah","Vます(stem) ＋ 次第","結果がわかり次第、連絡します。","けっかがわかりしだい、れんらくします。","Begitu hasilnya diketahui, saya akan menghubungi.","準備ができ＿＿＿、出発します。","次第","一方","末","がち"],
-["〜一方だ","terus-menerus (makin)","Vる ＋ 一方だ","物価は上がる一方だ。","ぶっかはあがるいっぽうだ。","Harga barang terus naik.","最近、物価は上がる＿＿＿だ。","一方","とたん","末","以上"],
-["〜つつある","sedang dalam proses","Vます(stem) ＋ つつある","景気は回復しつつある。","けいきはかいふくしつつある。","Ekonomi sedang dalam proses pulih.","日本の人口は減り＿＿＿。","つつある","かねる","っぽい","がたい"],
-["〜かねない","bisa saja (hal buruk) terjadi","Vます(stem) ＋ かねない","このままでは事故になりかねない。","このままではじこになりかねない。","Kalau begini terus, bisa-bisa terjadi kecelakaan.","スピードを出しすぎると、事故を起こし＿＿＿。","かねない","かねる","ようがない","ざるを得ない"],
-["〜かねる","sulit untuk (menolak sopan)","Vます(stem) ＋ かねる","その意見には賛成しかねます。","そのいけんにはさんせいしかねます。","Saya sulit menyetujui pendapat itu.","申し訳ありませんが、そのご要望にはお応えし＿＿＿。","かねます","かねません","がちです","っぽいです"],
-["〜ざるを得ない","terpaksa harus","Vない(stem) ＋ ざるを得ない (する→せざるを得ない)","中止せざるを得ない。","ちゅうしせざるをえない。","Terpaksa harus dibatalkan.","台風なので、旅行を中止せ＿＿＿。","ざるを得ない","かねる","がちだ","つつある"],
-["〜ずにはいられない","tidak bisa tidak / tak tahan untuk","Vない(stem) ＋ ずにはいられない","あの映画を見て、泣かずにはいられなかった。","あのえいがをみて、なかずにはいられなかった。","Menonton film itu, saya tak bisa menahan tangis.","あの映画は面白くて、笑わ＿＿＿。","ずにはいられなかった","かねなかった","がちだった","っぽかった"],
-["〜わけにはいかない","tidak bisa (karena norma/situasi)","Vる / Vない ＋ わけにはいかない","約束したので、行かないわけにはいかない。","やくそくしたので、いかないわけにはいかない。","Karena sudah janji, saya tidak bisa tidak pergi.","大事な会議があるので、休む＿＿＿。","わけにはいかない","ばかりだ","に違いない","っぽい"],
-["〜がちだ","cenderung (sering, negatif)","Vます(stem) / N ＋ がちだ","冬は風邪をひきがちだ。","ふゆはかぜをひきがちだ。","Saat musim dingin cenderung mudah masuk angin.","最近忙しくて、運動不足になり＿＿＿。","がちだ","かねる","っぽい","ざるを得ない"],
-["〜っぽい","agak / mudah (sifat)","Vます(stem) / N / Aい(stem) ＋ っぽい","彼は怒りっぽい。","かれはおこりっぽい。","Dia mudah marah.","彼は怒り＿＿＿性格で、すぐ機嫌が悪くなる。","っぽい","かねない","ざるを得ない","ようがない"],
-["〜っこない","mana mungkin","Vます(stem) ＋ っこない","そんなこと、できっこない。","そんなこと、できっこない。","Hal seperti itu mana mungkin bisa.","こんな難しい問題、子どもに解け＿＿＿よ。","っこない","がちだ","つつある","っぽい"],
-["〜ようがない","tidak ada cara untuk","Vます(stem) ＋ ようがない","連絡先がわからないので、連絡しようがない。","れんらくさきがわからないので、れんらくしようがない。","Tidak tahu kontaknya, jadi tidak ada cara menghubungi.","住所がわからないので、手紙の送り＿＿＿。","ようがない","がちだ","っぽい","つつある"],
-["〜ものだ","dulu sering … (nostalgia) / memang","Vた ＋ ものだ","子どもの頃はよく川で遊んだものだ。","こどものころはよくかわであそんだものだ。","Waktu kecil dulu saya sering bermain di sungai.","子どもの頃は、よく川で遊んだ＿＿＿だ。","もの","こと","ばかり","とたん"],
-["〜ことだ","sebaiknya (saran)","Vる / Vない ＋ ことだ","合格したければ、毎日勉強することだ。","ごうかくしたければ、まいにちべんきょうすることだ。","Kalau ingin lulus, sebaiknya belajar setiap hari.","上手になりたければ、毎日練習する＿＿＿だ。","こと","とたん","ばかり","一方"],
-["〜わりに","untuk ukuran / dibanding","普通形 (なA-な / N-の) ＋ わりに","この店は値段のわりに美味しい。","このみせはねだんのわりにおいしい。","Untuk ukuran harganya, toko ini enak.","この店は、値段が安い＿＿＿美味しい。","わりに","末に","とたんに","ばかりに"]
-]};
+const RAW_G={N3:`@〜たばかり|baru saja|Vた ＋ ばかり
+日本に来たばかりです。=Saya baru saja datang ke Jepang.
+さっき昼ご飯を食べたばかりなので、お腹がいっぱいだ。=Saya baru saja makan siang, jadi masih kenyang.
+買ったばかりの傘をなくしてしまった。=Payung yang baru saja saya beli hilang.
+この会社に入ったばかりで、まだ何もわからない。=Saya baru masuk perusahaan ini, jadi belum mengerti apa-apa.
+?日本に来た＿＿＿なので、まだ日本語が下手です。|ばかり|はず|うちに|せい
+@〜ようにする|berusaha agar / membiasakan|Vる / Vない ＋ ようにする
+毎日野菜を食べるようにしています。=Saya berusaha makan sayur setiap hari.
+夜は早く寝るようにしている。=Saya membiasakan tidur cepat di malam hari.
+甘いものはなるべく食べないようにしています。=Saya berusaha sebisa mungkin tidak makan makanan manis.
+約束の時間に遅れないようにしてください。=Usahakan jangan terlambat dari waktu janji.
+?健康のために、毎日歩く＿＿＿います。|ようにして|ばかりで|せいで|くせに
+@〜ようになる|menjadi (bisa / terbiasa)|Vる / V可能 ＋ ようになる
+日本語が話せるようになりました。=Saya jadi bisa berbicara bahasa Jepang.
+最近、自分で料理をするようになった。=Belakangan ini saya jadi memasak sendiri.
+眼鏡をかけたら、よく見えるようになった。=Setelah pakai kacamata, jadi bisa melihat dengan jelas.
+子どもが一人で寝られるようになった。=Anak saya sudah bisa tidur sendiri.
+?毎日練習して、泳げる＿＿＿。|ようになりました|ばかりでした|くせになりました|ついでになりました
+@〜ことにする|memutuskan (oleh diri sendiri)|Vる / Vない ＋ ことにする
+来年日本へ行くことにしました。=Saya memutuskan pergi ke Jepang tahun depan.
+健康のために、たばこをやめることにした。=Demi kesehatan, saya memutuskan berhenti merokok.
+今日は疲れたので、外で食べることにしよう。=Hari ini capek, jadi kita putuskan makan di luar saja.
+毎朝30分歩くことにしています。=Saya menetapkan untuk berjalan 30 menit setiap pagi.
+?来年、日本の大学に行く＿＿＿。|ことにしました|ばかりです|せいです|おかげです
+@〜ことになる|diputuskan (oleh pihak lain/keadaan)|Vる / Vない ＋ ことになる
+来月大阪に転勤することになりました。=Sudah diputuskan saya pindah tugas ke Osaka bulan depan.
+来週から新しいプロジェクトを担当することになった。=Mulai minggu depan saya ditugaskan memegang proyek baru.
+会議は金曜日に行うことになりました。=Rapat diputuskan diadakan hari Jumat.
+この部屋では靴を脱ぐことになっています。=Di ruangan ini aturannya harus melepas sepatu.
+?会社の命令で、来月大阪に転勤する＿＿＿。|ことになりました|ようにしています|ばかりです|ついでです
+@〜ことがある|kadang-kadang (terjadi)|Vる / Vない ＋ ことがある
+時々、朝ご飯を食べないことがある。=Kadang-kadang saya tidak sarapan.
+この道は朝、とても混むことがある。=Jalan ini kadang sangat macet di pagi hari.
+忙しいとき、夜遅くまで働くことがあります。=Saat sibuk, kadang saya bekerja sampai larut malam.
+私でも、日本語を間違えることがあります。=Saya pun kadang salah berbahasa Jepang.
+?忙しいときは、昼ご飯を食べない＿＿＿。|ことがある|せいだ|ついでだ|くせだ
+@〜わけではない|bukan berarti|普通形 (なA-な / N-な) ＋ わけではない
+肉が嫌いなわけではありません。=Bukan berarti saya tidak suka daging.
+お金があれば幸せになれるわけではない。=Punya uang bukan berarti bisa bahagia.
+日本人がみんな寿司が好きなわけではない。=Bukan berarti semua orang Jepang suka sushi.
+全然わからないわけではないが、少し難しい。=Bukan berarti sama sekali tidak mengerti, tapi agak sulit.
+?肉が嫌いな＿＿＿が、今日は食べたくない。|わけではない|はずだ|せいだ|ばかりだ
+@〜わけだ|pantas saja / wajar|普通形 (なA-な / N-な) ＋ わけだ
+10年も住んでいたから、日本語が上手なわけだ。=Dia tinggal 10 tahun, pantas bahasa Jepangnya bagus.
+窓が開いている。寒いわけだ。=Jendelanya terbuka. Pantas saja dingin.
+毎日練習しているのだから、上手になるわけだ。=Dia berlatih setiap hari, wajar saja jadi mahir.
+彼は元プロ選手だ。強いわけだ。=Dia mantan atlet profesional. Pantas saja kuat.
+?10年も日本に住んでいたのか。日本語が上手な＿＿＿だ。|わけ|くせ|ついで|たび
+@〜わけがない|tidak mungkin|普通形 (なA-な / N-な) ＋ わけがない
+あの人が嘘をつくわけがない。=Tidak mungkin orang itu berbohong.
+一日で全部覚えられるわけがない。=Tidak mungkin bisa hafal semua dalam sehari.
+こんなに安いものが本物なわけがない。=Barang semurah ini tidak mungkin asli.
+練習しないで、試合に勝てるわけがない。=Tanpa latihan, tidak mungkin menang pertandingan.
+?あんなに真面目な人が嘘をつく＿＿＿。|わけがない|ことにする|ようにする|ついでだ
+@〜はずだ|seharusnya (yakin berdasar alasan)|普通形 (なA-な / N-の) ＋ はずだ
+彼はもう着いたはずだ。=Dia seharusnya sudah sampai.
+荷物は明日届くはずです。=Paketnya seharusnya sampai besok.
+鍵はかばんに入れたはずなのに、ない。=Seharusnya kuncinya sudah saya masukkan ke tas, tapi tidak ada.
+彼女は日本に5年住んでいたから、日本語が話せるはずだ。=Dia tinggal 5 tahun di Jepang, jadi seharusnya bisa bahasa Jepang.
+?彼は10時の電車に乗ったから、もう着いている＿＿＿だ。|はず|くせ|ついで|せい
+@〜らしい|kabarnya / sepertinya / khas|普通形 (N / なA tanpa だ) ＋ らしい
+明日は雨らしい。=Kabarnya besok hujan.
+あの店は来月閉店するらしい。=Kabarnya toko itu tutup bulan depan.
+田中さんは会社を辞めたらしいよ。=Kabarnya Tanaka-san sudah keluar dari perusahaan.
+今日は本当に春らしい天気だ。=Hari ini cuacanya benar-benar khas musim semi.
+?天気予報によると、明日は雪＿＿＿。|らしい|ついでだ|くせだ|ばかりか
+@〜そうだ (伝聞)|katanya (info dari orang lain)|普通形 ＋ そうだ
+ニュースによると、昨日地震があったそうだ。=Menurut berita, katanya kemarin ada gempa.
+天気予報によると、週末は晴れるそうです。=Menurut ramalan cuaca, katanya akhir pekan cerah.
+山田さんは来年結婚するそうです。=Katanya Yamada-san akan menikah tahun depan.
+あのレストランはとても美味しいそうだ。=Katanya restoran itu sangat enak.
+?ニュースによると、昨日大きな地震があった＿＿＿。|そうだ|ようにする|ことにする|ついでだ
+@〜みたいだ|sepertinya / seperti (kasual)|普通形 (N / なA tanpa だ) ＋ みたいだ
+誰もいないみたいだ。=Sepertinya tidak ada orang.
+風邪をひいたみたいで、頭が痛い。=Sepertinya saya masuk angin, kepala sakit.
+あの二人は兄弟みたいに仲がいい。=Mereka berdua akrab seperti saudara.
+道が濡れている。夜、雨が降ったみたいだ。=Jalannya basah. Sepertinya semalam hujan.
+?電気が消えている。誰もいない＿＿＿。|みたいだ|ことにする|ついでだ|くせだ
+@〜うちに|selagi / sebelum berubah|Vる / Vない / Aい / N-の ＋ うちに
+温かいうちに食べてください。=Silakan makan selagi masih hangat.
+若いうちに、いろいろな経験をしたほうがいい。=Selagi muda, sebaiknya punya banyak pengalaman.
+忘れないうちに、メモしておこう。=Selagi belum lupa, saya catat dulu.
+暗くならないうちに、帰りましょう。=Ayo pulang sebelum gelap.
+?料理が温かい＿＿＿食べてください。|うちに|たびに|せいで|くせに
+@〜によって|tergantung / oleh / karena|N ＋ によって
+人によって考え方が違います。=Cara berpikir berbeda tergantung orangnya.
+この絵はピカソによって描かれた。=Lukisan ini dilukis oleh Picasso.
+台風によって、多くの家が壊れた。=Karena topan, banyak rumah rusak.
+季節によって、景色が変わる。=Pemandangan berubah tergantung musim.
+?国＿＿＿文化が違います。|によって|のおかげで|のついでに|のくせに
+@〜について|tentang, mengenai|N ＋ について
+日本の文化について調べる。=Meneliti tentang budaya Jepang.
+この問題について、どう思いますか。=Bagaimana pendapatmu mengenai masalah ini?
+環境問題についてレポートを書いた。=Saya menulis laporan tentang masalah lingkungan.
+新しい商品について説明します。=Saya akan menjelaskan tentang produk baru.
+?日本の歴史＿＿＿レポートを書きます。|について|のくせに|のせいで|のたびに
+@〜に対して|terhadap / sebaliknya|N ＋ に対して
+目上の人に対して敬語を使う。=Memakai bahasa hormat terhadap orang yang lebih tinggi.
+お客様に対して、失礼な態度をとってはいけない。=Tidak boleh bersikap tidak sopan terhadap pelanggan.
+兄が静かなのに対して、弟はとても元気だ。=Kakaknya pendiam, sebaliknya adiknya sangat aktif.
+彼の意見に対して、反対する人が多かった。=Banyak orang yang menentang pendapatnya.
+?お客様＿＿＿、失礼なことを言ってはいけない。|に対して|のくせに|のついでに|のせいで
+@〜にとって|bagi|N ＋ にとって
+私にとって家族が一番大切だ。=Bagi saya, keluarga yang paling penting.
+外国人にとって、漢字は難しい。=Bagi orang asing, kanji itu sulit.
+この写真は私にとって宝物です。=Foto ini bagi saya adalah harta.
+子どもにとって、遊びは大切な勉強だ。=Bagi anak-anak, bermain adalah pelajaran penting.
+?私＿＿＿、家族は一番大切なものです。|にとって|のくせに|のせいで|のたびに
+@〜として|sebagai|N ＋ として
+通訳として働いている。=Bekerja sebagai penerjemah.
+彼は留学生として日本に来た。=Dia datang ke Jepang sebagai mahasiswa asing.
+この部屋は会議室として使われている。=Ruangan ini dipakai sebagai ruang rapat.
+親として、子どもの将来が心配だ。=Sebagai orang tua, saya khawatir dengan masa depan anak.
+?彼は通訳＿＿＿会社で働いている。|として|のくせに|のついでに|のせいで
+@〜ために|untuk (tujuan) / karena|Vる / N-の ＋ ために
+日本で働くために日本語を勉強している。=Saya belajar bahasa Jepang untuk bekerja di Jepang.
+家を買うために、貯金しています。=Saya menabung untuk membeli rumah.
+健康のために、毎日運動している。=Demi kesehatan, saya berolahraga setiap hari.
+事故のために、電車が遅れた。=Karena kecelakaan, kereta terlambat.
+?日本で働く＿＿＿、日本語を勉強しています。|ために|くせに|せいで|たびに
+@〜ように|agar / supaya|Vる / Vない / V可能 ＋ ように
+忘れないようにメモします。=Saya mencatat supaya tidak lupa.
+後ろの人にも聞こえるように、大きい声で話してください。=Bicaralah dengan suara keras supaya orang di belakang juga dengar.
+風邪をひかないように、暖かくして寝てください。=Tidurlah dengan hangat supaya tidak masuk angin.
+試験に合格できるように、毎日勉強している。=Saya belajar setiap hari agar bisa lulus ujian.
+?忘れない＿＿＿、メモしておきます。|ように|ばかり|くせに|ついでに
+@〜ように言う|menyuruh / meminta agar|Vる / Vない ＋ ように言う
+医者にたばこをやめるように言われた。=Saya disuruh dokter berhenti merokok.
+先生に宿題を出すように言われました。=Saya disuruh guru mengumpulkan PR.
+部長に、明日は早く来るように言われた。=Saya disuruh manajer datang lebih awal besok.
+子どもに、早く寝るように言った。=Saya menyuruh anak tidur lebih cepat.
+?医者にお酒を控える＿＿＿言われました。|ように|ことに|ばかり|ついでに
+@〜てほしい|ingin (orang lain) melakukan|Vて ＋ ほしい
+早く元気になってほしい。=Saya ingin kamu cepat sehat.
+この仕事を手伝ってほしいんですが。=Saya ingin kamu membantu pekerjaan ini.
+両親には長生きしてほしい。=Saya ingin orang tua saya panjang umur.
+ここでたばこを吸わないでほしい。=Saya harap jangan merokok di sini.
+?子どもには優しい人になって＿＿＿。|ほしい|ばかりだ|くせだ|ついでだ
+@〜ついでに|sekalian|Vる / Vた / N-の ＋ ついでに
+買い物のついでに銀行に寄りました。=Sekalian belanja, saya mampir ke bank.
+散歩のついでに、パンを買ってきた。=Sekalian jalan-jalan, saya beli roti.
+東京へ出張したついでに、友達に会った。=Sekalian dinas ke Tokyo, saya bertemu teman.
+コンビニに行くなら、ついでに牛乳も買ってきて。=Kalau ke minimarket, sekalian belikan susu ya.
+?郵便局へ行く＿＿＿、切手を買ってきた。|ついでに|くせに|せいで|たびに
+@〜くせに|padahal (nada kesal/kritik)|普通形 (なA-な / N-の) ＋ くせに
+知っているくせに教えてくれない。=Padahal tahu, tapi tidak mau memberi tahu.
+自分ではやらないくせに、文句ばかり言う。=Padahal tidak mengerjakan sendiri, tapi mengeluh terus.
+子どものくせに、生意気なことを言うな。=Masih anak-anak, jangan bicara sok.
+お金がないくせに、高い物ばかり買う。=Padahal tidak punya uang, tapi beli barang mahal terus.
+?彼は知っている＿＿＿、教えてくれない。|くせに|おかげで|ついでに|ように
+@〜さえ〜ば|asalkan … saja|N ＋ さえ ＋ Vば / Aければ
+時間さえあれば、行けます。=Asalkan ada waktu, saya bisa pergi.
+この薬を飲みさえすれば、すぐ治ります。=Asal minum obat ini saja, langsung sembuh.
+あなたさえよければ、一緒に行きましょう。=Asalkan kamu tidak keberatan, ayo pergi bersama.
+道さえわかれば、一人で行けます。=Asalkan tahu jalannya, saya bisa pergi sendiri.
+?時間＿＿＿あれば、旅行に行けるのに。|さえ|ばかり|はず|うち
+@〜ば〜ほど|semakin … semakin|Vば ＋ Vる ＋ ほど
+練習すればするほど上手になる。=Semakin berlatih, semakin mahir.
+考えれば考えるほど、わからなくなる。=Semakin dipikirkan, semakin tidak mengerti.
+野菜は新しければ新しいほど美味しい。=Sayuran makin segar makin enak.
+駅に近ければ近いほど、家賃は高い。=Semakin dekat stasiun, semakin mahal sewanya.
+?日本語は勉強すれば＿＿＿ほど面白くなる。|する|した|して|しよう
+@〜ほど|sampai-sampai / (tidak) se-…|Vる / Vたい / Aい / N ＋ ほど
+泣きたいほど悔しかった。=Saking kesalnya sampai ingin menangis.
+死ぬほど疲れた。=Capek setengah mati.
+今日は昨日ほど寒くない。=Hari ini tidak sedingin kemarin.
+びっくりするほど値段が高かった。=Harganya mahal sampai mengejutkan.
+?泣きたい＿＿＿、悔しかった。|ほど|くせに|ついでに|ために
+@〜っぱなし|dibiarkan begitu saja / terus-menerus|Vます(stem) ＋ っぱなし
+電気をつけっぱなしで寝てしまった。=Saya ketiduran dengan lampu dibiarkan menyala.
+窓を開けっぱなしにしないでください。=Jangan biarkan jendela terbuka.
+今日は一日中立ちっぱなしで、足が痛い。=Seharian berdiri terus, kaki saya sakit.
+水を出しっぱなしにすると、もったいない。=Kalau air dibiarkan mengalir, mubazir.
+?電気をつけ＿＿＿で寝てしまった。|っぱなし|ついで|たび|うち
+@〜せいで|gara-gara (hasil buruk)|普通形 (なA-な / N-の) ＋ せいで
+雨のせいで試合が中止になった。=Gara-gara hujan, pertandingan dibatalkan.
+寝不足のせいで、仕事に集中できない。=Gara-gara kurang tidur, tidak bisa fokus kerja.
+彼が遅れたせいで、電車に乗り遅れた。=Gara-gara dia terlambat, kami ketinggalan kereta.
+年のせいか、最近疲れやすい。=Mungkin karena usia, belakangan ini mudah lelah.
+?雨の＿＿＿、試合が中止になった。|せいで|ように|ばかり|はず
+@〜おかげで|berkat (hasil baik)|普通形 (なA-な / N-の) ＋ おかげで
+先生のおかげで合格できました。=Berkat guru, saya bisa lulus.
+皆さんのおかげで、仕事が早く終わりました。=Berkat semuanya, pekerjaan cepat selesai.
+薬を飲んだおかげで、熱が下がった。=Berkat minum obat, demamnya turun.
+天気がよかったおかげで、楽しい旅行になった。=Berkat cuaca bagus, perjalanannya menyenangkan.
+?先生の＿＿＿、試験に合格できました。|おかげで|せいで|くせに|ついでに
+@〜たびに|setiap kali|Vる / N-の ＋ たびに
+この歌を聞くたびに、故郷を思い出す。=Setiap mendengar lagu ini, saya teringat kampung halaman.
+彼は会うたびに、違う服を着ている。=Setiap kali bertemu, dia memakai baju yang berbeda.
+旅行のたびに、お土産を買ってくる。=Setiap kali bepergian, saya membeli oleh-oleh.
+この写真を見るたびに、元気が出る。=Setiap melihat foto ini, saya jadi bersemangat.
+?この歌を聞く＿＿＿、故郷を思い出す。|たびに|くせに|せいで|はずに
+@〜とおりに|sesuai dengan (persis)|Vる / Vた / N-の ＋ とおりに
+説明書のとおりに組み立てる。=Merakit sesuai buku petunjuk.
+私が言ったとおりに、やってください。=Lakukan persis seperti yang saya katakan.
+思ったとおり、試験は難しかった。=Seperti yang saya duga, ujiannya sulit.
+地図のとおりに行けば、すぐわかります。=Kalau pergi sesuai peta, langsung ketemu.
+?先生が言った＿＿＿、やってください。|とおりに|せいで|くせに|たびに
+@〜ところだ|baru akan / sedang / baru saja|Vる / Vている / Vた ＋ ところだ
+今から出かけるところです。=Saya baru mau berangkat sekarang.
+今、ご飯を食べているところです。=Sekarang saya sedang makan.
+ちょうど今、駅に着いたところです。=Saya baru saja tiba di stasiun.
+もう少しで、事故にあうところだった。=Hampir saja saya mengalami kecelakaan.
+?ちょうど今、家を出る＿＿＿です。|ところ|せい|くせ|ついで
+@〜最中に|di tengah-tengah (sedang)|Vている / N-の ＋ 最中に
+食事の最中に電話が鳴った。=Telepon berdering di tengah makan.
+会議の最中に、停電になった。=Di tengah rapat, listrik padam.
+試験の最中に、お腹が痛くなった。=Di tengah ujian, perut saya sakit.
+シャワーを浴びている最中に、誰か来た。=Saat sedang mandi, ada yang datang.
+?会議の＿＿＿に、電話が鳴った。|最中|ついで|せい|くせ
+@〜ずに|tanpa (melakukan)|Vない(stem) ＋ ずに (する→せずに)
+朝ご飯を食べずに学校へ行った。=Saya pergi ke sekolah tanpa sarapan.
+辞書を使わずに、この本を読んだ。=Saya membaca buku ini tanpa kamus.
+彼は何も言わずに、部屋を出て行った。=Dia keluar kamar tanpa berkata apa-apa.
+勉強せずに試験を受けた。=Saya ikut ujian tanpa belajar.
+?朝ご飯を食べ＿＿＿、家を出た。|ずに|たびに|うちに|ついでに
+@〜としたら|seandainya / kalau misalnya|普通形 ＋ としたら
+宝くじが当たったとしたら、何をしますか。=Seandainya menang lotre, apa yang akan kamu lakukan?
+もし生まれ変わるとしたら、鳥になりたい。=Seandainya terlahir kembali, saya ingin jadi burung.
+今から行くとしたら、タクシーしかない。=Kalau mau berangkat sekarang, hanya bisa naik taksi.
+彼が来ないとしたら、計画を変えなければならない。=Kalau misalnya dia tidak datang, rencana harus diubah.
+?もし1億円あった＿＿＿、何をしますか。|としたら|くせに|ついでに|せいで
+@〜てばかりいる|hanya … terus|Vて ＋ ばかりいる / N ＋ ばかり
+弟はゲームばかりしている。=Adik saya hanya main game terus.
+遊んでばかりいないで、勉強しなさい。=Jangan main terus, belajarlah.
+彼女は甘いものばかり食べている。=Dia hanya makan makanan manis saja.
+最近、雨ばかり降っている。=Belakangan ini hujan terus.
+?弟は毎日ゲーム＿＿＿している。|ばかり|せい|ついで|くせ
+@〜ばかりか|bukan hanya … bahkan|普通形 / N ＋ ばかりか
+彼は英語ばかりか、中国語も話せる。=Dia bukan hanya bisa bahasa Inggris, tapi juga Mandarin.
+この店は安いばかりか、味もいい。=Toko ini bukan hanya murah, rasanya juga enak.
+雨ばかりか、風も強くなってきた。=Bukan hanya hujan, anginnya juga makin kencang.
+彼は謝らないばかりか、怒り出した。=Dia bukan hanya tidak minta maaf, malah marah.
+?この店は安い＿＿＿、サービスもいい。|ばかりか|せいで|たびに|ために
+@〜ことはない|tidak perlu|Vる ＋ ことはない
+心配することはないよ。=Tidak perlu khawatir.
+わざわざ来ることはありません。=Tidak perlu repot-repot datang.
+そんなに怒ることはないでしょう。=Tidak perlu semarah itu, kan.
+急ぐことはない。ゆっくりやろう。=Tidak perlu terburu-buru. Pelan-pelan saja.
+?まだ時間があるから、急ぐ＿＿＿。|ことはない|せいだ|ついでだ|くせだ
+@〜べきだ|seharusnya (kewajiban moral)|Vる ＋ べきだ (する→すべき)
+約束は守るべきだ。=Janji seharusnya ditepati.
+学生はもっと勉強すべきだ。=Pelajar seharusnya belajar lebih giat.
+人の悪口を言うべきではない。=Seharusnya tidak menjelekkan orang lain.
+もっと早く相談するべきだった。=Seharusnya saya berkonsultasi lebih awal.
+?約束は守る＿＿＿だ。|べき|くせ|ついで|せい
+@〜てたまらない|sangat … (tak tertahankan)|Vて / Aくて / なAで ＋ たまらない
+暑くてたまらない。=Panas sekali, tidak tertahankan.
+国の家族に会いたくてたまらない。=Saya sangat ingin bertemu keluarga di kampung.
+試験の結果が心配でたまらない。=Saya sangat khawatir dengan hasil ujian.
+お腹がすいてたまらない。=Lapar sekali.
+?国の家族に会いたくて＿＿＿。|たまらない|ばかりだ|ついでだ|せいだ
+@〜にしては|untuk ukuran (tidak sesuai dugaan)|普通形 / N ＋ にしては
+初めてにしては、上手ですね。=Untuk pertama kali, kamu pandai ya.
+子どもにしては、よく知っている。=Untuk ukuran anak-anak, dia tahu banyak.
+この店は駅前にしては、静かだ。=Untuk ukuran depan stasiun, toko ini tenang.
+10年住んでいるにしては、日本語が下手だ。=Untuk orang yang tinggal 10 tahun, bahasa Jepangnya kurang.
+?初めて作った＿＿＿、とても美味しいですね。|にしては|によって|について|にとって
+@〜かわりに|sebagai ganti|Vる / N-の ＋ かわりに
+社長のかわりに、部長が会議に出た。=Sebagai ganti direktur, manajer menghadiri rapat.
+英語を教えるかわりに、日本語を教えてもらう。=Sebagai ganti saya mengajar bahasa Inggris, saya diajari bahasa Jepang.
+今日休むかわりに、土曜日に出勤します。=Sebagai ganti libur hari ini, saya masuk kerja hari Sabtu.
+ペンのかわりに鉛筆を使ってもいいですか。=Bolehkah memakai pensil sebagai ganti pena?
+?ペンの＿＿＿に、鉛筆を使ってもいいですか。|かわり|せい|ついで|くせ
+@〜とともに|bersama / seiring dengan|Vる / N ＋ とともに
+家族とともに日本へ来た。=Saya datang ke Jepang bersama keluarga.
+年をとるとともに、体力が落ちてきた。=Seiring bertambah usia, stamina menurun.
+技術の発達とともに、生活が便利になった。=Seiring perkembangan teknologi, hidup jadi praktis.
+仲間とともに、目標を目指す。=Mengejar target bersama rekan-rekan.
+?技術の発達＿＿＿、生活が便利になった。|とともに|のくせに|のついでに|のたびに
+@〜ことに|yang (mengejutkan / menyenangkan) adalah …|Vた / Aい / なA-な ＋ ことに
+驚いたことに、彼は一人で山に登ったそうだ。=Yang mengejutkan, katanya dia mendaki gunung sendirian.
+残念なことに、旅行は中止になった。=Sayangnya, perjalanannya dibatalkan.
+嬉しいことに、試験に合格した。=Yang menggembirakan, saya lulus ujian.
+不思議なことに、誰もそのことを知らなかった。=Anehnya, tidak ada yang tahu hal itu.
+?残念な＿＿＿、旅行は中止になった。|ことに|ように|ために|たびに
+@〜がる|(orang lain) merasa / ingin|Aい(stem) / Vたい(stem) ＋ がる
+子どもが新しいおもちゃを欲しがっている。=Anak ingin mainan baru.
+妹は暗い所を怖がる。=Adik perempuan saya takut tempat gelap.
+彼は日本へ行きたがっている。=Dia ingin pergi ke Jepang.
+そんなに恥ずかしがらないで。=Jangan terlalu malu begitu.
+?子どもが新しいおもちゃを欲し＿＿＿いる。|がって|すぎて|かけて|だして
+@〜かける|setengah jalan / hampir|Vます(stem) ＋ かける
+読みかけの本が机の上にある。=Ada buku yang setengah dibaca di atas meja.
+何か言いかけて、やめた。=Dia hampir mengatakan sesuatu, lalu berhenti.
+食べかけのパンを捨てないで。=Jangan buang roti yang sudah dimakan setengah.
+死にかけた猫を助けた。=Saya menolong kucing yang hampir mati.
+?読み＿＿＿の本が机の上に置いてある。|かけ|すぎ|がり|ずに
+@〜出す|mulai (tiba-tiba)|Vます(stem) ＋ 出す
+急に雨が降り出した。=Tiba-tiba hujan mulai turun.
+赤ちゃんが泣き出した。=Bayinya mulai menangis.
+彼は突然笑い出した。=Dia tiba-tiba tertawa.
+バスが動き出した。=Busnya mulai bergerak.
+?急に雨が降り＿＿＿。|出した|がった|ずに|っぽい
+@〜てくる / 〜ていく|mulai … (sampai kini) / akan terus …|Vて ＋ くる / いく
+だんだん寒くなってきた。=Lama-lama mulai dingin.
+これからも日本語を勉強していきたい。=Ke depan saya ingin terus belajar bahasa Jepang.
+最近、外国人観光客が増えてきた。=Belakangan ini turis asing mulai bertambah.
+人口はこれから減っていくだろう。=Penduduk mungkin akan terus berkurang.
+?最近、だんだん寒くなって＿＿＿。|きた|おいた|みた|あげた
+@〜まま|tetap dalam keadaan|Vた / Vない / N-の ＋ まま
+靴のまま部屋に入らないでください。=Jangan masuk kamar dengan tetap memakai sepatu.
+窓を開けたまま出かけてしまった。=Saya pergi dengan jendela tetap terbuka.
+テレビをつけたまま寝てしまった。=Saya ketiduran dengan TV tetap menyala.
+今のままでいいと思う。=Menurut saya seperti sekarang saja sudah bagus.
+?靴の＿＿＿部屋に入らないでください。|まま|ため|せい|くせ
+@〜にかわって|menggantikan / mewakili|N ＋ にかわって
+社長にかわって、私がご挨拶いたします。=Mewakili direktur, saya akan menyampaikan salam.
+人間にかわって、ロボットが働く工場が増えた。=Pabrik di mana robot bekerja menggantikan manusia bertambah.
+病気の母にかわって、私が料理を作った。=Menggantikan ibu yang sakit, saya memasak.
+手紙にかわって、メールがよく使われている。=Sebagai pengganti surat, email banyak dipakai.
+?病気の母＿＿＿、私が料理を作った。|にかわって|について|によって|にとって
+@〜おきに|setiap selang|数量 ＋ おきに
+このバスは10分おきに来ます。=Bus ini datang setiap 10 menit.
+1日おきにジムに通っている。=Saya ke gym selang sehari.
+この薬は6時間おきに飲んでください。=Minumlah obat ini setiap 6 jam.
+道に3メートルおきに木が植えてある。=Di jalan ditanami pohon setiap 3 meter.
+?このバスは10分＿＿＿に来ます。|おき|ばかり|ほど|ずつ
+@〜によると|menurut (sumber info)|N ＋ によると
+天気予報によると、明日は雨だそうだ。=Menurut ramalan cuaca, katanya besok hujan.
+ニュースによると、事故で3人がけがをした。=Menurut berita, 3 orang terluka dalam kecelakaan.
+友達の話によると、あの店は美味しいらしい。=Menurut cerita teman, toko itu kabarnya enak.
+調査によると、若者の読書時間が減っている。=Menurut survei, waktu membaca anak muda berkurang.
+?天気予報＿＿＿、明日は雨だそうだ。|によると|にとって|に対して|として
+@〜に比べて|dibandingkan dengan|N ＋ に比べて
+去年に比べて、今年は暑い。=Dibandingkan tahun lalu, tahun ini panas.
+兄に比べて、弟は背が高い。=Dibandingkan kakaknya, adiknya lebih tinggi.
+都会に比べて、田舎は物価が安い。=Dibandingkan kota, di desa harga barang murah.
+以前に比べて、日本語が上手になった。=Dibandingkan dulu, bahasa Jepangnya jadi lebih baik.
+?去年＿＿＿、今年は雪が多い。|に比べて|にとって|として|について
+@〜っけ|ya? (mencoba mengingat)|普通形 ＋ っけ
+会議は何時からだっけ？=Rapatnya mulai jam berapa ya?
+あの人の名前、何だっけ？=Nama orang itu siapa ya?
+明日は休みだったっけ？=Besok libur, bukan ya?
+この本、もう読んだっけ？=Buku ini sudah saya baca belum ya?
+?あの人の名前、何だ＿＿＿？|っけ|ほど|ばかり|ついで`,
+N2:`@〜にもかかわらず|meskipun, walaupun|普通形 / N ＋ にもかかわらず
+雨にもかかわらず、大勢の人が来た。=Meskipun hujan, banyak orang datang.
+彼は熱があるにもかかわらず、会社に来た。=Meskipun demam, dia datang ke kantor.
+一生懸命勉強したにもかかわらず、不合格だった。=Meskipun belajar keras, dia tidak lulus.
+平日にもかかわらず、店は混んでいた。=Meskipun hari kerja, toko itu ramai.
+?悪天候＿＿＿、試合は行われた。|にもかかわらず|のおかげで|について|にとって
+@〜に違いない|pasti (yakin)|普通形 (なA / N tanpa だ) ＋ に違いない
+彼が犯人に違いない。=Dia pasti pelakunya.
+あんなに練習したのだから、合格するに違いない。=Karena latihan sekeras itu, pasti lulus.
+電気がついている。誰かいるに違いない。=Lampunya menyala. Pasti ada orang.
+この字は田中さんが書いたに違いない。=Tulisan ini pasti ditulis Tanaka-san.
+?電気がついているから、彼は家にいる＿＿＿。|に違いない|にすぎない|に限る|に応じて
+@〜にすぎない|hanya sekadar|普通形 / N ＋ にすぎない
+それは噂にすぎない。=Itu hanya sekadar gosip.
+私はただの社員にすぎません。=Saya hanyalah karyawan biasa.
+これは計画の一部にすぎない。=Ini hanyalah sebagian dari rencana.
+彼の話は言い訳にすぎない。=Ceritanya hanya alasan belaka.
+?私はただのアルバイト＿＿＿ので、決められません。|にすぎない|にわたる|に沿う|に基づく
+@〜に基づいて|berdasarkan|N ＋ に基づいて
+データに基づいて判断する。=Memutuskan berdasarkan data.
+この映画は実話に基づいて作られた。=Film ini dibuat berdasarkan kisah nyata.
+法律に基づいて処理します。=Akan diproses berdasarkan hukum.
+アンケートの結果に基づいて、商品を改良した。=Produk diperbaiki berdasarkan hasil angket.
+?調査結果＿＿＿、計画を立てる。|に基づいて|にわたって|にすぎず|ばかりに
+@〜にわたって|selama / meliputi (rentang)|N (waktu/tempat) ＋ にわたって
+3日間にわたって会議が行われた。=Rapat diadakan selama 3 hari.
+工事は半年にわたって続いた。=Konstruksi berlangsung selama setengah tahun.
+関東地方全域にわたって、大雨が降った。=Hujan lebat turun di seluruh wilayah Kanto.
+彼は10年にわたって、この研究を続けている。=Dia meneruskan penelitian ini selama 10 tahun.
+?工事は3か月＿＿＿続いた。|にわたって|に基づいて|に違いなく|にすぎず
+@〜をめぐって|seputar (perdebatan/sengketa)|N ＋ をめぐって
+遺産をめぐって家族が争った。=Keluarga bertengkar seputar warisan.
+新しい法律をめぐって、議論が続いている。=Perdebatan seputar undang-undang baru terus berlanjut.
+ダムの建設をめぐって、住民が反対している。=Warga menentang pembangunan bendungan.
+その事件をめぐって、さまざまな意見がある。=Ada berbagai pendapat seputar kasus itu.
+?新しい法律＿＿＿、議論が続いている。|をめぐって|にすぎず|に違いなく|ばかりに
+@〜に応じて|sesuai / menyesuaikan dengan|N ＋ に応じて
+能力に応じて給料が決まる。=Gaji ditentukan sesuai kemampuan.
+季節に応じて、メニューを変えている。=Menu diganti menyesuaikan musim.
+予算に応じて、プランを選べます。=Bisa memilih paket sesuai anggaran.
+お客様の要望に応じて、デザインを変更します。=Desain diubah sesuai permintaan pelanggan.
+?経験＿＿＿給料が変わります。|に応じて|にすぎず|にもかかわらず|ばかりに
+@〜に沿って|mengikuti, sejalan dengan|N ＋ に沿って
+川に沿って歩く。=Berjalan menyusuri sungai.
+マニュアルに沿って作業を進めてください。=Lanjutkan pekerjaan sesuai manual.
+会社の方針に沿って、計画を立てる。=Menyusun rencana sejalan dengan kebijakan perusahaan.
+道に沿って、桜の木が並んでいる。=Pohon sakura berjajar di sepanjang jalan.
+?マニュアル＿＿＿作業を進めてください。|に沿って|にすぎず|に違いなく|をめぐって
+@〜に反して|bertentangan dengan|N ＋ に反して
+予想に反して、新人が優勝した。=Bertentangan dengan dugaan, pendatang baru juara.
+親の期待に反して、彼は大学をやめた。=Bertentangan dengan harapan orang tua, dia berhenti kuliah.
+規則に反して、ここに駐車してはいけない。=Tidak boleh parkir di sini karena melanggar aturan.
+天気予報に反して、一日中晴れていた。=Bertentangan dengan ramalan cuaca, cerah seharian.
+?予想＿＿＿、試験はとても簡単だった。|に反して|にすぎず|を問わず|にわたって
+@〜に限らず|tidak hanya / tidak terbatas|N ＋ に限らず
+子どもに限らず、大人も楽しめる。=Tidak hanya anak-anak, orang dewasa juga bisa menikmati.
+この店は週末に限らず、いつも混んでいる。=Toko ini tidak hanya di akhir pekan, selalu ramai.
+日本に限らず、多くの国で高齢化が進んでいる。=Tidak hanya Jepang, penuaan penduduk terjadi di banyak negara.
+彼は英語に限らず、外国語が得意だ。=Dia pandai bahasa asing, tidak hanya bahasa Inggris.
+?この遊園地は子ども＿＿＿、大人にも人気がある。|に限らず|に違いなく|にわたって|に沿って
+@〜を問わず|tanpa memandang|N ＋ を問わず
+年齢を問わず参加できる。=Bisa ikut tanpa memandang usia.
+経験の有無を問わず、応募できます。=Bisa melamar tanpa memandang ada tidaknya pengalaman.
+この祭りは国籍を問わず、誰でも楽しめる。=Festival ini bisa dinikmati siapa saja tanpa memandang kewarganegaraan.
+昼夜を問わず、工事が続いている。=Konstruksi berlangsung siang dan malam.
+?このイベントには、年齢＿＿＿誰でも参加できます。|を問わず|をめぐって|に沿って|にすぎず
+@〜はもちろん|tentu saja … (bahkan juga)|N ＋ はもちろん
+英語はもちろん、中国語も話せる。=Bahasa Inggris tentu saja, bahasa Mandarin pun bisa.
+この店は味はもちろん、サービスもいい。=Toko ini rasanya tentu enak, pelayanannya juga bagus.
+週末はもちろん、平日も忙しい。=Akhir pekan tentu saja, hari kerja juga sibuk.
+彼は日本国内はもちろん、海外でも有名だ。=Dia terkenal di dalam negeri Jepang, bahkan di luar negeri.
+?彼は英語＿＿＿、フランス語も話せる。|はもちろん|にすぎず|に沿って|をめぐって
+@〜をきっかけに|berawal dari, dipicu oleh|N ＋ をきっかけに
+留学をきっかけに料理を始めた。=Berawal dari kuliah di luar negeri, saya mulai memasak.
+病気をきっかけに、たばこをやめた。=Karena sakit, saya berhenti merokok.
+アニメをきっかけに、日本語に興味を持った。=Berawal dari anime, saya tertarik bahasa Jepang.
+転職をきっかけに、引っ越しをした。=Dipicu pindah kerja, saya pindah rumah.
+?日本旅行＿＿＿、日本語の勉強を始めた。|をきっかけに|にすぎず|を問わず|に違いなく
+@〜ばかりに|hanya karena (berakibat buruk)|普通形 (なA-な / N-である) ＋ ばかりに
+嘘をついたばかりに信用を失った。=Hanya karena berbohong, saya kehilangan kepercayaan.
+お金がないばかりに、大学に行けなかった。=Hanya karena tidak punya uang, tidak bisa kuliah.
+私が余計なことを言ったばかりに、喧嘩になった。=Hanya karena saya bicara yang tak perlu, jadi bertengkar.
+パスワードを忘れたばかりに、ログインできない。=Hanya karena lupa kata sandi, tidak bisa login.
+?一度嘘をついた＿＿＿、信用を失ってしまった。|ばかりに|に沿って|に応じて|をめぐって
+@〜以上(は)|karena sudah … (maka harus)|普通形 ＋ 以上(は)
+約束した以上、守らなければならない。=Karena sudah berjanji, harus ditepati.
+引き受けた以上は、最後までやります。=Karena sudah menerima tugas, akan saya kerjakan sampai selesai.
+学生である以上、勉強を優先すべきだ。=Selama masih pelajar, belajar harus diutamakan.
+日本に住む以上、日本のルールを守るべきだ。=Selama tinggal di Jepang, sebaiknya mematuhi aturan Jepang.
+?引き受けた＿＿＿、最後までやるべきだ。|以上|とたん|ばかりか|がち
+@〜からこそ|justru karena|普通形 ＋ からこそ
+愛しているからこそ厳しくするのだ。=Justru karena sayang, saya bersikap keras.
+失敗したからこそ、学べることもある。=Justru karena gagal, ada yang bisa dipelajari.
+忙しいからこそ、休みを大切にしたい。=Justru karena sibuk, saya ingin menghargai hari libur.
+あなただからこそ、この仕事を頼みたい。=Justru karena kamu, saya ingin menitipkan pekerjaan ini.
+?あなたのことを思っている＿＿＿、厳しいことを言うのです。|からこそ|にもかかわらず|とたんに|末に
+@〜たとたん(に)|begitu … langsung|Vた ＋ とたん(に)
+立ち上がったとたん、めまいがした。=Begitu berdiri, langsung pusing.
+家を出たとたん、雨が降り出した。=Begitu keluar rumah, hujan turun.
+ベッドに入ったとたんに、寝てしまった。=Begitu masuk tempat tidur, langsung tertidur.
+ドアを開けたとたん、猫が飛び出した。=Begitu pintu dibuka, kucing melompat keluar.
+?家を出た＿＿＿、雨が降り出した。|とたん|以上|末|上は
+@〜末(に)|setelah lama … (akhirnya)|Vた / N-の ＋ 末(に)
+悩んだ末に、留学を決めた。=Setelah lama bimbang, akhirnya memutuskan kuliah ke luar negeri.
+長い話し合いの末、契約が決まった。=Setelah diskusi panjang, kontrak disepakati.
+いろいろ考えた末に、会社を辞めることにした。=Setelah banyak berpikir, akhirnya memutuskan berhenti kerja.
+苦労の末、ついに店を開いた。=Setelah susah payah, akhirnya membuka toko.
+?長い間悩んだ＿＿＿、会社を辞めることにした。|末に|以上に|ばかりか|に沿って
+@〜あげく|akhirnya (hasil buruk)|Vた / N-の ＋ あげく
+さんざん迷ったあげく、何も買わなかった。=Setelah bingung lama, akhirnya tidak membeli apa pun.
+1時間も待たされたあげく、会議は中止になった。=Setelah disuruh menunggu 1 jam, rapatnya malah dibatalkan.
+彼は悩んだあげく、大学をやめてしまった。=Setelah lama bimbang, dia akhirnya berhenti kuliah.
+口論のあげく、二人は別れた。=Setelah bertengkar, akhirnya mereka berdua berpisah.
+?2時間も迷った＿＿＿、結局何も買わなかった。|あげく|とたん|以上|次第
+@〜上で|setelah (melakukan, baru) / dalam hal|Vた / N-の ＋ 上で
+よく考えた上で決めてください。=Putuskan setelah berpikir matang.
+両親と相談した上で、返事します。=Setelah berdiskusi dengan orang tua, saya akan menjawab.
+内容を確認した上で、サインしてください。=Silakan tanda tangan setelah memeriksa isinya.
+仕事をする上で、大切なのは信頼だ。=Dalam bekerja, yang penting adalah kepercayaan.
+?内容を確認した＿＿＿、サインしてください。|上で|とたん|ばかりか|末
+@〜次第|segera setelah / tergantung|Vます(stem) / N ＋ 次第
+結果がわかり次第、連絡します。=Begitu hasilnya diketahui, saya akan menghubungi.
+準備ができ次第、出発します。=Segera setelah siap, kita berangkat.
+雨がやみ次第、試合を再開します。=Begitu hujan reda, pertandingan dilanjutkan.
+試合ができるかどうかは、天気次第だ。=Bisa atau tidaknya pertandingan tergantung cuaca.
+?準備ができ＿＿＿、出発します。|次第|一方|末|がち
+@〜一方だ|terus-menerus (makin)|Vる ＋ 一方だ
+物価は上がる一方だ。=Harga barang terus naik.
+最近、仕事が増える一方だ。=Belakangan ini pekerjaan terus bertambah.
+この町の人口は減る一方だ。=Penduduk kota ini terus berkurang.
+彼の病気は悪くなる一方だった。=Penyakitnya terus memburuk.
+?最近、物価は上がる＿＿＿だ。|一方|とたん|末|以上
+@〜つつある|sedang dalam proses|Vます(stem) ＋ つつある
+景気は回復しつつある。=Ekonomi sedang dalam proses pulih.
+地球の温度は上がりつつある。=Suhu bumi sedang terus naik.
+日本の人口は減りつつある。=Penduduk Jepang sedang berkurang.
+新しい技術が広まりつつある。=Teknologi baru sedang menyebar.
+?日本の人口は減り＿＿＿。|つつある|かねる|っぽい|がたい
+@〜かねない|bisa saja (hal buruk) terjadi|Vます(stem) ＋ かねない
+このままでは事故になりかねない。=Kalau begini terus, bisa-bisa terjadi kecelakaan.
+無理をすると、病気になりかねない。=Kalau memaksakan diri, bisa-bisa jatuh sakit.
+そんなことを言うと、誤解されかねない。=Kalau bicara seperti itu, bisa-bisa disalahpahami.
+彼なら、約束を忘れかねない。=Kalau dia, bisa saja lupa janji.
+?スピードを出しすぎると、事故を起こし＿＿＿。|かねない|かねる|ようがない|ざるを得ない
+@〜かねる|sulit untuk (menolak sopan)|Vます(stem) ＋ かねる
+その意見には賛成しかねます。=Saya sulit menyetujui pendapat itu.
+申し訳ありませんが、ご要望にはお応えしかねます。=Mohon maaf, kami sulit memenuhi permintaan Anda.
+個人情報についてはお答えしかねます。=Kami tidak dapat menjawab soal informasi pribadi.
+見るに見かねて、手伝った。=Tidak tega melihatnya, saya pun membantu.
+?申し訳ありませんが、そのご要望にはお応えし＿＿＿。|かねます|かねません|がちです|っぽいです
+@〜ざるを得ない|terpaksa harus|Vない(stem) ＋ ざるを得ない (する→せざるを得ない)
+中止せざるを得ない。=Terpaksa harus dibatalkan.
+上司の命令なので、やらざるを得ない。=Karena perintah atasan, terpaksa harus dikerjakan.
+お金がないので、旅行をあきらめざるを得なかった。=Karena tidak ada uang, terpaksa menyerah berlibur.
+証拠があるので、認めざるを得ない。=Karena ada bukti, terpaksa harus mengakui.
+?台風なので、旅行を中止せ＿＿＿。|ざるを得ない|かねる|がちだ|つつある
+@〜ずにはいられない|tidak bisa tidak / tak tahan untuk|Vない(stem) ＋ ずにはいられない
+あの映画を見て、泣かずにはいられなかった。=Menonton film itu, saya tak bisa menahan tangis.
+彼の話を聞いて、笑わずにはいられなかった。=Mendengar ceritanya, saya tidak bisa tidak tertawa.
+困っている人を見ると、助けずにはいられない。=Melihat orang kesusahan, saya tak tahan untuk tidak menolong.
+結果が気になって、聞かずにはいられなかった。=Penasaran hasilnya, saya tak tahan untuk bertanya.
+?あの映画は面白くて、笑わ＿＿＿。|ずにはいられなかった|かねなかった|がちだった|っぽかった
+@〜わけにはいかない|tidak bisa (karena norma/situasi)|Vる / Vない ＋ わけにはいかない
+約束したので、行かないわけにはいかない。=Karena sudah janji, saya tidak bisa tidak pergi.
+大事な会議があるので、休むわけにはいかない。=Ada rapat penting, jadi tidak bisa izin.
+車で来たので、お酒を飲むわけにはいかない。=Karena datang naik mobil, tidak bisa minum alkohol.
+先生に頼まれたら、断るわけにはいかない。=Kalau diminta guru, tidak bisa menolak.
+?大事な会議があるので、休む＿＿＿。|わけにはいかない|ばかりだ|に違いない|っぽい
+@〜がちだ|cenderung (sering, negatif)|Vます(stem) / N ＋ がちだ
+冬は風邪をひきがちだ。=Saat musim dingin cenderung mudah masuk angin.
+彼は最近、遅刻しがちだ。=Belakangan dia sering terlambat.
+忙しいと、食事が不規則になりがちだ。=Kalau sibuk, makan cenderung tidak teratur.
+曇りがちの天気が続いている。=Cuaca yang cenderung berawan terus berlanjut.
+?最近忙しくて、運動不足になり＿＿＿。|がちだ|かねる|っぽい|ざるを得ない
+@〜っぽい|agak / mudah (sifat), seperti|Vます(stem) / N / Aい(stem) ＋ っぽい
+彼は怒りっぽい。=Dia mudah marah.
+年をとって、忘れっぽくなった。=Karena bertambah tua, jadi pelupa.
+このスープは水っぽい。=Sup ini encer (seperti air).
+その話し方は子どもっぽいね。=Cara bicaranya kekanak-kanakan ya.
+?彼は怒り＿＿＿性格で、すぐ機嫌が悪くなる。|っぽい|かねない|ざるを得ない|ようがない
+@〜っこない|mana mungkin|Vます(stem) ＋ っこない
+そんなこと、できっこない。=Hal seperti itu mana mungkin bisa.
+一日で覚えられっこない。=Mana mungkin bisa hafal dalam sehari.
+宝くじなんて当たりっこない。=Lotre itu mana mungkin menang.
+彼にわかりっこないよ。=Dia mana mungkin mengerti.
+?こんな難しい問題、子どもに解け＿＿＿よ。|っこない|がちだ|つつある|っぽい
+@〜ようがない|tidak ada cara untuk|Vます(stem) ＋ ようがない
+連絡先がわからないので、連絡しようがない。=Tidak tahu kontaknya, jadi tidak ada cara menghubungi.
+道具がないので、直しようがない。=Tidak ada alat, jadi tidak bisa diperbaiki.
+こんなに壊れていたら、使いようがない。=Kalau rusak separah ini, tidak bisa dipakai.
+何も情報がないので、答えようがない。=Tidak ada informasi apa pun, jadi tidak bisa menjawab.
+?住所がわからないので、手紙の送り＿＿＿。|ようがない|がちだ|っぽい|つつある
+@〜ものだ|dulu sering … (nostalgia) / memang|Vた / Vる ＋ ものだ
+子どもの頃はよく川で遊んだものだ。=Waktu kecil dulu saya sering bermain di sungai.
+時間が経つのは早いものだ。=Waktu memang cepat berlalu.
+人の話は最後まで聞くものだ。=Pembicaraan orang memang seharusnya didengar sampai habis.
+学生時代はよく徹夜したものだ。=Dulu saat mahasiswa saya sering begadang.
+?子どもの頃は、よく川で遊んだ＿＿＿だ。|もの|こと|ばかり|とたん
+@〜ことだ|sebaiknya (saran)|Vる / Vない ＋ ことだ
+合格したければ、毎日勉強することだ。=Kalau ingin lulus, sebaiknya belajar setiap hari.
+風邪を治したいなら、よく寝ることだ。=Kalau ingin sembuh dari flu, sebaiknya banyak tidur.
+上手になりたければ、毎日練習することだ。=Kalau ingin mahir, sebaiknya berlatih setiap hari.
+人の悪口は言わないことだ。=Sebaiknya jangan menjelekkan orang.
+?上手になりたければ、毎日練習する＿＿＿だ。|こと|とたん|ばかり|一方
+@〜わりに|untuk ukuran / dibanding|普通形 (なA-な / N-の) ＋ わりに
+この店は値段のわりに美味しい。=Untuk ukuran harganya, toko ini enak.
+彼は年のわりに若く見える。=Dia terlihat muda untuk usianya.
+よく勉強したわりに、点数が悪かった。=Untuk ukuran sudah belajar keras, nilainya jelek.
+この部屋は広いわりに、家賃が安い。=Untuk ukuran ruangannya luas, sewanya murah.
+?この店は、値段が安い＿＿＿美味しい。|わりに|末に|とたんに|ばかりに
+@〜に際して|pada saat (formal)|Vる / N ＋ に際して
+入学に際して、必要な書類を提出してください。=Pada saat masuk sekolah, harap serahkan dokumen yang diperlukan.
+出発に際して、注意事項を説明します。=Pada saat keberangkatan, saya akan menjelaskan hal yang perlu diperhatikan.
+契約に際して、印鑑が必要です。=Saat kontrak, diperlukan stempel.
+留学するに際して、奨学金を申し込んだ。=Saat akan kuliah ke luar negeri, saya mengajukan beasiswa.
+?入学＿＿＿、必要な書類を提出してください。|に際して|にすぎず|を問わず|に反して
+@〜にかけては|dalam hal (keahlian)|N ＋ にかけては
+料理にかけては、彼女の右に出る者はいない。=Dalam hal memasak, tidak ada yang mengalahkannya.
+数学にかけては、クラスで一番だ。=Dalam hal matematika, dia nomor satu di kelas.
+足の速さにかけては、自信がある。=Dalam hal kecepatan lari, saya percaya diri.
+歌にかけては、誰にも負けない。=Dalam hal menyanyi, tidak kalah dari siapa pun.
+?料理＿＿＿、彼女の右に出る者はいない。|にかけては|にわたって|に際して|を問わず
+@〜にこたえて|memenuhi / menanggapi|N ＋ にこたえて
+ファンの声援にこたえて、手を振った。=Menanggapi sorakan penggemar, dia melambaikan tangan.
+お客様の要望にこたえて、新しい商品を作った。=Untuk memenuhi permintaan pelanggan, kami membuat produk baru.
+みんなの期待にこたえて、優勝した。=Memenuhi harapan semua orang, dia juara.
+アンコールにこたえて、もう一曲歌った。=Menanggapi permintaan encore, dia menyanyi satu lagu lagi.
+?お客様の要望＿＿＿、新しいサービスを始めた。|にこたえて|に反して|にすぎず|に際して
+@〜に先立って|sebelum (formal)|N ＋ に先立って
+試合に先立って、開会式が行われた。=Sebelum pertandingan, diadakan upacara pembukaan.
+映画の公開に先立って、試写会が開かれた。=Sebelum film dirilis, diadakan pemutaran perdana.
+工事に先立って、住民に説明した。=Sebelum konstruksi, dijelaskan kepada warga.
+出発に先立って、全員で確認を行った。=Sebelum berangkat, semua melakukan pengecekan.
+?試合＿＿＿、開会式が行われた。|に先立って|に限らず|を問わず|にすぎず
+@〜につれて|seiring dengan|Vる / N ＋ につれて
+年をとるにつれて、体力が落ちる。=Seiring bertambah usia, stamina menurun.
+時間がたつにつれて、悲しみは薄れていった。=Seiring waktu berlalu, kesedihan memudar.
+日本語が上手になるにつれて、仕事が楽しくなった。=Seiring bahasa Jepang membaik, pekerjaan jadi menyenangkan.
+町が発展するにつれて、人口も増えた。=Seiring kota berkembang, penduduk juga bertambah.
+?時間がたつ＿＿＿、悲しみは薄れていった。|につれて|にすぎず|に際して|を問わず
+@〜に伴って|bersamaan / seiring dengan|Vる / N ＋ に伴って
+人口の増加に伴って、住宅が不足している。=Seiring pertambahan penduduk, perumahan kurang.
+経済の発展に伴って、生活が豊かになった。=Seiring perkembangan ekonomi, kehidupan menjadi makmur.
+台風の接近に伴って、風が強くなってきた。=Seiring mendekatnya topan, angin makin kencang.
+引っ越しに伴って、住所変更の手続きをした。=Bersamaan dengan pindah rumah, saya mengurus perubahan alamat.
+?人口の増加＿＿＿、住宅が不足している。|に伴って|にすぎず|を問わず|に限らず
+@〜にほかならない|tidak lain adalah|N ＋ にほかならない
+成功の理由は努力にほかならない。=Alasan kesuksesan tidak lain adalah usaha keras.
+この結果は、皆さんの協力のおかげにほかなりません。=Hasil ini tidak lain berkat kerja sama semuanya.
+彼が怒ったのは、あなたを心配しているからにほかならない。=Dia marah tidak lain karena mengkhawatirkanmu.
+それは言い訳にほかならない。=Itu tidak lain hanyalah alasan.
+?成功の理由は、毎日の努力＿＿＿。|にほかならない|に限らない|を問わない|に際する
+@〜ものの|meskipun (namun)|普通形 ＋ ものの
+大学は卒業したものの、仕事が見つからない。=Meskipun lulus kuliah, belum mendapat pekerjaan.
+買ったものの、一度も使っていない。=Meskipun sudah dibeli, belum pernah dipakai sekali pun.
+頭ではわかっているものの、なかなかできない。=Meskipun mengerti di kepala, sulit untuk dilakukan.
+行くと言ったものの、あまり行きたくない。=Meskipun sudah bilang akan pergi, sebenarnya kurang ingin.
+?ジムに入会した＿＿＿、ほとんど行っていない。|ものの|からこそ|とたん|次第
+@〜ことから|karena (berdasar fakta itu)|普通形 ＋ ことから
+道が濡れていることから、雨が降ったとわかる。=Dari jalan yang basah, diketahui bahwa hujan turun.
+富士山が見えることから、この町は富士見町と呼ばれている。=Karena Gunung Fuji terlihat, kota ini disebut Fujimi-cho.
+指紋が一致したことから、彼が犯人だとわかった。=Karena sidik jarinya cocok, diketahui dialah pelakunya.
+形が似ていることから、この名前がついた。=Karena bentuknya mirip, diberi nama ini.
+?富士山がよく見える＿＿＿、この町は富士見町と呼ばれている。|ことから|ものの|とたん|あげく
+@〜うえ(に)|selain itu, ditambah|普通形 (なA-な / N-である) ＋ うえ(に)
+この部屋は広いうえに、家賃も安い。=Kamar ini luas, ditambah sewanya juga murah.
+彼女は美人なうえに、性格もいい。=Dia cantik, ditambah sifatnya juga baik.
+道に迷ったうえに、雨まで降ってきた。=Sudah tersesat, ditambah hujan pula.
+この仕事は大変なうえに、給料も安い。=Pekerjaan ini berat, ditambah gajinya juga kecil.
+?この部屋は広い＿＿＿、家賃も安い。|うえに|わりに|とたん|末に
+@〜どころか|jangankan / malah sebaliknya|普通形 (なA / N) ＋ どころか
+彼は漢字どころか、ひらがなも書けない。=Jangankan kanji, hiragana pun dia tak bisa tulis.
+雨はやむどころか、ますます強くなった。=Bukannya reda, hujan malah makin deras.
+貯金どころか、借金がある。=Jangankan tabungan, malah punya utang.
+休むどころか、寝る時間もない。=Jangankan istirahat, waktu tidur pun tidak ada.
+?彼は漢字＿＿＿、ひらがなも書けない。|どころか|ものの|からこそ|とたん
+@〜ないことはない|bukannya tidak (bisa)|Vない / Aくない ＋ ことはない
+食べられないことはないが、あまり好きではない。=Bukannya tidak bisa makan, tapi kurang suka.
+行けないことはないけど、ちょっと遠い。=Bukannya tidak bisa pergi, tapi agak jauh.
+難しくないことはないが、頑張ればできる。=Bukannya tidak sulit, tapi kalau berusaha bisa.
+急げば間に合わないことはない。=Kalau bergegas, bukannya tidak keburu.
+?急げば、間に合わない＿＿＿。|ことはない|一方だ|次第だ|っこない
+@〜に越したことはない|lebih baik … (tentu saja)|Vる / Aい / N ＋ に越したことはない
+安全に越したことはない。=Tentu lebih baik kalau aman.
+お金はあるに越したことはない。=Uang tentu lebih baik ada.
+早く行くに越したことはない。=Tentu lebih baik berangkat lebih awal.
+用心するに越したことはない。=Lebih baik berhati-hati.
+?お金は、ある＿＿＿。|に越したことはない|にすぎない|一方だ|かねる
+@〜をはじめ|dimulai dari / termasuk|N ＋ をはじめ(として)
+社長をはじめ、社員全員が参加した。=Mulai dari direktur, semua karyawan ikut.
+京都をはじめ、日本には古い町が多い。=Di Jepang banyak kota tua, misalnya Kyoto.
+寿司をはじめとして、日本料理は世界で人気だ。=Masakan Jepang, mulai dari sushi, populer di dunia.
+この病院には、内科をはじめ、さまざまな科がある。=Rumah sakit ini punya berbagai bagian, mulai dari penyakit dalam.
+?社長＿＿＿、社員全員がパーティーに参加した。|をはじめ|をめぐって|を問わず|にすぎず
+@〜を中心に|berpusat pada / terutama|N ＋ を中心に
+駅を中心に、町が発展した。=Kota berkembang berpusat di stasiun.
+若者を中心に、人気が広がっている。=Popularitasnya menyebar terutama di kalangan anak muda.
+関東地方を中心に、雪が降った。=Salju turun terutama di wilayah Kanto.
+このクラスは会話を中心に勉強します。=Kelas ini belajar dengan fokus pada percakapan.
+?若者＿＿＿、このアプリの人気が広がっている。|を中心に|に際して|にすぎず|に反して
+@〜を通じて / 〜を通して|melalui / sepanjang|N ＋ を通じて / を通して
+友人を通じて、彼女と知り合った。=Saya mengenal dia melalui teman.
+インターネットを通じて、世界中の人と話せる。=Melalui internet, bisa bicara dengan orang di seluruh dunia.
+この地域は一年を通じて暖かい。=Daerah ini hangat sepanjang tahun.
+ボランティア活動を通して、多くのことを学んだ。=Melalui kegiatan sukarela, saya belajar banyak hal.
+?友人＿＿＿、今の妻と知り合った。|を通じて|をめぐって|を問わず|にすぎず
+@〜からといって|meskipun … bukan berarti|普通形 ＋ からといって
+お金があるからといって、幸せだとは限らない。=Meskipun punya uang, belum tentu bahagia.
+日本人だからといって、敬語が上手とは限らない。=Meskipun orang Jepang, belum tentu mahir keigo.
+忙しいからといって、食事を抜くのはよくない。=Meskipun sibuk, tidak baik melewatkan makan.
+一度失敗したからといって、諦めることはない。=Meskipun gagal sekali, tidak perlu menyerah.
+?忙しい＿＿＿、食事を抜くのはよくない。|からといって|とたん|ばかりに|上で
+@〜とは限らない|belum tentu|普通形 ＋ とは限らない
+高い物がいい物だとは限らない。=Barang mahal belum tentu barang bagus.
+先生がいつも正しいとは限らない。=Guru belum tentu selalu benar.
+天気予報が当たるとは限らない。=Ramalan cuaca belum tentu tepat.
+有名な店が美味しいとは限らない。=Toko terkenal belum tentu enak.
+?高い物がいい物だ＿＿＿。|とは限らない|に違いない|に越したことはない|にほかならない
+@〜てしょうがない|sangat (tak tertahankan)|Vて / Aくて / なAで ＋ しょうがない
+眠くてしょうがない。=Ngantuk sekali.
+試験の結果が気になってしょうがない。=Sangat penasaran dengan hasil ujian.
+彼の話し方が嫌でしょうがない。=Saya sangat tidak suka cara bicaranya.
+暇でしょうがないので、散歩に出た。=Karena bosan sekali, saya pergi jalan-jalan.
+?昨日あまり寝ていないので、眠くて＿＿＿。|しょうがない|かねない|っこない|ようがない
+@〜しかない|tidak ada pilihan selain|Vる ＋ しかない
+電車がないので、歩いて帰るしかない。=Tidak ada kereta, jadi tidak ada pilihan selain jalan kaki.
+ここまで来たら、やるしかない。=Sudah sampai sini, hanya bisa dikerjakan.
+誰も手伝ってくれないなら、自分でやるしかない。=Kalau tak ada yang bantu, harus dikerjakan sendiri.
+壊れたら、新しいのを買うしかない。=Kalau rusak, tidak ada pilihan selain beli baru.
+?電車がないので、歩いて帰る＿＿＿。|しかない|っこない|一方だ|次第だ
+@〜おそれがある|berisiko / dikhawatirkan|Vる / N-の ＋ おそれがある
+台風が上陸するおそれがある。=Ada kemungkinan topan mendarat.
+この薬は副作用のおそれがある。=Obat ini berisiko efek samping.
+大雨で川があふれるおそれがあります。=Ada risiko sungai meluap karena hujan lebat.
+このままでは、絶滅するおそれがある。=Kalau begini terus, berisiko punah.
+?大雨で、川があふれる＿＿＿があります。|おそれ|一方|次第|とたん
+@〜かのようだ|seolah-olah|普通形 ＋ かのようだ
+彼は何も知らないかのような顔をしている。=Dia berwajah seolah tidak tahu apa-apa.
+まるで夢を見ているかのようだ。=Seolah-olah sedang bermimpi.
+春が来たかのような暖かさだ。=Hangatnya seolah musim semi sudah tiba.
+彼女はそのことを自分で見たかのように話した。=Dia bercerita seolah melihat sendiri kejadian itu.
+?まるで夢を見ている＿＿＿。|かのようだ|一方だ|次第だ|っこない
+@〜に関して|mengenai (formal)|N ＋ に関して / に関する
+この件に関して、ご質問はありますか。=Apakah ada pertanyaan mengenai hal ini?
+環境問題に関して、調査を行った。=Kami melakukan survei mengenai masalah lingkungan.
+事故に関して、詳しく説明します。=Saya akan menjelaskan secara rinci mengenai kecelakaan itu.
+日本の歴史に関する本を読んだ。=Saya membaca buku mengenai sejarah Jepang.
+?この件＿＿＿、ご質問はありますか。|に関して|に反して|にすぎず|を問わず
+@〜をもとに|berdasarkan (bahan/sumber)|N ＋ をもとに
+実話をもとに映画を作った。=Membuat film berdasarkan kisah nyata.
+アンケートの結果をもとに、レポートを書いた。=Menulis laporan berdasarkan hasil angket.
+この料理は母のレシピをもとに作った。=Masakan ini dibuat berdasarkan resep ibu.
+自分の経験をもとに、アドバイスします。=Saya beri saran berdasarkan pengalaman sendiri.
+?実際にあった事件＿＿＿、小説を書いた。|をもとに|を問わず|に反して|にすぎず
+@〜てからでないと|tidak bisa … sebelum|Vて ＋ からでないと
+お金を払ってからでないと、入れません。=Tidak bisa masuk sebelum membayar.
+実物を見てからでないと、買うかどうか決められない。=Sebelum melihat barangnya, tidak bisa memutuskan beli atau tidak.
+親と相談してからでないと、返事できません。=Tidak bisa menjawab sebelum berdiskusi dengan orang tua.
+手を洗ってからでないと、食べてはいけません。=Tidak boleh makan sebelum cuci tangan.
+?チケットを買って＿＿＿、中に入れません。|からでないと|からこそ|ばかりに|以上`};
+const GRAM={};for(const l in RAW_G)GRAM[l]=RAW_G[l].split("@").slice(1).map(b=>{const L=b.trim().split("\n"),h=L[0].split("|"),q=L[5].slice(1).split("|");
+  return{p:h[0],m:h[1],f:h[2],ex:L.slice(1,5).map(e=>e.split("=")),q:q[0],a:q[1],o:q.slice(1)}});
 
 /* ===== storage ===== */
 const LV=["N3","N2"];
@@ -889,24 +2598,27 @@ let vCat="all",vLv=store.get("vLv","N3");
 lvTabs($("#vLv"),vLv,{N3:VOCAB.N3.length,N2:VOCAB.N2.length},l=>{vLv=l;store.set("vLv",l);renderVocab()});
 $("#vChips").innerHTML=Object.entries(CAT).map(([k,v])=>`<button class="fchip ${k==="all"?"on":""}" data-c="${k}">${v}</button>`).join("");
 $("#vChips").onclick=e=>{const b=e.target.closest(".fchip");if(!b)return;vCat=b.dataset.c;document.querySelectorAll("#vChips .fchip").forEach(x=>x.classList.toggle("on",x===b));renderVocab()};
-function renderVocab(){
+let vShow=60;
+function renderVocab(keep){
+  if(!keep)vShow=60;
   const q=$("#vSearch").value.trim().toLowerCase();
   const list=VOCAB[vLv].filter(v=>(vCat==="all"||v[3]===vCat)&&(!q||v.join(" ").toLowerCase().includes(q)));
   $("#vCount").textContent=`${list.length} kata · JLPT ${vLv}`;
   $("#vList").className="vlist"+($("#furi").checked?"":" hide-rt");
-  $("#vList").innerHTML=list.length?list.map(v=>`<div class="vitem"><ruby>${v[0]}<rt>${v[1]}</rt></ruby><div class="mean"><div>${esc(v[2])}</div><small>${CAT[v[3]]}</small></div><span class="lvb ${vLv}">${vLv}</span></div>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
+  $("#vMore").style.display=list.length>vShow?"inline-flex":"none";$("#vMore").textContent=`Tampilkan lebih banyak (${list.length-vShow} lagi)`;
+  $("#vList").innerHTML=list.length?list.slice(0,vShow).map(v=>`<div class="vitem"><ruby>${v[0]}<rt>${v[1]}</rt></ruby><div class="mean"><div>${esc(v[2])}</div><small>${CAT[v[3]]}</small></div><span class="lvb ${vLv}">${vLv}</span></div>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
 }
-$("#vSearch").oninput=renderVocab;$("#furi").onchange=renderVocab;
+$("#vSearch").oninput=()=>renderVocab();$("#furi").onchange=()=>renderVocab(true);$("#vMore").onclick=()=>{vShow+=120;renderVocab(true)};
 
 /* grammar */
 let gLv=store.get("gLv","N3");
 lvTabs($("#gLv"),gLv,{N3:GRAM.N3.length,N2:GRAM.N2.length},l=>{gLv=l;store.set("gLv",l);renderGram()});
 function renderGram(){
   const q=$("#gSearch").value.trim().toLowerCase();
-  const list=GRAM[gLv].map((g,i)=>[g,i]).filter(([g])=>!q||(g[0]+g[1]+g[3]+g[5]).toLowerCase().includes(q));
+  const list=GRAM[gLv].map((g,i)=>[g,i]).filter(([g])=>!q||(g.p+g.m+g.ex.flat().join(" ")).toLowerCase().includes(q));
   $("#gCount").textContent=`${list.length} pola · JLPT ${gLv}`;
-  $("#gList").innerHTML=list.length?list.map(([g,i])=>`<details class="gitem"><summary><div class="gnum">${String(i+1).padStart(2,"0")}</div><div><div class="gpat">${g[0]}<span class="lvb ${gLv}">${gLv}</span></div><div class="gmean">${esc(g[1])}</div></div><span class="garrow">⌄</span></summary>
-   <div class="gbody"><div class="form">${g[2]}</div><div class="ex"><div style="flex:1"><div class="jp">${g[3]}</div><div class="rd jp">${g[4]}</div><div class="tr">${esc(g[5])}</div></div></div></div></details>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
+  $("#gList").innerHTML=list.length?list.map(([g,i])=>`<details class="gitem"><summary><div class="gnum">${String(i+1).padStart(2,"0")}</div><div><div class="gpat">${g.p}<span class="lvb ${gLv}">${gLv}</span></div><div class="gmean">${esc(g.m)}</div></div><span class="garrow">⌄</span></summary>
+   <div class="gbody"><div class="form">${g.f}</div><div class="exl">例文 · Contoh kalimat</div>${g.ex.map((e,j)=>`<div class="ex"><span class="exn">${j+1}</span><div style="flex:1"><div class="jp">${e[0]}</div><div class="tr">${esc(e[1])}</div></div></div>`).join("")}</div></details>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
 }
 $("#gSearch").oninput=renderGram;
 
@@ -957,7 +2669,7 @@ function mkQ(type,lv){
   if(type==="vocab"){const v=V[Math.random()*V.length|0];
     return{t:`Apa arti kata ini? · ${lv}`,q:v[0],h:v[1],a:v[2],o:shuffle([v[2],...pickWrong(V.map(x=>x[2]),v[2],3)]),ex:`${v[0]}（${v[1]}）= ${v[2]}`}}
   const G=GRAM[lv],g=G[Math.random()*G.length|0];
-  return{t:`Pilih yang tepat untuk ＿＿＿ · ${lv}`,q:g[6],h:"",a:g[7],o:shuffle(g.slice(7,11)),ex:`${g[0]}: ${g[1]} — ${g[3]} (${g[5]})`}
+  return{t:`Pilih yang tepat untuk ＿＿＿ · ${lv}`,q:g.q,h:"",a:g.a,o:shuffle(g.o),ex:`${g.p}: ${g.m} — ${g.ex[0][0]} (${g.ex[0][1]})`}
 }
 function startQuiz(m){
   qMode=m;const types=["kanji","read","vocab","gram","gram"];qs=[];const seen=new Set();
