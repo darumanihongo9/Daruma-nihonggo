@@ -150,8 +150,14 @@ main{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
 .vitem .mean{flex:1;min-width:0}
 .vitem .mean div{font-weight:600}
 .vitem .mean small{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:700}
-.speak{border:1px solid var(--line);background:var(--bg2);color:var(--ink);width:36px;height:36px;border-radius:11px;flex-shrink:0;font-size:15px;display:grid;place-items:center}
-.speak:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.lvtabs{display:inline-flex;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:4px;gap:4px;margin-bottom:16px}
+.lvtabs button{border:0;background:none;color:var(--muted);font-weight:800;font-size:15px;padding:9px 20px;border-radius:12px;transition:.2s}
+.lvtabs button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.lvtabs button.on[data-l="N3"]{color:var(--red)} .lvtabs button.on[data-l="N2"]{color:var(--indigo)}
+.lvtabs button small{font-weight:600;font-size:12px;opacity:.7;margin-left:4px}
+.lvb{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;margin-left:8px;vertical-align:middle;font-family:var(--sans)}
+.lvb.N3{background:var(--red-soft);color:var(--red)} .lvb.N2{background:var(--indigo-soft);color:var(--indigo)}
+.count{color:var(--muted);font-size:14px;font-weight:600;margin:-4px 0 14px}
 
 /* Grammar */
 .gitem{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
@@ -293,7 +299,7 @@ footer .jp{color:var(--red);font-weight:700}
     <div class="hero">
       <div class="wave"></div>
       <div class="hero-inner">
-        <span class="pill">🎌 Persiapan JLPT N3 · 中級</span>
+        <span class="pill">🎌 Persiapan JLPT N3 · N2</span>
         <h1>一歩ずつ、<br><span>日本語</span>を楽しもう。</h1>
         <p>Selangkah demi selangkah. Kanji, kosakata, tata bahasa, flashcard, dan kuis — semua dalam satu tempat, dengan penjelasan bahasa Indonesia.</p>
         <div class="btns">
@@ -306,8 +312,8 @@ footer .jp{color:var(--red);font-weight:700}
 
     <div class="grid g4" style="margin-top:22px">
       <div class="card stat"><div class="ico c-red">漢</div><div><b id="sKanji">0</b><span>Kanji tersedia</span></div></div>
-      <div class="card stat"><div class="ico c-ind">語</div><div><b id="sVocab">0</b><span>Kosakata</span></div></div>
-      <div class="card stat"><div class="ico c-gold">文</div><div><b id="sGram">0</b><span>Pola tata bahasa</span></div></div>
+      <div class="card stat"><div class="ico c-ind">語</div><div><b id="sVocab">0</b><span id="sVocabL">Kosakata</span></div></div>
+      <div class="card stat"><div class="ico c-gold">文</div><div><b id="sGram">0</b><span id="sGramL">Pola tata bahasa</span></div></div>
       <div class="card stat"><div class="ico c-mat">✓</div><div><b id="sDone">0</b><span>Sudah kamu hafal</span></div></div>
     </div>
 
@@ -317,8 +323,8 @@ footer .jp{color:var(--red);font-weight:700}
     <div class="sec-title"><div><h2>Pilih materi<span class="jp">学習メニュー</span></h2><p>Mulai dari mana saja sesuai kebutuhanmu.</p></div></div>
     <div class="grid g3">
       <a class="card module" href="#kanji"><div class="ico c-red">漢</div><h3>Kanji N3</h3><p>Onyomi, kunyomi, arti, dan contoh kata.</p><span class="go" style="color:var(--red)">Pelajari →</span><div class="big">漢</div></a>
-      <a class="card module" href="#kosakata"><div class="ico c-ind">語</div><h3>Kosakata</h3><p>Kata kerja, benda, sifat & keterangan — lengkap dengan furigana & audio.</p><span class="go" style="color:var(--indigo)">Pelajari →</span><div class="big">語</div></a>
-      <a class="card module" href="#tatabahasa"><div class="ico c-gold">文</div><h3>Tata Bahasa</h3><p>Pola 文法 penting beserta cara pembentukan dan contoh kalimat.</p><span class="go" style="color:#b07a14">Pelajari →</span><div class="big">文</div></a>
+      <a class="card module" href="#kosakata"><div class="ico c-ind">語</div><h3>Kosakata N3 · N2</h3><p>Kata kerja, benda, sifat & keterangan — dipisah per level, lengkap dengan furigana.</p><span class="go" style="color:var(--indigo)">Pelajari →</span><div class="big">語</div></a>
+      <a class="card module" href="#tatabahasa"><div class="ico c-gold">文</div><h3>Tata Bahasa N3 · N2</h3><p>Pola 文法 penting per level, beserta cara pembentukan dan contoh kalimat.</p><span class="go" style="color:#b07a14">Pelajari →</span><div class="big">文</div></a>
       <a class="card module" href="#flashcard"><div class="ico c-sak">札</div><h3>Flashcard</h3><p>Balik kartu, tandai yang sudah hafal, ulangi yang belum.</p><span class="go" style="color:#c2557a">Latihan →</span><div class="big">札</div></a>
       <a class="card module" href="#kuis"><div class="ico c-mat">問</div><h3>Kuis</h3><p>10 soal acak pilihan ganda. Kejar skor terbaikmu!</p><span class="go" style="color:var(--matcha)">Mulai →</span><div class="big">問</div></a>
     </div>
@@ -347,19 +353,23 @@ footer .jp{color:var(--red);font-weight:700}
 
   <!-- KOSAKATA -->
   <section class="view" id="v-kosakata">
-    <div class="page-head"><div class="tag">語彙 · ごい</div><h1>Kosakata N3</h1><p>Tekan 🔊 untuk mendengar pengucapan. Matikan furigana untuk menguji bacaanmu.</p></div>
+    <div class="page-head"><div class="tag">語彙 · ごい</div><h1>Kosakata</h1><p>Pilih level N3 atau N2. Matikan furigana untuk menguji bacaanmu.</p></div>
+    <div class="lvtabs" id="vLv"></div>
     <div class="toolbar">
       <div class="search"><input id="vSearch" placeholder="Cari kata atau arti…"></div>
       <label class="toggle"><input type="checkbox" id="furi" checked><span class="sw"></span>Furigana</label>
     </div>
     <div class="chips" id="vChips" style="margin-bottom:18px"></div>
+    <div class="count" id="vCount"></div>
     <div class="vlist" id="vList"></div>
   </section>
 
   <!-- TATA BAHASA -->
   <section class="view" id="v-tatabahasa">
-    <div class="page-head"><div class="tag">文法 · ぶんぽう</div><h1>Tata Bahasa N3</h1><p>Klik setiap pola untuk melihat cara pembentukan dan contoh kalimat.</p></div>
-    <div class="toolbar"><div class="search"><input id="gSearch" placeholder="Cari pola, mis. ばかり, ように…"></div></div>
+    <div class="page-head"><div class="tag">文法 · ぶんぽう</div><h1>Tata Bahasa</h1><p>Pilih level N3 atau N2, lalu klik setiap pola untuk melihat cara pembentukan dan contoh kalimat.</p></div>
+    <div class="lvtabs" id="gLv"></div>
+    <div class="toolbar"><div class="search"><input id="gSearch" placeholder="Cari pola atau arti, mis. ばかり, terpaksa…"></div></div>
+    <div class="count" id="gCount"></div>
     <div id="gList"></div>
   </section>
 
@@ -387,9 +397,10 @@ footer .jp{color:var(--red);font-weight:700}
   <!-- KUIS -->
   <section class="view" id="v-kuis">
     <div id="qStart">
-      <div class="page-head"><div class="tag">小テスト</div><h1>Kuis N3</h1><p>Pilih jenis kuis. Setiap sesi berisi 10 soal acak.</p></div>
+      <div class="page-head"><div class="tag">小テスト</div><h1>Kuis</h1><p>Pilih level, lalu jenis kuis. Setiap sesi berisi 10 soal acak.</p></div>
+      <div class="lvtabs" id="qLv"></div>
       <div class="quiz-modes">
-        <button class="qmode" data-m="kanji"><div class="stat"><div class="ico c-red">漢</div></div><b>Arti Kanji</b><span>Tebak arti dari kanji</span></button>
+        <button class="qmode" data-m="kanji"><div class="stat"><div class="ico c-red">漢</div></div><b>Arti Kanji</b><span>Tebak arti kanji (kanji N3)</span></button>
         <button class="qmode" data-m="read"><div class="stat"><div class="ico c-ind">読</div></div><b>Cara Baca</b><span>Pilih bacaan kosakata yang benar</span></button>
         <button class="qmode" data-m="vocab"><div class="stat"><div class="ico c-sak">意</div></div><b>Arti Kosakata</b><span>Tebak arti kata</span></button>
         <button class="qmode" data-m="gram"><div class="stat"><div class="ico c-gold">文</div></div><b>Tata Bahasa</b><span>Lengkapi kalimat rumpang</span></button>
@@ -425,7 +436,7 @@ footer .jp{color:var(--red);font-weight:700}
 
 <footer>
   <span class="jp">七転び八起き</span> — jatuh tujuh kali, bangkit delapan kali.<br>
-  Daruma Nihongo · Materi latihan JLPT N3
+  Daruma Nihongo · Materi latihan JLPT N3 · N2
 </footer>
 
 <div class="modal" id="modal"><div class="card">
@@ -433,7 +444,6 @@ footer .jp{color:var(--red);font-weight:700}
   <div class="mk" id="mK"></div>
   <div id="mBody"></div>
   <div class="btns" style="margin-top:18px;justify-content:center">
-    <button class="btn btn-soft" id="mSpeak">🔊 Dengar</button>
     <button class="btn btn-red" id="mDone">✓ Tandai hafal</button>
   </div>
 </div></div>
@@ -482,96 +492,342 @@ const KANJI=[
  ["夢","ム","ゆめ","mimpi","夢中","むちゅう","asyik, tergila-gila"]
 ];
 
-const VOCAB=[
- ["相変わらず","あいかわらず","seperti biasa","adv"],
- ["諦める","あきらめる","menyerah","v"],
- ["預ける","あずける","menitipkan","v"],
- ["慌てる","あわてる","panik, tergesa-gesa","v"],
- ["案外","あんがい","di luar dugaan","adv"],
- ["意外","いがい","tak terduga","adj"],
- ["一生懸命","いっしょうけんめい","dengan sungguh-sungguh","adv"],
- ["居眠り","いねむり","tertidur sambil duduk","n"],
- ["祝う","いわう","merayakan","v"],
- ["噂","うわさ","gosip, kabar burung","n"],
- ["延期","えんき","penundaan","n"],
- ["応募","おうぼ","melamar, mendaftar","n"],
- ["大家","おおや","pemilik kontrakan","n"],
- ["我慢","がまん","menahan diri, sabar","n"],
- ["乾燥","かんそう","kering","n"],
- ["期限","きげん","batas waktu","n"],
- ["苦労","くろう","susah payah","n"],
- ["経由","けいゆ","melalui, transit","n"],
- ["混雑","こんざつ","padat, ramai","n"],
- ["締め切り","しめきり","tenggat","n"],
- ["就職","しゅうしょく","mendapat pekerjaan","n"],
- ["正直","しょうじき","jujur","adj"],
- ["済ませる","すませる","menyelesaikan","v"],
- ["早速","さっそく","segera","adv"],
- ["退屈","たいくつ","bosan","adj"],
- ["頼る","たよる","mengandalkan","v"],
- ["違反","いはん","pelanggaran","n"],
- ["届ける","とどける","mengantarkan","v"],
- ["悩む","なやむ","bimbang, khawatir","v"],
- ["慣れる","なれる","terbiasa","v"],
- ["張り切る","はりきる","bersemangat","v"],
- ["振り込む","ふりこむ","mentransfer (uang)","v"],
- ["迷う","まよう","tersesat, bingung","v"],
- ["割り勘","わりかん","bayar patungan","n"],
- ["夜更かし","よふかし","begadang","n"],
- ["面倒","めんどう","merepotkan","adj"],
- ["目指す","めざす","mengincar, bercita-cita","v"],
- ["懐かしい","なつかしい","rindu (nostalgia)","adj"],
- ["羨ましい","うらやましい","iri","adj"],
- ["怪しい","あやしい","mencurigakan","adj"],
- ["詳しい","くわしい","rinci, paham betul","adj"],
- ["偉い","えらい","hebat, terpandang","adj"]
-];
+/* ===== KOSAKATA (kata|bacaan|arti|jenis) ===== */
+const RAW_V={
+N3:`相変わらず|あいかわらず|seperti biasa|adv
+諦める|あきらめる|menyerah|v
+預ける|あずける|menitipkan|v
+慌てる|あわてる|panik, tergesa-gesa|v
+案外|あんがい|di luar dugaan|adv
+意外|いがい|tak terduga|adj
+一生懸命|いっしょうけんめい|dengan sungguh-sungguh|adv
+居眠り|いねむり|tertidur sambil duduk|n
+祝う|いわう|merayakan|v
+噂|うわさ|gosip, kabar burung|n
+延期|えんき|penundaan|n
+応募|おうぼ|melamar, mendaftar|n
+大家|おおや|pemilik kontrakan|n
+我慢|がまん|menahan diri, sabar|n
+乾燥|かんそう|kering|n
+期限|きげん|batas waktu|n
+苦労|くろう|susah payah|n
+経由|けいゆ|melalui, transit|n
+混雑|こんざつ|padat, ramai|n
+締め切り|しめきり|tenggat|n
+就職|しゅうしょく|mendapat pekerjaan|n
+正直|しょうじき|jujur|adj
+済ませる|すませる|menyelesaikan|v
+早速|さっそく|segera|adv
+退屈|たいくつ|bosan|adj
+頼る|たよる|mengandalkan|v
+違反|いはん|pelanggaran|n
+届ける|とどける|mengantarkan|v
+悩む|なやむ|bimbang, khawatir|v
+慣れる|なれる|terbiasa|v
+張り切る|はりきる|bersemangat|v
+振り込む|ふりこむ|mentransfer (uang)|v
+迷う|まよう|tersesat, bingung|v
+割り勘|わりかん|bayar patungan|n
+夜更かし|よふかし|begadang|n
+面倒|めんどう|merepotkan|adj
+目指す|めざす|mengincar, bercita-cita|v
+懐かしい|なつかしい|rindu (nostalgia)|adj
+羨ましい|うらやましい|iri|adj
+怪しい|あやしい|mencurigakan|adj
+詳しい|くわしい|rinci, paham betul|adj
+偉い|えらい|hebat, terpandang|adj
+合図|あいず|isyarat, tanda|n
+憧れる|あこがれる|mendambakan, mengagumi|v
+味わう|あじわう|menikmati (rasa)|v
+扱う|あつかう|menangani, memperlakukan|v
+余る|あまる|tersisa, berlebih|v
+怪我|けが|luka, cedera|n
+改札|かいさつ|gerbang tiket|n
+解決|かいけつ|penyelesaian (masalah)|n
+片付ける|かたづける|membereskan|v
+活動|かつどう|kegiatan|n
+乾く|かわく|mengering|v
+機嫌|きげん|suasana hati|n
+気温|きおん|suhu udara|n
+記念|きねん|peringatan, kenang-kenangan|n
+共通|きょうつう|kesamaan, umum|n
+協力|きょうりょく|kerja sama|n
+偶然|ぐうぜん|kebetulan|adv
+苦情|くじょう|keluhan, komplain|n
+契約|けいやく|kontrak|n
+結果|けっか|hasil|n
+原因|げんいん|penyebab|n
+効果|こうか|efek, khasiat|n
+交換|こうかん|pertukaran|n
+断る|ことわる|menolak|v
+転ぶ|ころぶ|jatuh terjungkal|v
+最低|さいてい|paling rendah, terburuk|n
+叫ぶ|さけぶ|berteriak|v
+騒ぐ|さわぐ|ribut, gaduh|v
+刺激|しげき|rangsangan, stimulus|n
+湿気|しっけ|kelembapan|n
+支払う|しはらう|membayar|v
+主張|しゅちょう|pendapat, klaim|n
+状態|じょうたい|kondisi, keadaan|n
+省略|しょうりゃく|penyingkatan|n
+信用|しんよう|kepercayaan|n
+推薦|すいせん|rekomendasi|n
+進める|すすめる|memajukan, melanjutkan|v
+責任|せきにん|tanggung jawab|n
+節約|せつやく|penghematan|n
+備える|そなえる|bersiap, menyiapkan|v
+確かめる|たしかめる|memastikan|v
+黙る|だまる|diam, tutup mulut|v
+貯金|ちょきん|tabungan|n
+通勤|つうきん|pulang-pergi kerja|n
+包む|つつむ|membungkus|v
+手入れ|ていれ|perawatan|n
+得意|とくい|pandai, mahir|adj
+努力|どりょく|usaha keras|n
+眺める|ながめる|memandangi|v
+苦手|にがて|tidak pandai, tidak suka|adj
+似合う|にあう|cocok (dipakai)|v
+盗む|ぬすむ|mencuri|v
+冷える|ひえる|menjadi dingin|v
+必死|ひっし|mati-matian|adj
+増える|ふえる|bertambah|v
+不安|ふあん|cemas|adj
+減る|へる|berkurang|v
+募集|ぼしゅう|rekrutmen, lowongan|n
+真似|まね|meniru|n
+守る|まもる|melindungi, menepati|v
+見送る|みおくる|mengantar kepergian|v
+夢中|むちゅう|asyik, tergila-gila|adj
+珍しい|めずらしい|langka, jarang|adj
+申し込む|もうしこむ|mendaftar, mengajukan|v
+以前|いぜん|dulu, sebelumnya|n
+徐々に|じょじょに|perlahan-lahan|adv
+次第に|しだいに|lambat laun|adv
+思い切り|おもいきり|sepuasnya|adv
+ぎりぎり|ぎりぎり|mepet, nyaris|adv
+そっくり|そっくり|mirip sekali|adj
+是非|ぜひ|sangat (ingin), pastikan|adv
+うっかり|うっかり|tanpa sengaja (lalai)|adv
+ぐっすり|ぐっすり|(tidur) nyenyak|adv
+濃い|こい|pekat, kental|adj
+鋭い|するどい|tajam|adj
+賢い|かしこい|pintar, cerdik|adj
+細かい|こまかい|detail, kecil-kecil|adj
+悔しい|くやしい|kesal, menyesal|adj
+眩しい|まぶしい|silau|adj
+もったいない|もったいない|sayang, mubazir|adj`,
+N2:`曖昧|あいまい|ambigu, tidak jelas|adj
+愛想|あいそ|keramahan|n
+赤字|あかじ|defisit, rugi|n
+相次ぐ|あいつぐ|terjadi berturut-turut|v
+当てはまる|あてはまる|sesuai, berlaku|v
+甘やかす|あまやかす|memanjakan|v
+荒い|あらい|kasar, kencang|adj
+慌ただしい|あわただしい|sibuk, terburu-buru|adj
+安易|あんい|gampangan, asal mudah|adj
+意義|いぎ|makna, arti penting|n
+勢い|いきおい|tenaga, momentum|n
+依頼|いらい|permohonan, permintaan|n
+印象|いんしょう|kesan|n
+受け入れる|うけいれる|menerima|v
+疑う|うたがう|meragukan, mencurigai|v
+訴える|うったえる|menggugat, mengeluhkan|v
+促す|うながす|mendorong, mendesak|v
+敬う|うやまう|menghormati|v
+影響|えいきょう|pengaruh|n
+円滑|えんかつ|lancar|adj
+遠慮|えんりょ|sungkan, menahan diri|n
+大げさ|おおげさ|berlebihan|adj
+収める|おさめる|memperoleh, menyimpan|v
+衰える|おとろえる|melemah, merosot|v
+劣る|おとる|kalah, lebih rendah|v
+解約|かいやく|pembatalan kontrak|n
+稼ぐ|かせぐ|mencari uang|v
+偏る|かたよる|berat sebelah|v
+環境|かんきょう|lingkungan|n
+頑固|がんこ|keras kepala|adj
+勘違い|かんちがい|salah sangka|n
+危機|きき|krisis|n
+犠牲|ぎせい|pengorbanan, korban|n
+規模|きぼ|skala|n
+境界|きょうかい|batas, perbatasan|n
+拒否|きょひ|penolakan|n
+工夫|くふう|akal, cara kreatif|n
+継続|けいぞく|kelanjutan|n
+気配|けはい|tanda-tanda, firasat|n
+険しい|けわしい|terjal, keras|adj
+謙虚|けんきょ|rendah hati|adj
+貢献|こうけん|kontribusi|n
+肯定|こうてい|afirmasi, membenarkan|n
+克服|こくふく|mengatasi (kesulitan)|n
+心強い|こころづよい|membesarkan hati|adj
+拘る|こだわる|ngotot, sangat memperhatikan|v
+災害|さいがい|bencana|n
+削除|さくじょ|penghapusan|n
+妨げる|さまたげる|menghalangi|v
+爽やか|さわやか|segar, menyegarkan|adj
+事情|じじょう|keadaan, alasan|n
+姿勢|しせい|sikap, postur|n
+実施|じっし|pelaksanaan|n
+渋滞|じゅうたい|kemacetan|n
+柔軟|じゅうなん|fleksibel|adj
+承認|しょうにん|persetujuan|n
+慎重|しんちょう|hati-hati|adj
+推測|すいそく|dugaan, perkiraan|n
+優れる|すぐれる|unggul|v
+迫る|せまる|mendesak, mendekat|v
+先端|せんたん|ujung, mutakhir|n
+率直|そっちょく|terus terang|adj
+対策|たいさく|langkah penanggulangan|n
+妥協|だきょう|kompromi|n
+蓄える|たくわえる|menyimpan, menimbun|v
+頼もしい|たのもしい|bisa diandalkan|adj
+中途半端|ちゅうとはんぱ|setengah-setengah|adj
+挑戦|ちょうせん|tantangan, mencoba|n
+尽きる|つきる|habis|v
+努める|つとめる|berusaha|v
+抵抗|ていこう|perlawanan|n
+適切|てきせつ|tepat, layak|adj
+徹夜|てつや|begadang semalaman|n
+問い合わせ|といあわせ|pertanyaan (inquiry)|n
+透明|とうめい|transparan|adj
+独特|どくとく|khas, unik|adj
+戸惑う|とまどう|bingung, canggung|v
+怠ける|なまける|bermalas-malasan|v
+鈍い|にぶい|tumpul, lamban|adj
+粘る|ねばる|gigih, lengket|v
+把握|はあく|memahami (situasi)|n
+発揮|はっき|menunjukkan (kemampuan)|n
+省く|はぶく|menghilangkan, menghemat|v
+控える|ひかえる|menahan diri, mengurangi|v
+否定|ひてい|penyangkalan|n
+頻繁|ひんぱん|sering|adj
+普及|ふきゅう|penyebaran luas|n
+不審|ふしん|mencurigakan|adj
+振る舞う|ふるまう|berperilaku|v
+偏見|へんけん|prasangka|n
+膨大|ぼうだい|sangat besar|adj
+誇り|ほこり|kebanggaan|n
+前向き|まえむき|positif, optimis|adj
+紛らわしい|まぎらわしい|membingungkan|adj
+惨め|みじめ|menyedihkan|adj
+見直す|みなおす|meninjau ulang|v
+無駄|むだ|sia-sia|adj
+恵まれる|めぐまれる|diberkahi|v
+催す|もよおす|menyelenggarakan|v
+優先|ゆうせん|prioritas|n
+譲る|ゆずる|mengalah, memberikan|v
+要求|ようきゅう|tuntutan|n
+余裕|よゆう|kelonggaran|n
+利益|りえき|keuntungan|n
+冷静|れいせい|tenang, kepala dingin|adj
+若干|じゃっかん|sedikit|adv
+一層|いっそう|semakin, lebih lagi|adv
+一応|いちおう|untuk sementara, sekadarnya|adv
+案の定|あんのじょう|seperti yang diduga|adv
+改めて|あらためて|sekali lagi (secara khusus)|adv
+せめて|せめて|setidaknya|adv
+たちまち|たちまち|seketika|adv
+とっくに|とっくに|sudah lama|adv
+ひとまず|ひとまず|untuk sementara|adv
+敢えて|あえて|sengaja, berani|adv
+いきなり|いきなり|tiba-tiba|adv`};
+const VOCAB={};for(const l in RAW_V)VOCAB[l]=RAW_V[l].trim().split("\n").map(r=>r.split("|"));
 const CAT={all:"Semua",v:"Kata kerja",n:"Kata benda",adj:"Kata sifat",adv:"Keterangan"};
 
-const GRAM=[
- {p:"〜たばかり",m:"baru saja",f:"Vた ＋ ばかり",ex:"日本に来たばかりです。",rd:"にほんにきたばかりです。",tr:"Saya baru saja datang ke Jepang.",
-  q:"日本に来た＿＿＿なので、まだ日本語が下手です。",a:"ばかり",o:["ばかり","はず","うちに","せい"]},
- {p:"〜ようにする",m:"berusaha agar / membiasakan",f:"Vる / Vない ＋ ようにする",ex:"毎日野菜を食べるようにしています。",rd:"まいにちやさいをたべるようにしています。",tr:"Saya berusaha makan sayur setiap hari.",
-  q:"健康のために、毎日歩く＿＿＿います。",a:"ようにして",o:["ようにして","ばかりで","せいで","くせに"]},
- {p:"〜ことにする",m:"memutuskan (oleh diri sendiri)",f:"Vる / Vない ＋ ことにする",ex:"来年日本へ行くことにしました。",rd:"らいねんにほんへいくことにしました。",tr:"Saya memutuskan pergi ke Jepang tahun depan.",
-  q:"来年、日本の大学に行く＿＿＿。",a:"ことにしました",o:["ことにしました","ばかりです","せいです","おかげです"]},
- {p:"〜ことになる",m:"diputuskan (oleh pihak lain/keadaan)",f:"Vる / Vない ＋ ことになる",ex:"来月大阪に転勤することになりました。",rd:"らいげつおおさかにてんきんすることになりました。",tr:"Sudah diputuskan saya dipindahtugaskan ke Osaka bulan depan.",
-  q:"会社の命令で、来月大阪に転勤する＿＿＿。",a:"ことになりました",o:["ことになりました","ようにしています","ばかりです","ついでです"]},
- {p:"〜わけではない",m:"bukan berarti",f:"普通形 (なA-な / N-な) ＋ わけではない",ex:"肉が嫌いなわけではありません。",rd:"にくがきらいなわけではありません。",tr:"Bukan berarti saya tidak suka daging.",
-  q:"肉が嫌いな＿＿＿が、今日は食べたくない。",a:"わけではない",o:["わけではない","はずだ","せいだ","ばかりだ"]},
- {p:"〜はずだ",m:"seharusnya (yakin berdasarkan alasan)",f:"普通形 ＋ はずだ",ex:"彼はもう着いたはずだ。",rd:"かれはもうついたはずだ。",tr:"Dia seharusnya sudah sampai.",
-  q:"彼は10時の電車に乗ったから、もう着いている＿＿＿だ。",a:"はず",o:["はず","くせ","ついで","せい"]},
- {p:"〜うちに",m:"selagi / sebelum berubah",f:"Vる / Aい / なA-な / N-の ＋ うちに",ex:"温かいうちに食べてください。",rd:"あたたかいうちにたべてください。",tr:"Silakan makan selagi masih hangat.",
-  q:"料理が温かい＿＿＿食べてください。",a:"うちに",o:["うちに","たびに","せいで","くせに"]},
- {p:"〜によって",m:"tergantung / oleh",f:"N ＋ によって",ex:"人によって考え方が違います。",rd:"ひとによってかんがえかたがちがいます。",tr:"Cara berpikir berbeda tergantung orangnya.",
-  q:"国＿＿＿文化が違います。",a:"によって",o:["によって","のおかげで","のついでに","のくせに"]},
- {p:"〜ついでに",m:"sekalian",f:"Vる / Vた / N-の ＋ ついでに",ex:"買い物のついでに銀行に寄りました。",rd:"かいもののついでにぎんこうによりました。",tr:"Sekalian belanja, saya mampir ke bank.",
-  q:"郵便局へ行く＿＿＿、切手を買ってきた。",a:"ついでに",o:["ついでに","くせに","せいで","たびに"]},
- {p:"〜くせに",m:"padahal (nada kesal/kritik)",f:"普通形 (なA-な / N-の) ＋ くせに",ex:"知っているくせに教えてくれない。",rd:"しっているくせにおしえてくれない。",tr:"Padahal tahu, tapi tidak mau memberi tahu.",
-  q:"彼は知っている＿＿＿、教えてくれない。",a:"くせに",o:["くせに","おかげで","ついでに","ように"]},
- {p:"〜さえ〜ば",m:"asalkan … saja",f:"N ＋ さえ ＋ Vば / Aければ",ex:"時間さえあれば、行けます。",rd:"じかんさえあれば、いけます。",tr:"Asalkan ada waktu, saya bisa pergi.",
-  q:"時間＿＿＿あれば、旅行に行けるのに。",a:"さえ",o:["さえ","ばかり","はず","うち"]},
- {p:"〜っぱなし",m:"dibiarkan begitu saja",f:"Vます(stem) ＋ っぱなし",ex:"電気をつけっぱなしで寝てしまった。",rd:"でんきをつけっぱなしでねてしまった。",tr:"Saya ketiduran dengan lampu dibiarkan menyala.",
-  q:"電気をつけ＿＿＿で寝てしまった。",a:"っぱなし",o:["っぱなし","ついで","たび","うち"]},
- {p:"〜せいで",m:"gara-gara (hasil buruk)",f:"普通形 (なA-な / N-の) ＋ せいで",ex:"雨のせいで試合が中止になった。",rd:"あめのせいでしあいがちゅうしになった。",tr:"Gara-gara hujan, pertandingan dibatalkan.",
-  q:"雨の＿＿＿、試合が中止になった。",a:"せいで",o:["せいで","ように","ばかり","はず"]},
- {p:"〜おかげで",m:"berkat (hasil baik)",f:"普通形 (なA-な / N-の) ＋ おかげで",ex:"先生のおかげで合格できました。",rd:"せんせいのおかげでごうかくできました。",tr:"Berkat guru, saya bisa lulus.",
-  q:"先生の＿＿＿、試験に合格できました。",a:"おかげで",o:["おかげで","せいで","くせに","ついでに"]},
- {p:"〜たびに",m:"setiap kali",f:"Vる / N-の ＋ たびに",ex:"この歌を聞くたびに、故郷を思い出す。",rd:"このうたをきくたびに、ふるさとをおもいだす。",tr:"Setiap kali mendengar lagu ini, saya teringat kampung halaman.",
-  q:"この歌を聞く＿＿＿、故郷を思い出す。",a:"たびに",o:["たびに","くせに","せいで","はずに"]},
- {p:"〜ように",m:"agar / supaya",f:"Vる / Vない / V可能 ＋ ように",ex:"忘れないようにメモします。",rd:"わすれないようにメモします。",tr:"Saya mencatat supaya tidak lupa.",
-  q:"忘れない＿＿＿、メモしておきます。",a:"ように",o:["ように","ばかり","くせに","ついでに"]}
-];
+/* ===== TATA BAHASA [pola, arti, bentuk, contoh, bacaan, terjemahan, soal, jawaban, pengecoh x3] ===== */
+const GRAM={N3:[
+["〜たばかり","baru saja","Vた ＋ ばかり","日本に来たばかりです。","にほんにきたばかりです。","Saya baru saja datang ke Jepang.","日本に来た＿＿＿なので、まだ日本語が下手です。","ばかり","はず","うちに","せい"],
+["〜ようにする","berusaha agar / membiasakan","Vる / Vない ＋ ようにする","毎日野菜を食べるようにしています。","まいにちやさいをたべるようにしています。","Saya berusaha makan sayur setiap hari.","健康のために、毎日歩く＿＿＿います。","ようにして","ばかりで","せいで","くせに"],
+["〜ようになる","menjadi (bisa / terbiasa)","Vる / V可能 ＋ ようになる","日本語が話せるようになりました。","にほんごがはなせるようになりました。","Saya jadi bisa berbicara bahasa Jepang.","毎日練習して、泳げる＿＿＿。","ようになりました","ばかりでした","くせになりました","ついでになりました"],
+["〜ことにする","memutuskan (oleh diri sendiri)","Vる / Vない ＋ ことにする","来年日本へ行くことにしました。","らいねんにほんへいくことにしました。","Saya memutuskan pergi ke Jepang tahun depan.","来年、日本の大学に行く＿＿＿。","ことにしました","ばかりです","せいです","おかげです"],
+["〜ことになる","diputuskan (oleh pihak lain/keadaan)","Vる / Vない ＋ ことになる","来月大阪に転勤することになりました。","らいげつおおさかにてんきんすることになりました。","Sudah diputuskan saya pindah tugas ke Osaka bulan depan.","会社の命令で、来月大阪に転勤する＿＿＿。","ことになりました","ようにしています","ばかりです","ついでです"],
+["〜ことがある","kadang-kadang (terjadi)","Vる / Vない ＋ ことがある","時々、朝ご飯を食べないことがある。","ときどき、あさごはんをたべないことがある。","Kadang-kadang saya tidak sarapan.","忙しいときは、昼ご飯を食べない＿＿＿。","ことがある","せいだ","ついでだ","くせだ"],
+["〜わけではない","bukan berarti","普通形 (なA-な / N-な) ＋ わけではない","肉が嫌いなわけではありません。","にくがきらいなわけではありません。","Bukan berarti saya tidak suka daging.","肉が嫌いな＿＿＿が、今日は食べたくない。","わけではない","はずだ","せいだ","ばかりだ"],
+["〜わけだ","pantas saja / wajar","普通形 (なA-な / N-な) ＋ わけだ","10年も住んでいたから、日本語が上手なわけだ。","じゅうねんもすんでいたから、にほんごがじょうずなわけだ。","Dia tinggal 10 tahun, pantas bahasa Jepangnya bagus.","10年も日本に住んでいたのか。日本語が上手な＿＿＿だ。","わけ","くせ","ついで","たび"],
+["〜わけがない","tidak mungkin","普通形 (なA-な / N-な) ＋ わけがない","あの人が嘘をつくわけがない。","あのひとがうそをつくわけがない。","Tidak mungkin orang itu berbohong.","あんなに真面目な人が嘘をつく＿＿＿。","わけがない","ことにする","ようにする","ついでだ"],
+["〜はずだ","seharusnya (yakin berdasar alasan)","普通形 (なA-な / N-の) ＋ はずだ","彼はもう着いたはずだ。","かれはもうついたはずだ。","Dia seharusnya sudah sampai.","彼は10時の電車に乗ったから、もう着いている＿＿＿だ。","はず","くせ","ついで","せい"],
+["〜らしい","kabarnya / sepertinya","普通形 (N / なA tanpa だ) ＋ らしい","明日は雨らしい。","あしたはあめらしい。","Kabarnya besok hujan.","天気予報によると、明日は雪＿＿＿。","らしい","ついでだ","くせだ","ばかりか"],
+["〜そうだ (伝聞)","katanya (info dari orang lain)","普通形 ＋ そうだ","ニュースによると、昨日地震があったそうだ。","ニュースによると、きのうじしんがあったそうだ。","Menurut berita, katanya kemarin ada gempa.","ニュースによると、昨日大きな地震があった＿＿＿。","そうだ","ようにする","ことにする","ついでだ"],
+["〜みたいだ","sepertinya (kasual)","普通形 (N / なA tanpa だ) ＋ みたいだ","誰もいないみたいだ。","だれもいないみたいだ。","Sepertinya tidak ada orang.","電気が消えている。誰もいない＿＿＿。","みたいだ","ことにする","ついでだ","くせだ"],
+["〜うちに","selagi / sebelum berubah","Vる / Vない / Aい / N-の ＋ うちに","温かいうちに食べてください。","あたたかいうちにたべてください。","Silakan makan selagi masih hangat.","料理が温かい＿＿＿食べてください。","うちに","たびに","せいで","くせに"],
+["〜によって","tergantung / oleh","N ＋ によって","人によって考え方が違います。","ひとによってかんがえかたがちがいます。","Cara berpikir berbeda tergantung orangnya.","国＿＿＿文化が違います。","によって","のおかげで","のついでに","のくせに"],
+["〜について","tentang, mengenai","N ＋ について","日本の文化について調べる。","にほんのぶんかについてしらべる。","Meneliti tentang budaya Jepang.","日本の歴史＿＿＿レポートを書きます。","について","のくせに","のせいで","のたびに"],
+["〜に対して","terhadap","N ＋ に対して","目上の人に対して敬語を使う。","めうえのひとにたいしてけいごをつかう。","Memakai bahasa hormat terhadap orang yang lebih tinggi.","お客様＿＿＿、失礼なことを言ってはいけない。","に対して","のくせに","のついでに","のせいで"],
+["〜にとって","bagi","N ＋ にとって","私にとって家族が一番大切だ。","わたしにとってかぞくがいちばんたいせつだ。","Bagi saya, keluarga yang paling penting.","私＿＿＿、家族は一番大切なものです。","にとって","のくせに","のせいで","のたびに"],
+["〜として","sebagai","N ＋ として","通訳として働いている。","つうやくとしてはたらいている。","Bekerja sebagai penerjemah.","彼は通訳＿＿＿会社で働いている。","として","のくせに","のついでに","のせいで"],
+["〜ために","untuk (tujuan)","Vる / N-の ＋ ために","日本で働くために日本語を勉強している。","にほんではたらくためににほんごをべんきょうしている。","Saya belajar bahasa Jepang untuk bekerja di Jepang.","日本で働く＿＿＿、日本語を勉強しています。","ために","くせに","せいで","たびに"],
+["〜ように","agar / supaya","Vる / Vない / V可能 ＋ ように","忘れないようにメモします。","わすれないようにメモします。","Saya mencatat supaya tidak lupa.","忘れない＿＿＿、メモしておきます。","ように","ばかり","くせに","ついでに"],
+["〜ように言う","menyuruh / meminta agar","Vる / Vない ＋ ように言う","医者にたばこをやめるように言われた。","いしゃにたばこをやめるようにいわれた。","Saya disuruh dokter berhenti merokok.","医者にお酒を控える＿＿＿言われました。","ように","ことに","ばかり","ついでに"],
+["〜てほしい","ingin (orang lain) melakukan","Vて ＋ ほしい","早く元気になってほしい。","はやくげんきになってほしい。","Saya ingin kamu cepat sehat.","子どもには優しい人になって＿＿＿。","ほしい","ばかりだ","くせだ","ついでだ"],
+["〜ついでに","sekalian","Vる / Vた / N-の ＋ ついでに","買い物のついでに銀行に寄りました。","かいもののついでにぎんこうによりました。","Sekalian belanja, saya mampir ke bank.","郵便局へ行く＿＿＿、切手を買ってきた。","ついでに","くせに","せいで","たびに"],
+["〜くせに","padahal (nada kesal/kritik)","普通形 (なA-な / N-の) ＋ くせに","知っているくせに教えてくれない。","しっているくせにおしえてくれない。","Padahal tahu, tapi tidak mau memberi tahu.","彼は知っている＿＿＿、教えてくれない。","くせに","おかげで","ついでに","ように"],
+["〜さえ〜ば","asalkan … saja","N ＋ さえ ＋ Vば / Aければ","時間さえあれば、行けます。","じかんさえあれば、いけます。","Asalkan ada waktu, saya bisa pergi.","時間＿＿＿あれば、旅行に行けるのに。","さえ","ばかり","はず","うち"],
+["〜ば〜ほど","semakin … semakin","Vば ＋ Vる ＋ ほど","練習すればするほど上手になる。","れんしゅうすればするほどじょうずになる。","Semakin berlatih, semakin mahir.","日本語は勉強すれば＿＿＿ほど面白くなる。","する","した","して","しよう"],
+["〜ほど","sampai-sampai (tingkat)","Vる / Vたい / Aい / N ＋ ほど","泣きたいほど悔しかった。","なきたいほどくやしかった。","Saking kesalnya sampai ingin menangis.","泣きたい＿＿＿、悔しかった。","ほど","くせに","ついでに","ために"],
+["〜っぱなし","dibiarkan begitu saja","Vます(stem) ＋ っぱなし","電気をつけっぱなしで寝てしまった。","でんきをつけっぱなしでねてしまった。","Saya ketiduran dengan lampu dibiarkan menyala.","電気をつけ＿＿＿で寝てしまった。","っぱなし","ついで","たび","うち"],
+["〜せいで","gara-gara (hasil buruk)","普通形 (なA-な / N-の) ＋ せいで","雨のせいで試合が中止になった。","あめのせいでしあいがちゅうしになった。","Gara-gara hujan, pertandingan dibatalkan.","雨の＿＿＿、試合が中止になった。","せいで","ように","ばかり","はず"],
+["〜おかげで","berkat (hasil baik)","普通形 (なA-な / N-の) ＋ おかげで","先生のおかげで合格できました。","せんせいのおかげでごうかくできました。","Berkat guru, saya bisa lulus.","先生の＿＿＿、試験に合格できました。","おかげで","せいで","くせに","ついでに"],
+["〜たびに","setiap kali","Vる / N-の ＋ たびに","この歌を聞くたびに、故郷を思い出す。","このうたをきくたびに、ふるさとをおもいだす。","Setiap mendengar lagu ini, saya teringat kampung halaman.","この歌を聞く＿＿＿、故郷を思い出す。","たびに","くせに","せいで","はずに"],
+["〜とおりに","sesuai dengan (persis)","Vる / Vた / N-の ＋ とおりに","説明書のとおりに組み立てる。","せつめいしょのとおりにくみたてる。","Merakit sesuai buku petunjuk.","先生が言った＿＿＿、やってください。","とおりに","せいで","くせに","たびに"],
+["〜ところだ","baru akan / sedang / baru saja","Vる / Vている / Vた ＋ ところだ","今から出かけるところです。","いまからでかけるところです。","Saya baru mau berangkat sekarang.","ちょうど今、家を出る＿＿＿です。","ところ","せい","くせ","ついで"],
+["〜最中に","di tengah-tengah (sedang)","Vている / N-の ＋ 最中に","食事の最中に電話が鳴った。","しょくじのさいちゅうにでんわがなった。","Telepon berdering di tengah makan.","会議の＿＿＿に、電話が鳴った。","最中","ついで","せい","くせ"],
+["〜ずに","tanpa (melakukan)","Vない(stem) ＋ ずに (する→せずに)","朝ご飯を食べずに学校へ行った。","あさごはんをたべずにがっこうへいった。","Saya pergi ke sekolah tanpa sarapan.","朝ご飯を食べ＿＿＿、家を出た。","ずに","たびに","うちに","ついでに"],
+["〜としたら","seandainya / kalau misalnya","普通形 ＋ としたら","宝くじが当たったとしたら、何をしますか。","たからくじがあたったとしたら、なにをしますか。","Seandainya menang lotre, apa yang akan kamu lakukan?","もし1億円あった＿＿＿、何をしますか。","としたら","くせに","ついでに","せいで"]
+],N2:[
+["〜にもかかわらず","meskipun, walaupun","普通形 / N ＋ にもかかわらず","雨にもかかわらず、大勢の人が来た。","あめにもかかわらず、おおぜいのひとがきた。","Meskipun hujan, banyak orang datang.","悪天候＿＿＿、試合は行われた。","にもかかわらず","のおかげで","について","にとって"],
+["〜に違いない","pasti (yakin)","普通形 (なA / N tanpa だ) ＋ に違いない","彼が犯人に違いない。","かれがはんにんにちがいない。","Dia pasti pelakunya.","電気がついているから、彼は家にいる＿＿＿。","に違いない","にすぎない","に限る","に応じて"],
+["〜にすぎない","hanya sekadar","普通形 / N ＋ にすぎない","それは噂にすぎない。","それはうわさにすぎない。","Itu hanya sekadar gosip.","私はただのアルバイト＿＿＿ので、決められません。","にすぎない","にわたる","に沿う","に基づく"],
+["〜に基づいて","berdasarkan","N ＋ に基づいて","データに基づいて判断する。","データにもとづいてはんだんする。","Memutuskan berdasarkan data.","調査結果＿＿＿、計画を立てる。","に基づいて","にわたって","にすぎず","ばかりに"],
+["〜にわたって","selama / meliputi (rentang)","N (waktu/tempat) ＋ にわたって","3日間にわたって会議が行われた。","みっかかんにわたってかいぎがおこなわれた。","Rapat diadakan selama 3 hari.","工事は3か月＿＿＿続いた。","にわたって","に基づいて","に違いなく","にすぎず"],
+["〜をめぐって","seputar (perdebatan/sengketa)","N ＋ をめぐって","遺産をめぐって家族が争った。","いさんをめぐってかぞくがあらそった。","Keluarga bertengkar seputar warisan.","新しい法律＿＿＿、議論が続いている。","をめぐって","にすぎず","に違いなく","ばかりに"],
+["〜に応じて","sesuai / menyesuaikan dengan","N ＋ に応じて","能力に応じて給料が決まる。","のうりょくにおうじてきゅうりょうがきまる。","Gaji ditentukan sesuai kemampuan.","経験＿＿＿給料が変わります。","に応じて","にすぎず","にもかかわらず","ばかりに"],
+["〜に沿って","mengikuti, sejalan dengan","N ＋ に沿って","川に沿って歩く。","かわにそってあるく。","Berjalan menyusuri sungai.","マニュアル＿＿＿作業を進めてください。","に沿って","にすぎず","に違いなく","をめぐって"],
+["〜に反して","bertentangan dengan","N ＋ に反して","予想に反して、新人が優勝した。","よそうにはんして、しんじんがゆうしょうした。","Bertentangan dengan dugaan, pendatang baru juara.","予想＿＿＿、試験はとても簡単だった。","に反して","にすぎず","を問わず","にわたって"],
+["〜に限らず","tidak hanya / tidak terbatas","N ＋ に限らず","子どもに限らず、大人も楽しめる。","こどもにかぎらず、おとなもたのしめる。","Tidak hanya anak-anak, orang dewasa juga bisa menikmati.","この遊園地は子ども＿＿＿、大人にも人気がある。","に限らず","に違いなく","にわたって","に沿って"],
+["〜を問わず","tanpa memandang","N ＋ を問わず","年齢を問わず参加できる。","ねんれいをとわずさんかできる。","Bisa ikut tanpa memandang usia.","このイベントには、年齢＿＿＿誰でも参加できます。","を問わず","をめぐって","に沿って","にすぎず"],
+["〜はもちろん","tentu saja … (apalagi)","N ＋ はもちろん","英語はもちろん、中国語も話せる。","えいごはもちろん、ちゅうごくごもはなせる。","Bahasa Inggris tentu saja, bahasa Mandarin pun bisa.","彼は英語＿＿＿、フランス語も話せる。","はもちろん","にすぎず","に沿って","をめぐって"],
+["〜をきっかけに","berawal dari, dipicu oleh","N ＋ をきっかけに","留学をきっかけに料理を始めた。","りゅうがくをきっかけにりょうりをはじめた。","Berawal dari kuliah di luar negeri, saya mulai memasak.","日本旅行＿＿＿、日本語の勉強を始めた。","をきっかけに","にすぎず","を問わず","に違いなく"],
+["〜ばかりに","hanya karena (berakibat buruk)","普通形 (なA-な / N-である) ＋ ばかりに","嘘をついたばかりに信用を失った。","うそをついたばかりにしんようをうしなった。","Hanya karena berbohong, saya kehilangan kepercayaan.","一度嘘をついた＿＿＿、信用を失ってしまった。","ばかりに","に沿って","に応じて","をめぐって"],
+["〜以上(は)","karena sudah … (maka harus)","普通形 ＋ 以上(は)","約束した以上、守らなければならない。","やくそくしたいじょう、まもらなければならない。","Karena sudah berjanji, harus ditepati.","引き受けた＿＿＿、最後までやるべきだ。","以上","とたん","ばかりか","がち"],
+["〜からこそ","justru karena","普通形 ＋ からこそ","愛しているからこそ厳しくするのだ。","あいしているからこそきびしくするのだ。","Justru karena sayang, saya bersikap keras.","あなたのことを思っている＿＿＿、厳しいことを言うのです。","からこそ","にもかかわらず","とたんに","末に"],
+["〜たとたん(に)","begitu … langsung","Vた ＋ とたん(に)","立ち上がったとたん、めまいがした。","たちあがったとたん、めまいがした。","Begitu berdiri, langsung pusing.","家を出た＿＿＿、雨が降り出した。","とたん","以上","末","上は"],
+["〜末(に)","setelah lama (akhirnya)","Vた / N-の ＋ 末(に)","悩んだ末に、留学を決めた。","なやんだすえに、りゅうがくをきめた。","Setelah lama bimbang, akhirnya memutuskan kuliah ke luar negeri.","長い間悩んだ＿＿＿、会社を辞めることにした。","末に","以上に","ばかりか","に沿って"],
+["〜あげく","akhirnya (hasil buruk)","Vた / N-の ＋ あげく","さんざん迷ったあげく、何も買わなかった。","さんざんまよったあげく、なにもかわなかった。","Setelah bingung lama, akhirnya tidak membeli apa pun.","2時間も迷った＿＿＿、結局何も買わなかった。","あげく","とたん","以上","次第"],
+["〜上で","setelah (melakukan, baru)","Vた / N-の ＋ 上で","よく考えた上で決めてください。","よくかんがえたうえできめてください。","Putuskan setelah berpikir matang.","内容を確認した＿＿＿、サインしてください。","上で","とたん","ばかりか","末"],
+["〜次第","segera setelah","Vます(stem) ＋ 次第","結果がわかり次第、連絡します。","けっかがわかりしだい、れんらくします。","Begitu hasilnya diketahui, saya akan menghubungi.","準備ができ＿＿＿、出発します。","次第","一方","末","がち"],
+["〜一方だ","terus-menerus (makin)","Vる ＋ 一方だ","物価は上がる一方だ。","ぶっかはあがるいっぽうだ。","Harga barang terus naik.","最近、物価は上がる＿＿＿だ。","一方","とたん","末","以上"],
+["〜つつある","sedang dalam proses","Vます(stem) ＋ つつある","景気は回復しつつある。","けいきはかいふくしつつある。","Ekonomi sedang dalam proses pulih.","日本の人口は減り＿＿＿。","つつある","かねる","っぽい","がたい"],
+["〜かねない","bisa saja (hal buruk) terjadi","Vます(stem) ＋ かねない","このままでは事故になりかねない。","このままではじこになりかねない。","Kalau begini terus, bisa-bisa terjadi kecelakaan.","スピードを出しすぎると、事故を起こし＿＿＿。","かねない","かねる","ようがない","ざるを得ない"],
+["〜かねる","sulit untuk (menolak sopan)","Vます(stem) ＋ かねる","その意見には賛成しかねます。","そのいけんにはさんせいしかねます。","Saya sulit menyetujui pendapat itu.","申し訳ありませんが、そのご要望にはお応えし＿＿＿。","かねます","かねません","がちです","っぽいです"],
+["〜ざるを得ない","terpaksa harus","Vない(stem) ＋ ざるを得ない (する→せざるを得ない)","中止せざるを得ない。","ちゅうしせざるをえない。","Terpaksa harus dibatalkan.","台風なので、旅行を中止せ＿＿＿。","ざるを得ない","かねる","がちだ","つつある"],
+["〜ずにはいられない","tidak bisa tidak / tak tahan untuk","Vない(stem) ＋ ずにはいられない","あの映画を見て、泣かずにはいられなかった。","あのえいがをみて、なかずにはいられなかった。","Menonton film itu, saya tak bisa menahan tangis.","あの映画は面白くて、笑わ＿＿＿。","ずにはいられなかった","かねなかった","がちだった","っぽかった"],
+["〜わけにはいかない","tidak bisa (karena norma/situasi)","Vる / Vない ＋ わけにはいかない","約束したので、行かないわけにはいかない。","やくそくしたので、いかないわけにはいかない。","Karena sudah janji, saya tidak bisa tidak pergi.","大事な会議があるので、休む＿＿＿。","わけにはいかない","ばかりだ","に違いない","っぽい"],
+["〜がちだ","cenderung (sering, negatif)","Vます(stem) / N ＋ がちだ","冬は風邪をひきがちだ。","ふゆはかぜをひきがちだ。","Saat musim dingin cenderung mudah masuk angin.","最近忙しくて、運動不足になり＿＿＿。","がちだ","かねる","っぽい","ざるを得ない"],
+["〜っぽい","agak / mudah (sifat)","Vます(stem) / N / Aい(stem) ＋ っぽい","彼は怒りっぽい。","かれはおこりっぽい。","Dia mudah marah.","彼は怒り＿＿＿性格で、すぐ機嫌が悪くなる。","っぽい","かねない","ざるを得ない","ようがない"],
+["〜っこない","mana mungkin","Vます(stem) ＋ っこない","そんなこと、できっこない。","そんなこと、できっこない。","Hal seperti itu mana mungkin bisa.","こんな難しい問題、子どもに解け＿＿＿よ。","っこない","がちだ","つつある","っぽい"],
+["〜ようがない","tidak ada cara untuk","Vます(stem) ＋ ようがない","連絡先がわからないので、連絡しようがない。","れんらくさきがわからないので、れんらくしようがない。","Tidak tahu kontaknya, jadi tidak ada cara menghubungi.","住所がわからないので、手紙の送り＿＿＿。","ようがない","がちだ","っぽい","つつある"],
+["〜ものだ","dulu sering … (nostalgia) / memang","Vた ＋ ものだ","子どもの頃はよく川で遊んだものだ。","こどものころはよくかわであそんだものだ。","Waktu kecil dulu saya sering bermain di sungai.","子どもの頃は、よく川で遊んだ＿＿＿だ。","もの","こと","ばかり","とたん"],
+["〜ことだ","sebaiknya (saran)","Vる / Vない ＋ ことだ","合格したければ、毎日勉強することだ。","ごうかくしたければ、まいにちべんきょうすることだ。","Kalau ingin lulus, sebaiknya belajar setiap hari.","上手になりたければ、毎日練習する＿＿＿だ。","こと","とたん","ばかり","一方"],
+["〜わりに","untuk ukuran / dibanding","普通形 (なA-な / N-の) ＋ わりに","この店は値段のわりに美味しい。","このみせはねだんのわりにおいしい。","Untuk ukuran harganya, toko ini enak.","この店は、値段が安い＿＿＿美味しい。","わりに","末に","とたんに","ばかりに"]
+]};
 
-/* storage */
+/* ===== storage ===== */
+const LV=["N3","N2"];
 const store={get(k,d){try{const v=localStorage.getItem("dn_"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("dn_"+k,JSON.stringify(v))}catch(e){}}};
-let mastered=new Set(store.get("mastered",[]));
-const save=()=>{store.set("mastered",[...mastered]);updateStats()};
+const VALID=new Set([...KANJI.map((_,i)=>"k"+i),...VOCAB.N3.map((_,i)=>"vN3_"+i),...VOCAB.N2.map((_,i)=>"vN2_"+i)]);
+let mastered=new Set(store.get("mastered2",[]).filter(x=>VALID.has(x)));
+const save=()=>{store.set("mastered2",[...mastered]);updateStats()};
 const $=s=>document.querySelector(s);
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pickWrong=(pool,correct,n)=>{const out=[];for(const x of shuffle(pool)){if(x!==correct&&!out.includes(x))out.push(x);if(out.length===n)break}return out};
 
-function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang="ja-JP";u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+/* level tabs */
+function lvTabs(el,cur,counts,onPick){
+  el.innerHTML=LV.map(l=>`<button data-l="${l}" class="${l===cur?"on":""}">${l}${counts?`<small>${counts[l]}</small>`:""}</button>`).join("");
+  el.onclick=e=>{const b=e.target.closest("button");if(!b)return;el.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));onPick(b.dataset.l)};
+}
 
 /* theme */
 let theme=store.get("theme",matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
@@ -581,9 +837,11 @@ applyTheme();
 
 /* stats */
 function updateStats(){
-  $("#sKanji").textContent=KANJI.length;$("#sVocab").textContent=VOCAB.length;$("#sGram").textContent=GRAM.length;
+  $("#sKanji").textContent=KANJI.length;
+  $("#sVocab").textContent=VOCAB.N3.length+VOCAB.N2.length;$("#sVocabL").textContent=`Kosakata (N3 ${VOCAB.N3.length} · N2 ${VOCAB.N2.length})`;
+  $("#sGram").textContent=GRAM.N3.length+GRAM.N2.length;$("#sGramL").textContent=`Pola tata bahasa (N3 ${GRAM.N3.length} · N2 ${GRAM.N2.length})`;
   $("#sDone").textContent=mastered.size;
-  const total=KANJI.length+VOCAB.length,pct=Math.round(mastered.size/total*100);
+  const total=VALID.size,pct=Math.round(mastered.size/total*100);
   $("#goalTxt").textContent=pct+"% ("+mastered.size+"/"+total+")";$("#goalBar").style.width=pct+"%";
   $("#eye2").setAttribute("opacity",pct>=100?1:0);
   const b=store.get("best",null);$("#bestScore").textContent=b==null?"–":b+"/10";
@@ -619,50 +877,55 @@ function openKanji(i){
 }
 function setDoneBtn(){const on=mastered.has("k"+curK);$("#mDone").textContent=on?"↺ Batal hafal":"✓ Tandai hafal";$("#mDone").className="btn "+(on?"btn-soft":"btn-red")}
 $("#mDone").onclick=()=>{const id="k"+curK;mastered.has(id)?mastered.delete(id):(mastered.add(id),petals(12));save();setDoneBtn();renderKanji()};
-$("#mSpeak").onclick=()=>speak(KANJI[curK][4]);
 $("#mClose").onclick=()=>$("#modal").classList.remove("show");
 $("#modal").onclick=e=>{if(e.target.id==="modal")$("#modal").classList.remove("show")};
 
 /* vocab */
-let vCat="all";
+let vCat="all",vLv=store.get("vLv","N3");
+lvTabs($("#vLv"),vLv,{N3:VOCAB.N3.length,N2:VOCAB.N2.length},l=>{vLv=l;store.set("vLv",l);renderVocab()});
 $("#vChips").innerHTML=Object.entries(CAT).map(([k,v])=>`<button class="fchip ${k==="all"?"on":""}" data-c="${k}">${v}</button>`).join("");
 $("#vChips").onclick=e=>{const b=e.target.closest(".fchip");if(!b)return;vCat=b.dataset.c;document.querySelectorAll("#vChips .fchip").forEach(x=>x.classList.toggle("on",x===b));renderVocab()};
 function renderVocab(){
   const q=$("#vSearch").value.trim().toLowerCase();
-  const list=VOCAB.filter(v=>(vCat==="all"||v[3]===vCat)&&(!q||v.join(" ").toLowerCase().includes(q)));
+  const list=VOCAB[vLv].filter(v=>(vCat==="all"||v[3]===vCat)&&(!q||v.join(" ").toLowerCase().includes(q)));
+  $("#vCount").textContent=`${list.length} kata · JLPT ${vLv}`;
   $("#vList").className="vlist"+($("#furi").checked?"":" hide-rt");
-  $("#vList").innerHTML=list.length?list.map(v=>`<div class="vitem"><ruby>${v[0]}<rt>${v[1]}</rt></ruby><div class="mean"><div>${esc(v[2])}</div><small>${CAT[v[3]]}</small></div><button class="speak" onclick="speak('${v[1]}')" aria-label="Dengar">🔊</button></div>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
+  $("#vList").innerHTML=list.length?list.map(v=>`<div class="vitem"><ruby>${v[0]}<rt>${v[1]}</rt></ruby><div class="mean"><div>${esc(v[2])}</div><small>${CAT[v[3]]}</small></div><span class="lvb ${vLv}">${vLv}</span></div>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
 }
 $("#vSearch").oninput=renderVocab;$("#furi").onchange=renderVocab;
 
 /* grammar */
+let gLv=store.get("gLv","N3");
+lvTabs($("#gLv"),gLv,{N3:GRAM.N3.length,N2:GRAM.N2.length},l=>{gLv=l;store.set("gLv",l);renderGram()});
 function renderGram(){
   const q=$("#gSearch").value.trim().toLowerCase();
-  const list=GRAM.map((g,i)=>[g,i]).filter(([g])=>!q||(g.p+g.m+g.ex).toLowerCase().includes(q));
-  $("#gList").innerHTML=list.length?list.map(([g,i])=>`<details class="gitem"><summary><div class="gnum">${String(i+1).padStart(2,"0")}</div><div><div class="gpat">${g.p}</div><div class="gmean">${esc(g.m)}</div></div><span class="garrow">⌄</span></summary>
-   <div class="gbody"><div class="form">${g.f}</div><div class="ex"><div style="flex:1"><div class="jp">${g.ex}</div><div class="rd jp">${g.rd}</div><div class="tr">${esc(g.tr)}</div></div><button class="speak" onclick="speak('${g.ex}')" aria-label="Dengar">🔊</button></div></div></details>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
+  const list=GRAM[gLv].map((g,i)=>[g,i]).filter(([g])=>!q||(g[0]+g[1]+g[3]+g[5]).toLowerCase().includes(q));
+  $("#gCount").textContent=`${list.length} pola · JLPT ${gLv}`;
+  $("#gList").innerHTML=list.length?list.map(([g,i])=>`<details class="gitem"><summary><div class="gnum">${String(i+1).padStart(2,"0")}</div><div><div class="gpat">${g[0]}<span class="lvb ${gLv}">${gLv}</span></div><div class="gmean">${esc(g[1])}</div></div><span class="garrow">⌄</span></summary>
+   <div class="gbody"><div class="form">${g[2]}</div><div class="ex"><div style="flex:1"><div class="jp">${g[3]}</div><div class="rd jp">${g[4]}</div><div class="tr">${esc(g[5])}</div></div></div></div></details>`).join(""):`<div class="empty">Tidak ditemukan 🙈</div>`;
 }
 $("#gSearch").oninput=renderGram;
 
 /* flashcards */
 let deck="kanji",order=[],pos=0;
-$("#fcDeck").innerHTML=`<button class="fchip on" data-d="kanji">漢字 Kanji</button><button class="fchip" data-d="vocab">語彙 Kosakata</button>`;
+$("#fcDeck").innerHTML=`<button class="fchip on" data-d="kanji">漢字 Kanji</button><button class="fchip" data-d="N3">語彙 Kosakata N3</button><button class="fchip" data-d="N2">語彙 Kosakata N2</button>`;
 $("#fcDeck").onclick=e=>{const b=e.target.closest(".fchip");if(!b)return;deck=b.dataset.d;document.querySelectorAll("#fcDeck .fchip").forEach(x=>x.classList.toggle("on",x===b));buildDeck()};
-const idOf=i=>(deck==="kanji"?"k":"v")+i;
+const deckLen=()=>deck==="kanji"?KANJI.length:VOCAB[deck].length;
+const idOf=i=>deck==="kanji"?"k"+i:"v"+deck+"_"+i;
 function buildDeck(shuf){
-  const n=deck==="kanji"?KANJI.length:VOCAB.length;let ids=[...Array(n).keys()];
+  let ids=[...Array(deckLen()).keys()];
   if($("#fcOnly").checked)ids=ids.filter(i=>!mastered.has(idOf(i)));
   order=shuf?shuffle(ids):ids;pos=0;showCard();
 }
 function showCard(){
   $("#fc").classList.remove("flip");
-  const n=deck==="kanji"?KANJI.length:VOCAB.length,m=[...Array(n).keys()].filter(i=>mastered.has(idOf(i))).length;
+  const n=deckLen(),m=[...Array(n).keys()].filter(i=>mastered.has(idOf(i))).length;
   $("#fcMast").textContent=`✓ ${m}/${n} hafal`;$("#fcBar").style.width=(m/n*100)+"%";
   if(!order.length){$("#fcFront").className="big word";$("#fcFront").textContent="🎉";$("#fcR").textContent="";$("#fcM").textContent="Semua sudah hafal!";$("#fcX").textContent="";$("#fcPos").textContent="0/0";return}
   const i=order[pos];
   setTimeout(()=>{
     if(deck==="kanji"){const k=KANJI[i];$("#fcFront").className="big";$("#fcFront").textContent=k[0];$("#fcR").textContent=k[1]+" ／ "+k[2];$("#fcM").textContent=k[3];$("#fcX").textContent=k[4]+"（"+k[5]+"）"+k[6]}
-    else{const v=VOCAB[i];$("#fcFront").className="big word";$("#fcFront").textContent=v[0];$("#fcR").textContent=v[1];$("#fcM").textContent=v[2];$("#fcX").textContent=CAT[v[3]]}
+    else{const v=VOCAB[deck][i];$("#fcFront").className="big word";$("#fcFront").textContent=v[0];$("#fcR").textContent=v[1];$("#fcM").textContent=v[2];$("#fcX").textContent=CAT[v[3]]+" · JLPT "+deck}
   },120);
   $("#fcPos").textContent=`Kartu ${pos+1} / ${order.length}`+(mastered.has(idOf(i))?" · ✓":"");
 }
@@ -679,20 +942,23 @@ document.addEventListener("keydown",e=>{if(location.hash!=="#flashcard"||e.targe
   if(e.code==="Space"){e.preventDefault();flip()}else if(e.key==="ArrowRight")next();else if(e.key==="ArrowLeft")$("#fcPrev").click()});
 
 /* quiz */
-let qs=[],qi=0,score=0,qMode="mix";
-function mkQ(type){
-  if(type==="kanji"){const i=Math.random()*KANJI.length|0,k=KANJI[i];const wrong=shuffle(KANJI.filter((_,j)=>j!==i)).slice(0,3).map(x=>x[3]);
-    return{t:"Apa arti kanji ini?",q:k[0],cls:"kanji",h:"",a:k[3],o:shuffle([k[3],...wrong]),ex:`${k[0]} = ${k[3]} · ${k[4]}（${k[5]}）`}}
-  if(type==="read"){const i=Math.random()*VOCAB.length|0,v=VOCAB[i];const wrong=shuffle(VOCAB.filter((_,j)=>j!==i)).slice(0,3).map(x=>x[1]);
-    return{t:"Bagaimana cara bacanya?",q:v[0],h:"",a:v[1],o:shuffle([v[1],...wrong]),ex:`${v[0]}（${v[1]}）= ${v[2]}`}}
-  if(type==="vocab"){const i=Math.random()*VOCAB.length|0,v=VOCAB[i];const wrong=shuffle(VOCAB.filter((_,j)=>j!==i)).slice(0,3).map(x=>x[2]);
-    return{t:"Apa arti kata ini?",q:v[0],h:v[1],a:v[2],o:shuffle([v[2],...wrong]),ex:`${v[0]}（${v[1]}）= ${v[2]}`}}
-  const g=GRAM[Math.random()*GRAM.length|0];
-  return{t:"Pilih yang tepat untuk ＿＿＿",q:g.q,h:"",a:g.a,o:shuffle(g.o),ex:`${g.p}: ${g.m} — ${g.ex} (${g.tr})`}
+let qs=[],qi=0,score=0,qMode="mix",qLv=store.get("qLv","N3");
+lvTabs($("#qLv"),qLv,null,l=>{qLv=l;store.set("qLv",l)});
+function mkQ(type,lv){
+  const V=VOCAB[lv];
+  if(type==="kanji"){const i=Math.random()*KANJI.length|0,k=KANJI[i];
+    return{t:"Apa arti kanji ini?",q:k[0],cls:"kanji",h:"",a:k[3],o:shuffle([k[3],...pickWrong(KANJI.map(x=>x[3]),k[3],3)]),ex:`${k[0]} = ${k[3]} · ${k[4]}（${k[5]}）`}}
+  if(type==="read"){const v=V[Math.random()*V.length|0];
+    return{t:`Bagaimana cara bacanya? · ${lv}`,q:v[0],h:"",a:v[1],o:shuffle([v[1],...pickWrong(V.map(x=>x[1]),v[1],3)]),ex:`${v[0]}（${v[1]}）= ${v[2]}`}}
+  if(type==="vocab"){const v=V[Math.random()*V.length|0];
+    return{t:`Apa arti kata ini? · ${lv}`,q:v[0],h:v[1],a:v[2],o:shuffle([v[2],...pickWrong(V.map(x=>x[2]),v[2],3)]),ex:`${v[0]}（${v[1]}）= ${v[2]}`}}
+  const G=GRAM[lv],g=G[Math.random()*G.length|0];
+  return{t:`Pilih yang tepat untuk ＿＿＿ · ${lv}`,q:g[6],h:"",a:g[7],o:shuffle(g.slice(7,11)),ex:`${g[0]}: ${g[1]} — ${g[3]} (${g[5]})`}
 }
 function startQuiz(m){
-  qMode=m;const types=["kanji","read","vocab","gram"];qs=[];const seen=new Set();
-  while(qs.length<10){const q=mkQ(m==="mix"?types[Math.random()*4|0]:m);if(seen.has(q.q))continue;seen.add(q.q);qs.push(q)}
+  qMode=m;const types=["kanji","read","vocab","gram","gram"];qs=[];const seen=new Set();
+  let guard=0;
+  while(qs.length<10&&guard++<500){const q=mkQ(m==="mix"?types[Math.random()*types.length|0]:m,qLv);if(seen.has(q.q))continue;seen.add(q.q);qs.push(q)}
   qi=0;score=0;$("#qStart").style.display="none";$("#qEnd").style.display="none";$("#qPlay").style.display="block";showQ();
 }
 function showQ(){
@@ -714,7 +980,7 @@ $("#qNext").onclick=()=>{qi++;if(qi<10)showQ();else endQuiz()};
 function endQuiz(){
   $("#qPlay").style.display="none";$("#qEnd").style.display="block";$("#qFinal").textContent=score+"/10";
   const best=store.get("best",0);if(score>best)store.set("best",score);
-  const msg=score>=9?["すばらしい！ Luar biasa!","Kamu siap menghadapi N3!"]:score>=7?["よくできました！ Bagus!","Sedikit lagi menuju sempurna."]:score>=4?["がんばって！ Semangat!","Ulangi materinya lalu coba lagi."]:["七転び八起き","Jatuh tujuh kali, bangkit delapan kali. Coba lagi!"];
+  const msg=score>=9?["すばらしい！ Luar biasa!",`Kamu siap menghadapi ${qLv}!`]:score>=7?["よくできました！ Bagus!","Sedikit lagi menuju sempurna."]:score>=4?["がんばって！ Semangat!","Ulangi materinya lalu coba lagi."]:["七転び八起き","Jatuh tujuh kali, bangkit delapan kali. Coba lagi!"];
   $("#qMsg").textContent=msg[0];$("#qSub").textContent=msg[1]+(score>best?" 🏆 Rekor baru!":"");
   if(score>=7)petals(30);updateStats();
 }
