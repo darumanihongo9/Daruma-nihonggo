@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<script>
+/* ===== MODE MAINTENANCE =====
+   MAINTENANCE = true  -> pengunjung melihat halaman maintenance
+   MAINTENANCE = false -> web terbuka normal untuk semua orang
+   Pemilik: buka web dengan ?dev=KODE di akhir link (sekali saja), browser akan diingat.
+   Keluar mode pemilik: buka dengan ?dev=keluar */
+var MAINTENANCE = true;
+var KODE_RAHASIA = "darumasatria";
+(function(){var dev=false;try{var q=new URLSearchParams(location.search);var v=q.get("dev");
+if(v===KODE_RAHASIA)localStorage.setItem("dn_dev","1");if(v==="keluar")localStorage.removeItem("dn_dev");
+dev=localStorage.getItem("dn_dev")==="1";if(v!==null)history.replaceState(null,"",location.pathname+location.hash)}catch(e){}
+if(MAINTENANCE&&!dev)document.documentElement.classList.add("maint");
+if(MAINTENANCE&&dev)document.documentElement.classList.add("maint-dev");})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daruma Nihongo — Belajar Bahasa Jepang JLPT N5 - N2 Gratis</title>
+<title>Daruma Nihongo — Belajar Bahasa Jepang JLPT N3 & N2 Gratis</title>
 <meta name="description" content="Belajar bahasa Jepang gratis untuk persiapan JLPT N3 dan N2: kanji, ratusan kosakata, tata bahasa (bunpou) dengan contoh kalimat, flashcard, dan kuis. Penjelasan dalam bahasa Indonesia.">
 <meta name="keywords" content="belajar bahasa Jepang, JLPT N3, JLPT N2, kosakata N3, kosakata N2, bunpou N3, bunpou N2, tata bahasa Jepang, kanji N3, flashcard Jepang, kuis JLPT">
 <meta name="author" content="Satria Bayu Darmawan (Daruma)">
@@ -358,9 +372,30 @@ footer .author{color:var(--ink);font-weight:700}
 .qq.sent{font-size:clamp(19px,3.2vw,24px)}
 rt{font-family:var(--jp);font-weight:400}
 .ktile .k,.mk,.today .kj,.fc-front .big{font-weight:500}
+
+/* === halaman maintenance === */
+#maint{display:none}
+html.maint body>*:not(#maint){display:none!important}
+html.maint #maint{display:flex;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;background:var(--bg);text-align:center}
+#maint .box{max-width:520px}
+#maint svg{width:120px;height:120px;filter:drop-shadow(0 12px 18px rgba(214,56,47,.25));animation:bob 3.2s ease-in-out infinite}
+#maint .jt{font-family:var(--jp);font-size:30px;font-weight:600;margin:18px 0 4px;color:var(--red)}
+#maint h1{font-size:24px;margin:0 0 10px}
+#maint p{color:var(--muted);margin:0 0 8px;line-height:1.7}
+#maint .sig{margin-top:18px;font-size:13px;color:var(--muted)}
+#devbadge{display:none}
+html.maint-dev #devbadge{display:block;position:fixed;left:12px;bottom:12px;z-index:9998;background:var(--ink);color:var(--bg);font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;opacity:.85}
 </style>
 </head>
 <body>
+<div id="maint"><div class="box">
+  <svg viewBox="0 0 100 100"><use href="#daruma"/></svg>
+  <div class="jt">ただいまメンテナンス中</div>
+  <h1>Lagi perbaikan, dahh tidur aja gak usah belajar 😴</h1>
+  <p class="jp">おやすみなさい 💤</p>
+  <div class="sig">— Satria Bayu Darmawan (Daruma)</div>
+</div></div>
+<div id="devbadge">🔧 Mode pemilik · maintenance aktif untuk pengunjung</div>
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
