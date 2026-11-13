@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daruma Nihongo — Belajar Bahasa Jepang JLPT N3 & N2 Gratis</title>
+<title>Daruma Nihongo — Belajar Bahasa Jepang JLPT N5 - N2 Gratis</title>
 <meta name="description" content="Belajar bahasa Jepang gratis untuk persiapan JLPT N3 dan N2: kanji, ratusan kosakata, tata bahasa (bunpou) dengan contoh kalimat, flashcard, dan kuis. Penjelasan dalam bahasa Indonesia.">
 <meta name="keywords" content="belajar bahasa Jepang, JLPT N3, JLPT N2, kosakata N3, kosakata N2, bunpou N3, bunpou N2, tata bahasa Jepang, kanji N3, flashcard Jepang, kuis JLPT">
 <meta name="author" content="Satria Bayu Darmawan (Daruma)">
@@ -2033,7 +2033,7 @@ const RUMUS_RE=/^(Kata [^-]+?|Kata Kerja|Kata Benda|Kata Sifat [^-]+?)\s+-\s+(.*
 function gEx(list){return list.map((e,j)=>`<div class="ex"><span class="exn">${j+1}</span><div style="flex:1"><div class="jp">${e.jp}</div><div class="tr">${e.tr}</div>${e.src?`<span class="srcb">${esc(e.src)}</span>`:""}</div></div>`).join("")}
 function gBody(g){
   const sec=(cls,head,inner)=>`<div class="gsec ${cls}"><div class="gsh">${head}</div>${inner}</div>`;
-  let h=g.from==="mn"?`<div class="srcnote">📘 Dari <b>Rangkuman Bunpou N2 (Minna no Nihongo)</b>. Contoh kalimat ① dari sumber, ②–④ tambahan.</div>`:"";
+  let h="";
   if(g.r&&g.r.length)h+=sec("rumus","RUMUS",`<div class="rtab">${g.r.map(x=>{const m=stripH(x).match(RUMUS_RE);return m?`<div class="rrow"><span>${esc(m[1])}</span><b class="jp">${x.slice(x.indexOf(" - ")+3)}</b></div>`:`<div class="rrow full">${x}</div>`}).join("")}</div>`);
   if(g.p&&g.p.length)h+=sec("","PENJELASAN",g.p.map(x=>`<p>${x}</p>`).join(""));
   if(g.tp&&g.tp.length)h+=sec("tips","💡 TIPS",g.tp.map(x=>`<p>${x}</p>`).join(""));
