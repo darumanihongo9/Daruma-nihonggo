@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<script src="config.js"></script>// ===== PENGATURAN WEB DARUMA NIHONGO =====
+// Mode perbaikan: true = nyala (pengunjung lihat pesan perbaikan), false = mati
+window.MAINTENANCE = false;
+
+// Kode rahasia pemilik (buka web dengan ?dev=KODE)
+window.KODE_RAHASIA = "darumasatria";
+
 <script>
 /* ===== MODE MAINTENANCE =====
    MAINTENANCE = true  -> pengunjung melihat halaman maintenance
    MAINTENANCE = false -> web terbuka normal untuk semua orang
    Pemilik: buka web dengan ?dev=KODE di akhir link (sekali saja), browser akan diingat.
    Keluar mode pemilik: buka dengan ?dev=keluar */
-var MAINTENANCE = true;
-var KODE_RAHASIA = "darumasatria";
+var MAINTENANCE = (typeof window.MAINTENANCE==="boolean") ? window.MAINTENANCE : false;
+var KODE_RAHASIA = window.KODE_RAHASIA || "darumasatria";
 (function(){var dev=false;try{var q=new URLSearchParams(location.search);var v=q.get("dev");
 if(v===KODE_RAHASIA)localStorage.setItem("dn_dev","1");if(v==="keluar")localStorage.removeItem("dn_dev");
 dev=localStorage.getItem("dn_dev")==="1";if(v!==null)history.replaceState(null,"",location.pathname+location.hash)}catch(e){}
